@@ -58,18 +58,24 @@ document.documentElement.classList.add('js');
     update();
   }
 
-  // Forms: AJAX submit for Netlify Forms, graceful fallback elsewhere
+  // Forms: AJAX submit for Netlify Forms. Only confirm when the server accepts it.
   document.querySelectorAll('form[data-lead-form]').forEach(function (form) {
     form.addEventListener('submit', function (ev) {
       if (!form.checkValidity()) return;
       ev.preventDefault();
-      var data = new FormData(form);
-      fetch('/', { method: 'POST', body: data })
-        .catch(function () {})
-        .finally(function () {
+      var b = form.querySelector('button[type="submit"]');
+      var label = b ? b.textContent : '';
+      if (b) { b.disabled = true; b.textContent = 'Sending...'; }
+      form.classList.remove('is-error');
+      fetch(form.getAttribute('action') || '/', { method: 'POST', body: new FormData(form) })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.status);
           form.classList.add('is-sent');
-          var b = form.querySelector('button[type="submit"]');
-          if (b) { b.disabled = true; b.textContent = 'Sent. We will be in touch.'; }
+          if (b) b.textContent = 'Sent. We will be in touch.';
+        })
+        .catch(function () {
+          form.classList.add('is-error');
+          if (b) { b.disabled = false; b.textContent = label; }
         });
     });
   });

@@ -6,12 +6,12 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 
 | File | Purpose |
 |---|---|
-| `index.html` | Home landing page: hero, proof strip, red flag checker, before/after comparison, explore tabs, founder, reviews, reels, CTA |
+| `index.html` | Home landing page: hero, proof strip, red flag self-check, before/after comparison, $999 pricing, explore tabs, Our Story, reels, CTA (client reviews are commented out until real ones exist) |
 | `how-it-works.html` | 4-step timeline, what you do vs. what we do, our promise |
 | `what-we-cover.html` | The 6 numbers we work on, deal recap, quote check CTA |
-| `dealers.html` | Dealer value props and dealer signup form |
+| `pricing.html` | $999 flat fee: what's included, why it's worth it, pricing FAQ |
 | `faq.html` | Grouped FAQ |
-| `start.html` | Start my deal form + free quote check upload (`start.html#check`) |
+| `start.html` | Step 1 shows the $999 fee, step 2 is the consultation form (fee acknowledgement required). Free Check My Deal intake at `start.html#check`, reviewed manually by the team |
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
@@ -21,24 +21,22 @@ Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/`.
 
 Search the project for `[` to find every placeholder:
 
-- `[FOUNDER NAME]`, `[FOUNDER PHOTO]`, founder quote
 - `[PHONE NUMBER]`, `[EMAIL ADDRESS]`, `[RESPONSE TIME]`
-- `[FEE DETAILS]`, `[TYPICAL TIMELINE ...]`, `[YOUR SERVICE AREA]`
-- `[CLIENT REVIEW 1-3]`, `[CLIENT FIRST NAME]`, `[VEHICLE]`
+- `[TYPICAL TIMELINE ...]`, `[YOUR SERVICE AREA]`
+- `[CLIENT REVIEW 1-3]`, `[CLIENT FIRST NAME]`, `[VEHICLE]` (reviews section is commented out in `index.html`; uncomment once filled)
 - `[INSTAGRAM LINK]`, `[@HANDLE]`, video titles
 - `[YOUR DOMAIN]` (canonical tags in each page head)
 - `[LEGAL ENTITY NAME]`, `[FLORIDA LICENSE INFO]`, privacy policy text
 
-Founder photo: replace the `.photo-ph` div in `index.html` with
-`<img src="assets/img/founder.jpg" alt="[FOUNDER NAME]" style="border-radius:28px;aspect-ratio:4/5;object-fit:cover">`.
+No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms
 
-The three forms (`start-deal`, `quote-check`, `dealer`) use **Netlify Forms**.
+The two forms (`start-deal`, `quote-check`) use **Netlify Forms**.
 Deploy the repo on Netlify and submissions show up under Site > Forms, with
 email notifications available. No backend needed.
 
-On GitHub Pages, forms will not submit. Either deploy on Netlify, or swap each
+On GitHub Pages, forms will not submit; visitors see an error message with your phone number instead of a false confirmation. Either deploy on Netlify, or swap each
 form's `action` to a service like Formspree.
 
 ## Deploy
