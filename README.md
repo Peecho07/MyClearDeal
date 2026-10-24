@@ -6,7 +6,7 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 
 | File | Purpose |
 |---|---|
-| `index.html` | Home landing page: hero, proof strip, red flag self-check, before/after comparison, $999 pricing, Why myClearDeal comparison, explore tabs, About the founders (with the three company messages), mission statement, CTA (client reviews and videos are commented out until real ones exist) |
+| `index.html` | Home landing page: hero, proof strip, About the founders (with the three company messages), mission statement, the problem, red flag self-check, Why myClearDeal comparison, how it works in 4 steps, short $999 pricing block, CTA (client reviews and videos are commented out until real ones exist) |
 | `how-it-works.html` | 4-step timeline, what you do vs. what we do, our promise |
 | `what-we-cover.html` | The 6 numbers we work on, deal recap, quote check CTA |
 | `pricing.html` | $999 flat fee: what's included, why it's worth it, pricing FAQ |
@@ -15,7 +15,16 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
-Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/` (`logo.png` for light backgrounds, `logo-dark.png` for the dark footer, `favicon.png`, `apple-touch-icon.png`).
+Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/`.
+
+Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wordmark is Inter ExtraBold):
+
+- `logo.svg` for light backgrounds (header), `logo-white.svg` for dark backgrounds (footer)
+- `logo.png`, `logo-white.png`: 1200px PNG copies for email or social
+- `favicon.svg` plus `favicon.png` (64px) fallback, `apple-touch-icon.png` (180px)
+- `og-image.png`: 1200x630 social share image
+
+`sitemap.xml` and `robots.txt` use the github.io address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
 
 ## Before going live
 
