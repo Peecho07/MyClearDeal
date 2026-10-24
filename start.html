@@ -59,10 +59,22 @@
 <p hidden><label>Leave blank <input name="bot-field"></label></p>
 <span class="step-tag">Step 2 &middot; Tell us about your car</span>
 <h2 class="form__title">Book your free consultation</h2>
+<p class="form__sub">Found a car already? Paste the link. Haven't picked one yet? We'll help you find it.</p>
 <label class="field">Full name<input type="text" name="name" autocomplete="name" required></label>
 <label class="field">Phone<input type="tel" name="phone" autocomplete="tel" required></label>
 <label class="field field--full">Email<input type="email" name="email" autocomplete="email" required></label>
-<label class="field field--full">Vehicle you want<input type="text" name="vehicle" placeholder="Year, make, model"></label>
+<fieldset class="field field--full" data-car-choice><legend>Have you found a car yet?</legend><div class="choices">
+<label class="choice"><input type="radio" name="found-car" value="Yes, I found one" data-car-show="found" required><span>Yes, I found one</span></label>
+<label class="choice"><input type="radio" name="found-car" value="I have a few in mind" data-car-show="found"><span>I have a few in mind</span></label>
+<label class="choice"><input type="radio" name="found-car" value="Not yet, help me find one" data-car-show="search"><span>Not yet, help me find one</span></label>
+</div></fieldset>
+<div class="car-group field--full" data-car-group="found">
+<label class="field"><span>Paste the link(s) here <span class="opt">(optional)</span></span><textarea name="vehicle-links" rows="3" aria-describedby="links-hint" placeholder="One link per line"></textarea><span class="hint" id="links-hint">A link from Cars.com, AutoTrader, CarGurus or a dealer's website works. Paste up to 3.</span></label>
+<label class="field"><span>Year, make and model <span class="opt">(optional)</span></span><input type="text" name="vehicle" placeholder="e.g. 2024 Toyota RAV4"></label>
+</div>
+<div class="car-group field--full" data-car-group="search">
+<label class="field">What are you looking for?<textarea name="looking-for" rows="4" aria-describedby="looking-hint" data-car-required></textarea><span class="hint" id="looking-hint">Make and model if you know it, or just tell us what you need: budget, size, new or used, must-haves. We'll help you find it.</span></label>
+</div>
 <fieldset class="field field--full"><legend>Buying or leasing</legend><div class="choices">
 <label class="choice"><input type="radio" name="type" value="Buying" checked><span>Buying</span></label>
 <label class="choice"><input type="radio" name="type" value="Leasing"><span>Leasing</span></label>

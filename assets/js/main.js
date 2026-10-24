@@ -58,6 +58,27 @@ document.documentElement.classList.add('js');
     update();
   }
 
+  // Consultation form: show the car fields that match "Have you found a car yet?"
+  document.querySelectorAll('[data-car-choice]').forEach(function (choice) {
+    var form = choice.closest('form');
+    var groups = form.querySelectorAll('[data-car-group]');
+    var sync = function () {
+      var picked = choice.querySelector('input:checked');
+      var show = picked ? picked.getAttribute('data-car-show') : '';
+      groups.forEach(function (g) {
+        var on = g.getAttribute('data-car-group') === show;
+        g.classList.toggle('is-shown', on);
+        // Hidden fields are disabled so they are neither validated nor submitted.
+        g.querySelectorAll('input, textarea').forEach(function (f) {
+          f.disabled = !on;
+          if (f.hasAttribute('data-car-required')) f.required = on;
+        });
+      });
+    };
+    choice.addEventListener('change', sync);
+    sync();
+  });
+
   // Forms: AJAX submit for Netlify Forms. Only confirm when the server accepts it.
   document.querySelectorAll('form[data-lead-form]').forEach(function (form) {
     form.addEventListener('submit', function (ev) {
