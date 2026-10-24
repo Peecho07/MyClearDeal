@@ -15,11 +15,11 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
-Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/`.
+Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/` (`logo.png` for light backgrounds, `logo-dark.png` for the dark footer, `favicon.png`, `apple-touch-icon.png`).
 
 ## Before going live
 
-Search the project for `[` to find every placeholder:
+Placeholders are commented out (`<!-- ... -->`) so nothing unfinished shows on the live site. Search the project for `[` to find each one, fill it in, then remove the comment wrapper:
 
 - `[PHONE NUMBER]`, `[EMAIL ADDRESS]`, `[RESPONSE TIME]`
 - `[TYPICAL TIMELINE ...]`, `[YOUR SERVICE AREA]`
