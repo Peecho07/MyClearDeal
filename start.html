@@ -66,7 +66,13 @@
 <p class="form__sub">Found a car already? Paste the link. Haven't picked one yet? We'll help you find it.</p>
 <label class="field">Full name<input type="text" name="name" autocomplete="name" required></label>
 <label class="field">Phone<input type="tel" name="phone" autocomplete="tel" required></label>
-<label class="field field--full">Email<input type="email" name="email" autocomplete="email" required></label>
+<label class="field">Email<input type="email" name="email" autocomplete="email" required></label>
+<label class="field">ZIP code<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required></label>
+<fieldset class="field field--full"><legend>Best way to reach you</legend><div class="choices">
+<label class="choice"><input type="radio" name="contact-pref" value="Call" checked><span>Call</span></label>
+<label class="choice"><input type="radio" name="contact-pref" value="Text"><span>Text</span></label>
+<label class="choice"><input type="radio" name="contact-pref" value="Email"><span>Email</span></label>
+</div></fieldset>
 <fieldset class="field field--full" data-car-choice><legend>Have you found a car yet?</legend><div class="choices">
 <label class="choice"><input type="radio" name="found-car" value="Yes, I found one" data-car-show="found" required><span>Yes, I found one</span></label>
 <label class="choice"><input type="radio" name="found-car" value="I have a few in mind" data-car-show="found"><span>I have a few in mind</span></label>
@@ -79,17 +85,20 @@
 <div class="car-group field--full" data-car-group="search">
 <label class="field">What are you looking for?<textarea name="looking-for" rows="4" aria-describedby="looking-hint" data-car-required></textarea><span class="hint" id="looking-hint">Make and model if you know it, or just tell us what you need: budget, size, new or used, must-haves. We'll help you find it.</span></label>
 </div>
-<fieldset class="field field--full"><legend>Buying or leasing</legend><div class="choices">
-<label class="choice"><input type="radio" name="type" value="Buying" checked><span>Buying</span></label>
-<label class="choice"><input type="radio" name="type" value="Leasing"><span>Leasing</span></label>
-<label class="choice"><input type="radio" name="type" value="Not sure yet"><span>Not sure yet</span></label>
+<fieldset class="field field--full"><legend>How are you paying?</legend><div class="choices">
+<label class="choice"><input type="radio" name="payment" value="Cash" ><span>Cash</span></label>
+<label class="choice"><input type="radio" name="payment" value="Financing"><span>Financing</span></label>
+<label class="choice"><input type="radio" name="payment" value="Leasing"><span>Leasing</span></label>
+<label class="choice"><input type="radio" name="payment" value="Not sure yet" checked><span>Not sure yet</span></label>
 </div></fieldset>
 <label class="field">Trade-in?<select name="trade"><option>Yes</option><option>No</option></select></label>
-<label class="field">When are you buying?<select name="timeline"><option>This month</option><option>1 to 3 months</option><option>Just researching</option></select></label>
+<label class="field">When are you buying?<select name="timeline"><option>As soon as possible</option><option>Within 2 weeks</option><option>Within 30 days</option><option>60+ days</option><option>Just researching</option></select></label>
+<label class="field field--full">Target out-the-door price or budget <span class="opt">(optional)</span><input type="text" name="budget" inputmode="decimal" placeholder="e.g. $38,000 out the door"></label>
+<label class="field field--full">How did you hear about us?<select name="source"><option>Instagram</option><option>Facebook</option><option>Google</option><option>Friend or family</option><option>Other</option></select></label>
 <label class="ack"><input type="checkbox" name="fee-acknowledged" value="Yes, understands $999 flat fee" required><span>I understand myClearDeal charges a one-time <strong>$999 flat fee</strong> for one car purchase, confirmed with me before any work begins. Submitting this form does not charge me.</span></label>
 <button class="btn btn--green field--full" type="submit">Book my free consultation</button>
 <p class="fine">No obligation. We never share your number with a dealer without your OK.</p>
-<div class="form-success" role="status">Got it. We will be in touch to set up your free consultation.</div>
+<div class="form-success" role="status">Got it. Your Clear Deal Advocate will reach out within 24 hours, usually much sooner.</div>
 <div class="form-error" role="alert">Sorry, that did not go through. Please try again in a moment.</div>
 </form>
 </div>
@@ -126,7 +135,7 @@
 <label class="field field--full">Anything we should know?<textarea name="notes" placeholder="Monthly payment, rate, trade-in offer, add-ons, or anything that feels off"></textarea></label>
 <button class="btn btn--ink field--full" type="submit">Send for my free review</button>
 <p class="fine">Reviewed by a real person on our team. We never share your information with a dealer without your OK.</p>
-<div class="form-success" role="status">Got it. A member of our team will review your quote and follow up.</div>
+<div class="form-success" role="status">Got it. A Clear Deal Advocate will review your quote and follow up within 24 hours.</div>
 <div class="form-error" role="alert">Sorry, that did not go through. Please try again in a moment.</div>
 </form>
 </div>
