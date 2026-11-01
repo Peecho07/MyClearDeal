@@ -4,18 +4,22 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 
 ## Pages
 
+Built on the "Step" design system (layout, type, components and motion), with myClearDeal's colors and copy.
+
 | File | Purpose |
 |---|---|
-| `index.html` | Home landing page: hero, proof strip, About the founders (with the three company messages), mission statement, the problem, red flag self-check, Why myClearDeal comparison, how it works in 4 steps, what we do and don't do, short $995 pricing block, CTA (client reviews and videos are commented out until real ones exist) |
-| `how-it-works.html` | 4-step timeline, what you do vs. what we do, our promise |
-| `what-we-cover.html` | The 6 numbers we work on, deal recap, quote check CTA |
-| `pricing.html` | $995 flat fee: what's included, why it's worth it, pricing FAQ |
-| `faq.html` | Grouped FAQ |
-| `start.html` | Step 1 shows the $995 fee, step 2 is the consultation form (fee acknowledgement required; "Have you found a car yet?" shows link fields or a "what are you looking for" box depending on the answer). Free Check My Deal intake at `start.html#check`, reviewed manually by the team |
+| `index.html` | Hero with animated example deal (negotiate, verify, trade-in), make marquee, "what we negotiate" tabs (price, fees, trade-in, market check), Check My Deal band with a short form, the problem, self-check, comparison table, how it works, what we do and don't, founders and stats, mission, pricing, example deals deck, CTA |
+| `how-it-works.html` | 4 steps, what you do vs. what we do, scope, our promise |
+| `what-we-cover.html` | The 3 numbers we negotiate, how we define a fair price, scope, deal recap |
+| `pricing.html` | $995 plan, what goes to the dealer, why it's worth it, comparison, pricing FAQ |
+| `faq.html` | Grouped FAQ and pre-approval tip |
+| `start.html` | Step 1 shows the $995 fee, step 2 is the consultation form with a 5-step progress bar. `start.html?type=lease` preselects Leasing. Full Check My Deal form at `start.html#check` |
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
-Shared files: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/`.
+Shared files: `site.css` (all styles; brand colors are the tokens at the top) and `site.js` (all behavior; each feature exits early when its element is missing).
+
+The "example deals" deck and the hero animation use illustrative numbers and are labeled as examples. Replace them with real (anonymized) results once you have them.
 
 Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wordmark is Inter ExtraBold):
 
@@ -30,26 +34,22 @@ Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wo
 
 Placeholders are commented out (`<!-- ... -->`) so nothing unfinished shows on the live site. Search the project for `[` to find each one, fill it in, then remove the comment wrapper:
 
-- `[PHONE NUMBER]`, `[EMAIL ADDRESS]`, `[RESPONSE TIME]`
 - `[TYPICAL TIMELINE ...]`, `[YOUR SERVICE AREA]`
-- `[CLIENT REVIEW 1-3]`, `[CLIENT FIRST NAME]`, `[VEHICLE]` (reviews section is commented out in `index.html`; uncomment once filled)
-- `[INSTAGRAM LINK]`, `[@HANDLE]`, video titles (videos section is commented out in `index.html`; uncomment once filled)
 - `[YOUR DOMAIN]` (canonical tags in each page head)
 - `[LEGAL ENTITY NAME]`, `[FLORIDA LICENSE INFO]`, privacy policy text
 
 No founder or personal photos are used anywhere on the site, by design.
 
-## Forms
+## Forms and contact details
 
-The two forms (`start-deal`, `quote-check`) use **Netlify Forms**.
-Deploy the repo on Netlify and submissions show up under Site > Forms, with
-email notifications available. No backend needed.
+All three forms (home Check My Deal, consultation, full Check My Deal) post to **Formspree** with fetch, which works on GitHub Pages. Set these at the top of `site.js`:
 
-On GitHub Pages, forms will not submit; visitors see an error message with your phone number instead of a false confirmation. Either deploy on Netlify, or swap each
-form's `action` to a service like Formspree.
+- `FORM_ENDPOINT`: your Formspree form URL (formspree.io > New form). Each submission includes a `form` field saying which form it came from.
+- `CONTACT_EMAIL`: shown in the footer and on the start page, and in the error message. Hidden while empty.
+- `QUOTE_TURNAROUND`: e.g. "1 business day". Shown in the Check My Deal steps. Hidden while empty.
+
+Until `FORM_ENDPOINT` is set, forms show an error instead of a false confirmation.
 
 ## Deploy
 
-**Netlify (recommended):** push this folder to GitHub, then Netlify > Add new site > Import from Git. Publish directory: `/` (root). No build command.
-
-**GitHub Pages:** repo Settings > Pages > Deploy from branch > `main` / root.
+**GitHub Pages:** live now, deploying from the repo's default branch, root folder. No build step.
