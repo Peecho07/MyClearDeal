@@ -28,7 +28,7 @@ Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wo
 - `favicon.svg` plus `favicon.png` (64px) fallback, `apple-touch-icon.png` (180px)
 - `og-image.png`: 1200x630 social share image
 
-`sitemap.xml` and `robots.txt` use the github.io address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
+`sitemap.xml` and `robots.txt` use the mycleardeal.netlify.app address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
 
 ## Before going live
 
@@ -42,14 +42,15 @@ No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms and contact details
 
-All three forms (home Check My Deal, consultation, full Check My Deal) post to **Formspree** with fetch, which works on GitHub Pages. Set these at the top of `site.js`:
+The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) use **Netlify Forms**: they are detected at deploy time and submitted with fetch. Submissions show up in Netlify under the project's Forms tab; add email notifications there (Forms > Submission notifications). Forms only work on the Netlify-hosted site, not on GitHub Pages.
 
-- `FORM_ENDPOINT`: your Formspree form URL (formspree.io > New form). Each submission includes a `form` field saying which form it came from.
+Set these at the top of `site.js`:
+
 - `CONTACT_EMAIL`: shown in the footer and on the start page, and in the error message. Hidden while empty.
 - `QUOTE_TURNAROUND`: e.g. "1 business day". Shown in the Check My Deal steps. Hidden while empty.
 
-Until `FORM_ENDPOINT` is set, forms show an error instead of a false confirmation.
+If a submission fails, the form shows an error instead of a false confirmation.
 
 ## Deploy
 
-**GitHub Pages:** live now, deploying from the repo's default branch, root folder. No build step.
+**Netlify:** project `mycleardeal` (https://mycleardeal.netlify.app). Publish directory is the repo root, with no build command. Form detection is on.

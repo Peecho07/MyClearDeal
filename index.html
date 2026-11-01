@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Car Buying Advocate, $995 Flat Fee | myClearDeal">
 <meta property="og:description" content="myClearDeal negotiates your car's price, fees and trade-in remotely for one $995 flat fee. A fair, verified price before you buy. Free Check My Deal.">
-<meta property="og:image" content="https://peecho07.github.io/MyClearDeal/assets/img/og-image.png">
+<meta property="og:image" content="https://mycleardeal.netlify.app/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="64x64">
@@ -122,10 +122,10 @@
 <li><strong>We follow up</strong><p>By text, call or email, whichever you prefer.<span data-turnaround> Usually within <span data-turnaround-text></span>.</span></p></li>
 </ol>
 </div>
-<form class="form" data-formspree data-success="Got it. A member of our team will review your quote and follow up." novalidate>
-<input type="hidden" name="form" value="Check My Deal (home)">
-<input type="hidden" name="_subject" value="New Check My Deal request">
-<label class="hp" aria-hidden="true">Leave blank <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+<form class="form" name="quote-check-home" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-lead-form data-success="Got it. A member of our team will review your quote and follow up." novalidate>
+<input type="hidden" name="form-name" value="quote-check-home">
+<input type="hidden" name="subject" value="New Check My Deal request (home page)">
+<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 <h3>Check my deal <em>free</em></h3>
 <label class="field">Name<input type="text" name="name" autocomplete="name" required></label>
 <label class="field">Phone<input type="tel" name="phone" autocomplete="tel" required></label>

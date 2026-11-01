@@ -1,7 +1,7 @@
 /* myClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
 
 /* ---- Config: fill these in. Nothing else in the markup needs editing. ---- */
-var FORM_ENDPOINT = "";        // Formspree endpoint, e.g. "https://formspree.io/f/abcdwxyz"
+var FORM_ENDPOINT = "/";       // Netlify Forms: POST to the site root (forms are detected at deploy)
 var CONTACT_EMAIL = "";        // e.g. "hello@mycleardeal.com"
 var QUOTE_TURNAROUND = "";     // e.g. "1 business day" (shown wherever data-turnaround appears)
 
@@ -361,9 +361,9 @@ function onScreen(el, cb) {
   });
 })();
 
-/* Forms: progress bar + Formspree submit with inline status */
+/* Forms: progress bar + Netlify Forms submit with inline status */
 (function () {
-  var forms = document.querySelectorAll("form[data-formspree]");
+  var forms = document.querySelectorAll("form[data-lead-form]");
   if (!forms.length) return;
   forms.forEach(function (form) {
     var segs = form.querySelectorAll(".progress i");
@@ -404,11 +404,11 @@ function onScreen(el, cb) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
-      if (form.querySelector('[name="_gotcha"]').value) return;
+      if (form.querySelector('[name="bot-field"]').value) return;
       var b = form.querySelector('button[type="submit"]'), txt = b.textContent;
       if (!FORM_ENDPOINT) { fail(); return; }
       b.disabled = true; b.textContent = "Sending...";
-      fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
         .then(function (r) {
           if (!r.ok) throw new Error(r.status);
           status.className = "status ok";
