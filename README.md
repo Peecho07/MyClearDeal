@@ -6,12 +6,12 @@ Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
 
 | File | Purpose |
 |---|---|
-| `index.html` | Home landing page: hero, proof strip, About the founders (with the three company messages), mission statement, the problem, red flag self-check, Why myClearDeal comparison, how it works in 4 steps, short $999 pricing block, CTA (client reviews and videos are commented out until real ones exist) |
+| `index.html` | Home landing page: hero, proof strip, About the founders (with the three company messages), mission statement, the problem, red flag self-check, Why myClearDeal comparison, how it works in 4 steps, what we do and don't do, short $995 pricing block, CTA (client reviews and videos are commented out until real ones exist) |
 | `how-it-works.html` | 4-step timeline, what you do vs. what we do, our promise |
 | `what-we-cover.html` | The 6 numbers we work on, deal recap, quote check CTA |
-| `pricing.html` | $999 flat fee: what's included, why it's worth it, pricing FAQ |
+| `pricing.html` | $995 flat fee: what's included, why it's worth it, pricing FAQ |
 | `faq.html` | Grouped FAQ |
-| `start.html` | Step 1 shows the $999 fee, step 2 is the consultation form (fee acknowledgement required; "Have you found a car yet?" shows link fields or a "what are you looking for" box depending on the answer). Free Check My Deal intake at `start.html#check`, reviewed manually by the team |
+| `start.html` | Step 1 shows the $995 fee, step 2 is the consultation form (fee acknowledgement required; "Have you found a car yet?" shows link fields or a "what are you looking for" box depending on the answer). Free Check My Deal intake at `start.html#check`, reviewed manually by the team |
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
