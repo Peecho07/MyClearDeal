@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Takes effect once the site is on its own domain (robots.txt must sit at the domain root).
-Sitemap: https://peecho07.github.io/MyClearDeal/sitemap.xml
+Sitemap: https://mycleardeal.netlify.app/sitemap.xml
