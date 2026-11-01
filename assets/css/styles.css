@@ -381,3 +381,8 @@ fieldset.field legend{padding:0 0 10px;font-size:14px;font-weight:600}
   .reveal{opacity:1;transform:none;transition:none}
   .btn,.explore a{transition:none}
 }
+
+/* Tip box */
+.tip-box{background:var(--mint-2);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:14px;padding:14px 18px;font-size:15px;line-height:1.55;color:var(--ink);margin:0}
+.tip-box strong{color:var(--green-dark)}
+.faq__list .tip-box{margin-top:28px}
