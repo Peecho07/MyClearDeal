@@ -222,6 +222,23 @@ function onScreen(el, cb) {
   });
 })();
 
+/* Journey (How it works): the car drives the four steps, then replays every 9s while on screen */
+(function () {
+  var j = document.querySelector("[data-journey]");
+  if (!j || REDUCED) return;
+  var visible = false, timer = 0;
+  function play() {
+    j.classList.remove("run"); void j.offsetWidth; j.classList.add("run");
+    clearTimeout(timer);
+    timer = setTimeout(function () { timer = 0; if (visible) play(); }, 9000);
+  }
+  if (!("IntersectionObserver" in window)) { j.classList.add("run"); return; }
+  new IntersectionObserver(function (es) {
+    visible = es[0].isIntersecting;
+    if (visible && !timer) play();
+  }, { threshold: 0.35 }).observe(j);
+})();
+
 /* Scroll reveal for every main > section except the first */
 (function () {
   if (REDUCED || !("IntersectionObserver" in window)) return;
