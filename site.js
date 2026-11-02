@@ -62,6 +62,8 @@ var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: r
     btn.textContent = open ? "Close" : "Menu";
   };
   btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
+  document.addEventListener("click", function (e) { if (nav.classList.contains("open") && !nav.contains(e.target) && !btn.contains(e.target)) set(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
   window.addEventListener("resize", function () { if (window.innerWidth > 900) set(false); });
 })();
@@ -167,7 +169,7 @@ function onScreen(el, cb) {
     var items = Array.prototype.slice.call(track.children);
     items.forEach(function (it) { var c = it.cloneNode(true); c.setAttribute("aria-hidden", "true"); track.appendChild(c); });
     var all = Array.prototype.slice.call(track.children);
-    var x = 0, last = 0, hover = false, visible = true;
+    var x = 0, last = 0, lastPop = 0, hover = false, visible = true;
     box.addEventListener("mouseenter", function () { hover = true; });
     box.addEventListener("mouseleave", function () { hover = false; });
     onScreen(box, function (v) { visible = v; });
@@ -187,7 +189,7 @@ function onScreen(el, cb) {
         if (-x >= half) x += half;
         track.style.transform = "translate3d(" + x + "px,0,0)";
       }
-      if (visible) pop();
+      if (visible && t - lastPop > 120) { lastPop = t; pop(); }
       requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
