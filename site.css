@@ -412,7 +412,7 @@ legend { font-size: 14.5px; font-weight: 600; color: var(--ink); padding: 0; mar
 
 /* 20. Footer */
 .footer { background: var(--bg-2); border-top: 1px solid var(--line); padding-block: clamp(48px, 6vw, 72px) 28px; }
-.foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; }
+.foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
 .foot-grid > * { min-width: 0; }
 .foot-grid h4 { font: 700 15px var(--body); color: var(--ink); letter-spacing: 0; margin-bottom: 12px; }
 .foot-grid ul { list-style: none; display: grid; gap: 4px; }
@@ -847,3 +847,46 @@ html[data-backdrop="mint"] .footer { background: #DDF4E8; }
 .pf-fee { padding: 3.4cqw 4cqw; gap: 1.4cqw; }
 .pf-price { font-size: 11cqw; }
 .pf-doc { gap: 1.4cqw; padding: 3.2cqw; }
+
+/* ===== Polish pass (Nov 7, 2026): alignment and consistency ===== */
+/* Anchor links (About > Our story / FAQ) clear the sticky header */
+html { scroll-padding-top: 88px; }
+
+/* Car-brand strip: no dark band; blends into the page with light chips */
+html[data-backdrop="mint"] .marquee-sec { background: transparent; border-block: 1px solid var(--line); }
+html[data-backdrop="mint"] .marquee-label { color: var(--muted); }
+html[data-backdrop="mint"] .mq-item { background: var(--card); border-color: var(--line); color: var(--muted); filter: none; opacity: 1; }
+html[data-backdrop="mint"] .mq-item.pop { background: var(--mint-hl) !important; border-color: var(--mint-hl); color: var(--ink); box-shadow: 0 10px 24px -14px rgba(15,45,36,.35); }
+
+/* Page label (replaces "Home / Page") */
+.crumbs { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font: 600 14.5px var(--body); color: var(--blue-text); }
+.crumbs::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--mint-pop); box-shadow: 0 0 0 3px var(--tint-mint); }
+
+/* Cards on mint bands get a white surface so their edges read clearly */
+html[data-backdrop="mint"] .alt :is(.t-sky, .t-peach, .t-mint, .t-lilac) { background: var(--card); border-color: var(--line); }
+
+/* Quote band: line its content up with every other section's edges */
+html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; border-radius: 0; }
+
+/* Closing CTA: keep the green circle in the top corner, away from the buttons */
+.cta::after { top: -150px; bottom: auto; right: -110px; width: 300px; height: 300px; opacity: .9; }
+.cta { align-items: center; }
+
+/* Refund note spans the same width as the content above it */
+.disclaimer-sec .disclaimer { max-width: none; }
+
+/* Pricing: plan card and copy share a vertical center */
+.plans { align-items: center; }
+
+/* Hero checks sit on one line on desktop */
+.hero .checks.inline { gap: 10px 22px; }
+.hero .checks.inline li { white-space: nowrap; }
+
+/* Footer: three even link columns */
+.foot-grid ul { gap: 0; }
+/* Hero: three even headline lines, a little more room for the copy column */
+.hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); }
+.hero h1 { font-size: clamp(42px, 5.4vw, 74px); }
+.hero .ln { display: block; }
+@media (prefers-reduced-motion: no-preference) { .js .hero .ln + .ln + .ln .ln-in { animation-delay: .38s; } }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
