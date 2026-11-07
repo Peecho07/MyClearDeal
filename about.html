@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>document.documentElement.className+=" js"</script>
+<script>document.documentElement.className+=" js";try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(e){}</script>
 <title>About Us and FAQ | myClearDeal</title>
 <meta name="description" content="Meet the team behind myClearDeal and get straight answers about how we work, what we cost and what we cover.">
 <meta name="theme-color" content="#FFFFFF">
@@ -32,7 +32,7 @@
 <main id="main">
 
 <section class="page-head"><div class="wrap">
-<span class="crumbs"><a href="index.html">Home</a> / About us</span>
+<span class="crumbs">About us</span>
 <h1>Built by people who <em>know the desk.</em></h1>
 <p class="lede">Who we are, why we switched sides, and straight answers to the questions buyers ask most.</p>
 <div class="btn-row"><a class="btn btn-ghost btn-lg" href="#story">Our story</a><a class="btn btn-ghost btn-lg" href="#faq">FAQ</a></div>
@@ -55,8 +55,18 @@
 </div>
 </div></section>
 
-<section class="section"><div class="wrap">
-<div class="shead center" style="margin-bottom:0"><h2>Every car deal clear, fair <em>and understood.</em></h2><p class="lede">So no buyer ever signs a number they don't understand.</p></div>
+<section class="section" id="mission"><div class="wrap">
+<div class="mission">
+<div class="stack">
+<h2>Every car deal clear, fair <em>and understood.</em></h2>
+<p class="lede">That is our mission: no buyer should ever sign a number they don't understand. We started myClearDeal after years of working every desk a deal crosses, and seeing how often buyers walk in without knowing what is being decided for them.</p>
+</div>
+<div class="pillars">
+<div class="pillar"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></div><div><h3>Clear</h3><p>Every number on your deal, explained in plain English and put in writing.</p></div></div>
+<div class="pillar"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0zM19 8l-3 6a3 3 0 0 0 6 0z"/></svg></div><div><h3>Fair</h3><p>A real market price for you, fair to the dealer too. No fights, no games.</p></div></div>
+<div class="pillar"><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div><div><h3>Understood</h3><p>You know why the deal is good before you sign, and for every car after this one.</p></div></div>
+</div>
+</div>
 </div></section>
 
 <section class="section alt" id="faq"><div class="wrap">
@@ -79,9 +89,9 @@
 <footer class="footer"><div class="wrap">
 <div class="foot-grid">
 <div class="foot-brand"><a class="brand" href="index.html" aria-label="myClearDeal home"><svg aria-hidden="true" viewBox="70 61 220 220"><circle cx="158" cy="149" r="75" fill="none" stroke="currentColor" stroke-width="25"/><path d="M211 202L271 262" stroke="currentColor" stroke-width="32"/><circle cx="271" cy="262" r="16" fill="currentColor"/><path d="M124 153L150 179L196 126" fill="none" stroke="var(--blue)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg><span>My<b>Clear</b>Deal</span></a><p>Remote car buying advocates. We work for you and never get paid by the dealer.</p></div>
-<div><h4>How we work</h4><ul><li><a href="how-it-works.html">Our process</a></li><li><a href="guide.html">Buyer's guide</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About us</a></li><li><a href="about.html#faq">FAQ</a></li></ul></div>
-<div><h4>Get started</h4><ul><li><a href="start.html">Start my deal</a></li><li><a href="start.html#check">Review my quote</a></li></ul></div>
-<div><h4>Contact</h4><ul><li><a href="#" data-email></a></li><li><button class="linkbtn" type="button" data-copy-email>Copy email</button></li><li><a href="privacy.html">Privacy</a></li></ul></div>
+<div><h4>How we work</h4><ul><li><a href="how-it-works.html">Our process</a></li><li><a href="guide.html">Buyer's guide</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+<div><h4>Get started</h4><ul><li><a href="start.html">Start my deal</a></li><li><a href="start.html#check">Review my quote</a></li><li data-email-item hidden><a href="#" data-email></a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About us</a></li><li><a href="about.html#faq">FAQ</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>
 </div>
 <div class="foot-base"><span>&copy; <span data-year>2026</span> myClearDeal.</span><!-- [LEGAL ENTITY NAME] --><span>Paid by you, never by the dealer.</span></div>
 </div></footer>

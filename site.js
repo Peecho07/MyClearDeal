@@ -10,7 +10,14 @@ var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: r
 /* Pages always open at the top; clicking the current nav tab scrolls to top. */
 (function () {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  if (!location.hash) window.scrollTo(0, 0);
+  // Every tab opens at the top of its page. Re-check once everything (fonts, images) has loaded,
+  // unless the visitor has already started scrolling on their own.
+  var moved = false, mark = function () { moved = true; };
+  ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, mark, { once: true, passive: true }); });
+  var toTop = function () { if (!location.hash && !moved) window.scrollTo(0, 0); };
+  toTop();
+  window.addEventListener("load", toTop);
+  window.addEventListener("pageshow", function (e) { if (e.persisted) return; toTop(); });
   document.querySelectorAll('.nav a[aria-current="page"], .brand').forEach(function (a) {
     a.addEventListener("click", function (e) {
       var here = a.getAttribute("href").split("#")[0];
@@ -26,6 +33,7 @@ var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: r
 /* Config fills: data-email, data-turnaround, data-year */
 (function () {
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
+  document.querySelectorAll("[data-email-item]").forEach(function (li) { li.hidden = !CONTACT_EMAIL; });
   document.querySelectorAll("[data-email]").forEach(function (el) {
     if (!CONTACT_EMAIL) { el.hidden = true; return; }
     if (el.tagName === "A") el.href = "mailto:" + CONTACT_EMAIL;
