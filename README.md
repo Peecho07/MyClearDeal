@@ -8,14 +8,17 @@ Built on the "Step" design system (layout, type, components and motion), with my
 
 | File | Purpose |
 |---|---|
-| `index.html` | Hero with animated example deal (negotiate, verify, trade-in), make marquee, "what we negotiate" tabs (price, fees, trade-in, market check), Check My Deal band with a short form, the problem, self-check, comparison table, how it works, what we do and don't, founders and stats, mission, pricing, example deals deck, CTA |
-| `how-it-works.html` | 4 steps, what you do vs. what we do, scope, our promise |
-| `what-we-cover.html` | The 3 numbers we negotiate, how we define a fair price, scope, deal recap |
-| `pricing.html` | $995 plan, what goes to the dealer, why it's worth it, comparison, pricing FAQ |
-| `faq.html` | Grouped FAQ and pre-approval tip |
-| `start.html` | Step 1 shows the $995 fee, step 2 is the consultation form with a 5-step progress bar. `start.html?type=lease` preselects Leasing. Full Check My Deal form at `start.html#check` |
+| `index.html` | Hero with promise line and intro video panel, make marquee, "Watch a deal come together" animated example deal, "Our team is working for you" tabs, free quote review form, mission with three pillars, example deals deck, CTA, refund disclaimer |
+| `how-it-works.html` | "Our process": clickable car stepper, four grouped step cards (you vs. we), scope, promise |
+| `guide.html` | Buyer's guide: fee decoder, red-flag self-check, before-you-go checklist |
+| `about.html` | About us: our story (founders), mission, full FAQ including pricing and refunds |
+| `pricing.html` | $995 plan, four-step animated pricing walkthrough, what goes to the dealer, why it's worth it, refund policy |
+| `start.html` | Consultation form ("Start my deal") and the full quote review form at `start.html#check` |
+| `faq.html`, `what-we-cover.html` | Redirects to `about.html#faq` and `guide.html` so old links keep working |
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
+
+Intro video: put the file at `assets/video/intro.mp4` (and a still at `assets/video/intro-poster.jpg`), then swap the placeholder block in `index.html` for the `<video>` tag noted in the comment there.
 
 Shared files: `site.css` (all styles; brand colors are the tokens at the top) and `site.js` (all behavior; each feature exits early when its element is missing).
 

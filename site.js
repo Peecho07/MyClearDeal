@@ -161,7 +161,7 @@ function onScreen(el, cb) {
   });
 })();
 
-/* Marquee: rAF loop at .05px/ms, center item pops, pauses on hover and off-screen */
+/* Marquee: rAF loop at .05px/ms, center item pops, pauses only off-screen */
 (function () {
   document.querySelectorAll("[data-marquee]").forEach(function (box) {
     var track = box.querySelector(".marquee-track");
@@ -170,8 +170,6 @@ function onScreen(el, cb) {
     items.forEach(function (it) { var c = it.cloneNode(true); c.setAttribute("aria-hidden", "true"); track.appendChild(c); });
     var all = Array.prototype.slice.call(track.children);
     var x = 0, last = 0, lastPop = 0, hover = false, visible = true;
-    box.addEventListener("mouseenter", function () { hover = true; });
-    box.addEventListener("mouseleave", function () { hover = false; });
     onScreen(box, function (v) { visible = v; });
     var pop = function () {
       var b = box.getBoundingClientRect(), mid = b.left + b.width / 2, best = null, bd = 1e9;
@@ -439,4 +437,95 @@ function onScreen(el, cb) {
         .catch(function () { fail(); b.disabled = false; b.textContent = txt; });
     });
   });
+})();
+
+/* Process stepper: the car drives one step at a time. Click a step or the arrows to move back and forth.
+   Auto-advances every 6.5s while on screen; a click resets that timer. Hovering does not pause it. */
+(function () {
+  var s = document.querySelector("[data-stepper]");
+  if (!s) return;
+  var dots = Array.prototype.slice.call(s.querySelectorAll(".st-dot"));
+  var panels = Array.prototype.slice.call(s.querySelectorAll(".st-panel"));
+  var car = s.querySelector(".st-car"), fill = s.querySelector(".st-fill"), count = s.querySelector(".st-count");
+  var n = dots.length, cur = -1, timer = 0, visible = false;
+  function go(k, focus) {
+    k = (k + n) % n;
+    cur = k;
+    var pct = (k / (n - 1)) * 100;
+    car.style.left = pct + "%"; fill.style.width = pct + "%";
+    dots.forEach(function (d, i) {
+      d.setAttribute("aria-selected", i === k ? "true" : "false");
+      d.tabIndex = i === k ? 0 : -1;
+      d.classList.toggle("done", i < k);
+    });
+    panels.forEach(function (p, i) {
+      var on = i === k;
+      p.hidden = !on; p.classList.remove("is-in");
+      if (on) { void p.offsetWidth; p.classList.add("is-in"); }
+    });
+    if (count) count.textContent = "Step " + (k + 1) + " of " + n;
+    if (focus) dots[k].focus();
+    schedule();
+  }
+  function schedule() {
+    clearTimeout(timer);
+    if (REDUCED || !visible) return;
+    timer = setTimeout(function () { go(cur + 1); }, 6500);
+  }
+  dots.forEach(function (d, i) {
+    d.addEventListener("click", function () { go(i); });
+    d.addEventListener("keydown", function (e) {
+      var m = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!m) return; e.preventDefault(); go(cur + m, true);
+    });
+  });
+  s.querySelectorAll("[data-st-prev]").forEach(function (b) { b.addEventListener("click", function () { go(cur - 1); }); });
+  s.querySelectorAll("[data-st-next]").forEach(function (b) { b.addEventListener("click", function () { go(cur + 1); }); });
+  go(0);
+  onScreen(s, function (v) { visible = v; if (v) schedule(); else clearTimeout(timer); });
+})();
+
+
+/* Intro video placeholder: until a real video is added, the play button explains what goes here. */
+(function () {
+  var v = document.querySelector("[data-video]");
+  if (!v) return;
+  var real = v.querySelector("video");
+  var btn = v.querySelector(".vid-play"), note = v.querySelector("[data-vid-note]");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    if (real) { v.querySelector(".vid-ph").hidden = true; real.play(); return; }
+    if (note) note.textContent = "Our intro video is coming soon. Book a free call to meet the team today.";
+  });
+})();
+
+/* Pricing steps: four tabs drive the motion graphic. Auto-advances every 6s while on screen; clicking jumps. */
+(function () {
+  var box = document.querySelector("[data-pflow]");
+  if (!box) return;
+  var tabs = Array.prototype.slice.call(box.querySelectorAll(".pf-step"));
+  var scenes = Array.prototype.slice.call(box.querySelectorAll(".pf-scene"));
+  var cur = 0, timer = 0, visible = false;
+  function go(k, focus) {
+    cur = (k + tabs.length) % tabs.length;
+    tabs.forEach(function (t, i) {
+      t.setAttribute("aria-selected", i === cur ? "true" : "false");
+      t.tabIndex = i === cur ? 0 : -1;
+      t.classList.toggle("done", i < cur);
+    });
+    scenes.forEach(function (s, i) { s.hidden = i !== cur; });
+    box.classList.remove("run"); void box.offsetWidth; box.classList.add("run");
+    if (focus) tabs[cur].focus();
+    clearTimeout(timer);
+    if (!REDUCED && visible) timer = setTimeout(function () { go(cur + 1); }, 6000);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { go(i); });
+    t.addEventListener("keydown", function (e) {
+      var d = (e.key === "ArrowDown" || e.key === "ArrowRight") ? 1 : (e.key === "ArrowUp" || e.key === "ArrowLeft") ? -1 : 0;
+      if (!d) return; e.preventDefault(); go(cur + d, true);
+    });
+  });
+  onScreen(box, function (v) { var was = visible; visible = v; if (v && !was) go(cur); if (!v) clearTimeout(timer); });
+  go(0);
 })();
