@@ -31,21 +31,20 @@ Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wo
 - `favicon.svg` plus `favicon.png` (64px) fallback, `apple-touch-icon.png` (180px)
 - `og-image.png`: 1200x630 social share image
 
-`sitemap.xml` and `robots.txt` use the mycleardeal.netlify.app address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
+`sitemap.xml`, `robots.txt`, the canonical tags and the Open Graph image all use https://mycleardeal.com. Links use clean addresses (`/pricing`, `/start#check`); GitHub Pages serves both those and the old `.html` addresses.
 
 ## Before going live
 
 Placeholders are commented out (`<!-- ... -->`) so nothing unfinished shows on the live site. Search the project for `[` to find each one, fill it in, then remove the comment wrapper:
 
 - `[TYPICAL TIMELINE ...]`, `[YOUR SERVICE AREA]`
-- `[YOUR DOMAIN]` (canonical tags in each page head)
 - `[LEGAL ENTITY NAME]`, `[FLORIDA LICENSE INFO]`, privacy policy text
 
 No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms and contact details
 
-The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) use **Netlify Forms**: they are detected at deploy time and submitted with fetch. Submissions show up in Netlify under the project's Forms tab; add email notifications there (Forms > Submission notifications). Forms only work on the Netlify-hosted site, not on GitHub Pages.
+The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) use **Netlify Forms**: they are detected at deploy time and submitted with fetch. **They do not submit on GitHub Pages yet**: they need a new form backend (for example Formspree or a Google Form) before launch.
 
 Set these at the top of `site.js`:
 
@@ -56,4 +55,20 @@ If a submission fails, the form shows an error instead of a false confirmation.
 
 ## Deploy
 
-**Netlify:** project `mycleardeal` (https://mycleardeal.netlify.app). Publish directory is the repo root, with no build command. Form detection is on.
+Hosted on **GitHub Pages** at https://mycleardeal.com, the same setup as tsKaizen:
+
+- Pages serves the `main` branch from the repo root. Every push to `main` goes live in about a minute. No build step.
+- `CNAME` holds the custom domain; `.nojekyll` serves the files as-is.
+- `404.html` is used for any missing address. It is `noindex` and loads its files from the site root.
+
+One-time setup (GitHub repo > Settings > Pages): Source "Deploy from a branch", branch `main`, folder `/ (root)`, custom domain `mycleardeal.com`, then tick "Enforce HTTPS" once the certificate is issued.
+
+DNS at the domain registrar:
+
+| Type | Host | Value |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | peecho07.github.io |

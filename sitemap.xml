@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://mycleardeal.netlify.app/ with the real domain once it is connected. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mycleardeal.netlify.app/</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/how-it-works.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/guide.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/about.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/pricing.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/start.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://mycleardeal.netlify.app/privacy.html</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://mycleardeal.com/</loc><lastmod>2026-11-07</lastmod><priority>1.0</priority></url>
+  <url><loc>https://mycleardeal.com/how-it-works</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mycleardeal.com/pricing</loc><lastmod>2026-11-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mycleardeal.com/start</loc><lastmod>2026-11-07</lastmod><priority>0.7</priority></url>
+  <url><loc>https://mycleardeal.com/guide</loc><lastmod>2026-11-07</lastmod><priority>0.7</priority></url>
+  <url><loc>https://mycleardeal.com/about</loc><lastmod>2026-11-07</lastmod><priority>0.6</priority></url>
+  <url><loc>https://mycleardeal.com/privacy</loc><lastmod>2026-11-07</lastmod><priority>0.3</priority></url>
 </urlset>

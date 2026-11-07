@@ -20,9 +20,9 @@ var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: r
   window.addEventListener("pageshow", function (e) { if (e.persisted) return; toTop(); });
   document.querySelectorAll('.nav a[aria-current="page"], .brand').forEach(function (a) {
     a.addEventListener("click", function (e) {
-      var here = a.getAttribute("href").split("#")[0];
-      var file = location.pathname.split("/").pop() || "index.html";
-      if (here === file || (here === "index.html" && file === "")) {
+      var norm = function (p) { return p.replace(/\.html$/, "").replace(/\/index$/, "/").replace(/\/+$/, "") || "/"; };
+      var here = norm(a.getAttribute("href").split("#")[0] || location.pathname);
+      if (here === norm(location.pathname)) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
       }
