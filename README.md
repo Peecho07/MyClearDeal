@@ -31,7 +31,7 @@ Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wo
 - `favicon.svg` plus `favicon.png` (64px) fallback, `apple-touch-icon.png` (180px)
 - `og-image.png`: 1200x630 social share image
 
-`sitemap.xml`, `robots.txt`, the canonical tags and the Open Graph image all use https://mycleardeal.com. Links use clean addresses (`/pricing`, `/start#check`); GitHub Pages serves both those and the old `.html` addresses.
+`sitemap.xml`, `robots.txt`, the canonical tags and the Open Graph image all use https://mycleardeal.com. Links use clean addresses (`/pricing`, `/#review`); GitHub Pages serves both those and the old `.html` addresses.
 
 ## Before going live
 
@@ -44,7 +44,7 @@ No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms and contact details
 
-The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) are sent with **FormSubmit** (formsubmit.co), which emails each submission as a table to `LEAD_EMAIL` (organizer@mycleardeal.com). No account or backend needed, and it works on GitHub Pages. The first submission triggers a one-time "Activate Form" email to that address; click it and every later submission is delivered. The activation email also gives a random alias that can replace the address in `site.js` so it is not visible in the page source.
+The two forms (`quote-check-home`, the quick "Review my quote" form on the home page at `/#review`, and `start-deal`, the consultation form on `/start`) are sent with **FormSubmit** (formsubmit.co), which emails each submission as a table to `LEAD_EMAIL` (hello@mycleardeal.com). No account or backend needed, and it works on GitHub Pages. The first submission to a new address triggers a one-time "Activate Form" email to that address; click it and every later submission is delivered. The activation email also gives a random alias that can replace the address in `site.js` so it is not visible in the page source. Old links to `/start#check` redirect to `/#review`.
 
 Each submission includes a `form` field saying which form it came from, and a hidden `_honey` field catches spam bots.
 

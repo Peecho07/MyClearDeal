@@ -1,10 +1,13 @@
 /* myClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
 
 /* ---- Config: fill these in. Nothing else in the markup needs editing. ---- */
-var LEAD_EMAIL = "organizer@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
+var LEAD_EMAIL = "hello@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
 var FORM_ENDPOINT = LEAD_EMAIL ? "https://formsubmit.co/ajax/" + LEAD_EMAIL : "";
-var CONTACT_EMAIL = "";        // e.g. "hello@mycleardeal.com"
+var CONTACT_EMAIL = "hello@mycleardeal.com";  // Shown in the footer and in form error messages
 var QUOTE_TURNAROUND = "";     // e.g. "1 business day" (shown wherever data-turnaround appears)
+
+/* Old links to the start page's review form (/start#check) now go to the review form on the home page */
+if (/\/start(\.html)?$/.test(location.pathname) && location.hash === "#check") location.replace("/#review");
 
 var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -560,4 +563,20 @@ function onScreen(el, cb) {
     var show = function () { v.hidden = false; if (ph) ph.hidden = true; };
     if (v.readyState >= 1) show(); else v.addEventListener("loadedmetadata", show);
   });
+})();
+
+/* Bottom button bar (phones): hide it while the page's own call-to-action buttons are on screen,
+   and on the start page, where the form is the call to action */
+(function () {
+  var bar = document.querySelector(".mobile-cta");
+  if (!bar) return;
+  if (/\/start(\.html)?$/.test(location.pathname)) { bar.classList.add("is-away"); return; }
+  var rows = document.querySelectorAll("main .btn-row, main form[data-lead-form]");
+  if (!rows.length || !("IntersectionObserver" in window)) return;
+  var showing = new Set();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) showing.add(e.target); else showing.delete(e.target); });
+    bar.classList.toggle("is-away", showing.size > 0);
+  }, { threshold: 0.05 });
+  rows.forEach(function (r) { io.observe(r); });
 })();

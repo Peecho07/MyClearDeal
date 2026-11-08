@@ -912,3 +912,37 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 .vid.has-video .vid-ph { background: linear-gradient(180deg, rgba(15,45,36,.35) 0%, rgba(15,45,36,0) 35%, rgba(15,45,36,.15) 55%, rgba(15,45,36,.85) 100%); }
 .vid.has-video .vid-ph::before { display: none; }
 .vid.playing .vid-el { object-fit: contain; background: var(--ink); }
+
+/* ===== Mobile sweep (Nov 2026) ===== */
+/* Footer links: 44px tap targets */
+.foot-grid ul a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+/* Process stepper: readable labels and thumb-sized dots on phones */
+@media (max-width: 560px) {
+  .st-dot { min-width: 44px; }
+  .st-dot span { font-size: 12.5px; }
+}
+/* Closing banner: keep the circle in the corner, away from the heading and buttons on phones */
+@media (max-width: 860px) {
+  .cta::after { width: 120px; height: 120px; top: -64px; right: -64px; bottom: auto; }
+}
+/* Bottom button bar: slides away while the page's own buttons are on screen, and on the start page */
+@media (max-width: 720px) {
+  .mobile-cta { transition: transform .3s var(--ease), opacity .3s var(--ease); }
+  .mobile-cta.is-away { transform: translateY(110%); opacity: 0; pointer-events: none; }
+}
+/* Pricing "Your deal" card: larger text on phones */
+@media (max-width: 600px) {
+  .pf-stage { aspect-ratio: 1 / 1.08; }
+  .pf-tag { font-size: 3.6cqw; }
+  .pf-row, .pf-dealer, .pf-check { font-size: 4cqw; }
+  .pf-row b, .pf-dealer b, .pf-check b { font-size: 4.4cqw; }
+  .pf-avatar { font-size: 4.2cqw; }
+  .pf-call b { font-size: 4.8cqw; }
+  .pf-call span { font-size: 3.8cqw; }
+  .pf-live { font-size: 3.4cqw; }
+  .pf-toast { font-size: 4cqw; }
+  .pf-fee small { font-size: 3.2cqw; }
+  .pf-stamp { font-size: 3.8cqw; }
+  .pf-doc-head b { font-size: 4.8cqw; }
+  .pf-approve { font-size: 3.8cqw; }
+}
