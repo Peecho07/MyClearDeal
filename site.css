@@ -946,3 +946,4 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
   .pf-doc-head b { font-size: 4.8cqw; }
   .pf-approve { font-size: 3.8cqw; }
 }
+.status a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
