@@ -907,3 +907,8 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 }
 .vid-ph[hidden] { display: none; }
 .vid-el[hidden] { display: none; }
+
+/* Intro video: its first frame is the cover; while playing nothing is cropped */
+.vid.has-video .vid-ph { background: linear-gradient(180deg, rgba(15,45,36,.35) 0%, rgba(15,45,36,0) 35%, rgba(15,45,36,.15) 55%, rgba(15,45,36,.85) 100%); }
+.vid.has-video .vid-ph::before { display: none; }
+.vid.playing .vid-el { object-fit: contain; background: var(--ink); }
