@@ -1,7 +1,7 @@
 /* myClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
 
 /* ---- Config: fill these in. Nothing else in the markup needs editing. ---- */
-var LEAD_EMAIL = "";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
+var LEAD_EMAIL = "organizer@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
 var FORM_ENDPOINT = LEAD_EMAIL ? "https://formsubmit.co/ajax/" + LEAD_EMAIL : "";
 var CONTACT_EMAIL = "";        // e.g. "hello@mycleardeal.com"
 var QUOTE_TURNAROUND = "";     // e.g. "1 business day" (shown wherever data-turnaround appears)
