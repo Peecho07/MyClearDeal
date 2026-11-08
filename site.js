@@ -426,9 +426,18 @@ function onScreen(el, cb) {
     var want = (new URLSearchParams(location.search).get("type") || "").toLowerCase();
     if (want) form.querySelectorAll('input[name="type"]').forEach(function (r) { if (r.value.toLowerCase().indexOf(want.slice(0, 4)) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
     var status = form.querySelector(".status");
-    var fail = function (msg) {
+    var fail = function () {
       status.className = "status err";
-      status.textContent = msg || ("Sorry, that did not go through." + (CONTACT_EMAIL ? " Please email us at " + CONTACT_EMAIL + "." : " Please try again in a moment."));
+      status.textContent = "Sorry, that did not go through. ";
+      if (CONTACT_EMAIL) {
+        var a = document.createElement("a");
+        a.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("My car deal");
+        a.textContent = "Email us at " + CONTACT_EMAIL;
+        status.appendChild(a);
+        status.appendChild(document.createTextNode(" and we will take it from there."));
+      } else {
+        status.appendChild(document.createTextNode("Please try again in a moment."));
+      }
     };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -440,7 +449,11 @@ function onScreen(el, cb) {
       fetch(FORM_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
         .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
-          if (!res.ok || String(res.d && res.d.success) !== "true") throw new Error("not sent");
+          if (!res.ok || String(res.d && res.d.success) !== "true") {
+            // e.g. FormSubmit's "This form needs Activation" until the owner clicks the link it emails
+            if (window.console && res.d && res.d.message) console.warn("Form not delivered:", res.d.message);
+            throw new Error("not sent");
+          }
           status.className = "status ok";
           status.textContent = form.getAttribute("data-success") || "Got it. We will be in touch.";
           form.reset();
