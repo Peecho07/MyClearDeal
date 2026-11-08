@@ -496,16 +496,28 @@ function onScreen(el, cb) {
 })();
 
 
-/* Intro video placeholder: until a real video is added, the play button explains what goes here. */
+/* Intro video: shows "coming soon" until assets/video/intro.mp4 exists, then uses its first frame as the cover */
 (function () {
-  var v = document.querySelector("[data-video]");
-  if (!v) return;
-  var real = v.querySelector("video");
-  var btn = v.querySelector(".vid-play"), note = v.querySelector("[data-vid-note]");
+  var box = document.querySelector("[data-video]");
+  if (!box) return;
+  var v = box.querySelector("video"), ph = box.querySelector(".vid-ph");
+  var btn = box.querySelector(".vid-play"), note = box.querySelector("[data-vid-note]");
   if (!btn) return;
+  var ready = false;
+  var fmt = function (t) { t = Math.round(t || 0); return Math.floor(t / 60) + ":" + ("0" + (t % 60)).slice(-2); };
+  var onReady = function () {
+    if (ready) return; ready = true;
+    v.hidden = false; box.classList.add("has-video");
+    if (note && isFinite(v.duration)) note.textContent = fmt(v.duration) + " \u00b7 Tap to play";
+  };
+  if (v) { if (v.readyState >= 1) onReady(); else v.addEventListener("loadedmetadata", onReady); }
   btn.addEventListener("click", function () {
-    if (real) { v.querySelector(".vid-ph").hidden = true; real.play(); return; }
-    if (note) note.textContent = "Our intro video is coming soon. Book a free call to meet the team today.";
+    if (!ready) { if (note) note.textContent = "Our intro video is coming soon. Book a free call to meet the team today."; return; }
+    ph.hidden = true; box.classList.add("playing");
+    v.controls = true; v.currentTime = 0; v.play();
+  });
+  if (v) v.addEventListener("ended", function () {
+    box.classList.remove("playing"); v.controls = false; ph.hidden = false; v.currentTime = 0.1;
   });
 })();
 

@@ -42,8 +42,8 @@
 </div>
 <div class="hero-visual">
 <div class="vid" data-video>
-<!-- Intro video: drop the file in assets/video/intro.mp4 and a still frame in assets/video/intro-poster.jpg, then replace this placeholder with:
-<video class="vid-el" src="assets/video/intro.mp4" poster="assets/video/intro-poster.jpg" controls playsinline preload="metadata"></video> -->
+<!-- Intro video: upload assets/video/intro.mp4 and it shows up here on its own (its first frame becomes the cover). Until then this slot says "coming soon". -->
+<video class="vid-el" src="assets/video/intro.mp4#t=0.1" playsinline preload="metadata" hidden></video>
 <div class="vid-ph">
 <span class="vid-chip"><i></i>Meet your advisor</span>
 <button class="vid-play" type="button" aria-label="Play the intro video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
