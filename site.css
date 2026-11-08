@@ -890,3 +890,20 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 .hero .ln { display: block; }
 @media (prefers-reduced-motion: no-preference) { .js .hero .ln + .ln + .ln .ln-in { animation-delay: .38s; } }
 @media (max-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===== Our process: three steps and a video for each step ===== */
+.st-steps.three li:nth-child(2) { left: 50%; }
+.st-steps.three li:nth-child(3) { left: 100%; }
+.pv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 28px); }
+.pv { display: grid; gap: 10px; align-content: start; }
+.pv-vid { aspect-ratio: 9 / 16; border-radius: var(--r-lg); }
+.pv-vid .vid-el { object-fit: cover; background: var(--ink); }
+.pv-vid .vid-play { width: 72px; height: 72px; }
+.pv-vid .vid-play svg { width: 28px; height: 28px; }
+.pv h3 { font-size: clamp(19px, 2vw, 22px); margin-top: 6px; }
+.pv p { color: var(--muted); font-size: 16px; }
+@media (max-width: 860px) {
+  .pv-grid { grid-template-columns: minmax(0, 1fr); max-width: 380px; margin-inline: auto; }
+}
+.vid-ph[hidden] { display: none; }
+.vid-el[hidden] { display: none; }

@@ -539,3 +539,13 @@ function onScreen(el, cb) {
   onScreen(box, function (v) { var was = visible; visible = v; if (v && !was) go(cur); if (!v) clearTimeout(timer); });
   go(0);
 })();
+
+/* Our process videos: each slot shows "Video coming soon" until its file exists in assets/video/ */
+(function () {
+  document.querySelectorAll("[data-step-video]").forEach(function (box) {
+    var v = box.querySelector("video"), ph = box.querySelector(".vid-ph");
+    if (!v) return;
+    var show = function () { v.hidden = false; if (ph) ph.hidden = true; };
+    if (v.readyState >= 1) show(); else v.addEventListener("loadedmetadata", show);
+  });
+})();
