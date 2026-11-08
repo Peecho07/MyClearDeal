@@ -141,10 +141,12 @@
 <li><strong>We follow up</strong><p>By text, call or email, whichever you prefer.<span data-turnaround> Usually within <span data-turnaround-text></span>.</span></p></li>
 </ol>
 </div>
-<form class="form" name="quote-check-home" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-lead-form data-success="Got it. A member of our team will review your quote and follow up." novalidate>
-<input type="hidden" name="form-name" value="quote-check-home">
-<input type="hidden" name="subject" value="New Check My Deal request (home page)">
-<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<form class="form" name="quote-check-home" method="POST" data-lead-form data-success="Got it. A member of our team will review your quote and follow up." novalidate>
+<input type="hidden" name="form" value="quote-check-home">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New Check My Deal request (home page)">
+<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
 <h3>Review my <em>quote</em></h3>
 <label class="field">Name<input type="text" name="name" autocomplete="name" required></label>
 <label class="field">Phone<input type="tel" name="phone" autocomplete="tel" required></label>

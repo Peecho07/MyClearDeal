@@ -44,10 +44,13 @@ No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms and contact details
 
-The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) use **Netlify Forms**: they are detected at deploy time and submitted with fetch. **They do not submit on GitHub Pages yet**: they need a new form backend (for example Formspree or a Google Form) before launch.
+The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) are sent with **FormSubmit** (formsubmit.co), which emails each submission as a table to `LEAD_EMAIL` (organizer@mycleardeal.com). No account or backend needed, and it works on GitHub Pages. The first submission triggers a one-time "Activate Form" email to that address; click it and every later submission is delivered. The activation email also gives a random alias that can replace the address in `site.js` so it is not visible in the page source.
+
+Each submission includes a `form` field saying which form it came from, and a hidden `_honey` field catches spam bots.
 
 Set these at the top of `site.js`:
 
+- `LEAD_EMAIL`: where form leads are emailed.
 - `CONTACT_EMAIL`: shown in the footer and on the start page, and in the error message. Hidden while empty.
 - `QUOTE_TURNAROUND`: e.g. "1 business day". Shown in the Check My Deal steps. Hidden while empty.
 

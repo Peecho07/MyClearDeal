@@ -50,10 +50,12 @@
 <p class="fine">No payment is taken on this page. We confirm the fee with you on your free consultation call, before any work begins.</p>
 <p class="small" data-email-line><a href="#" data-email></a></p>
 </div>
-<form class="form" name="start-deal" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-lead-form data-progress="name,phone|email|found-car|type,trade,timeline|fee-acknowledged" data-success="Got it. We will be in touch to set up your free consultation." novalidate>
-<input type="hidden" name="form-name" value="start-deal">
-<input type="hidden" name="subject" value="New free consultation request">
-<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<form class="form" name="start-deal" method="POST" data-lead-form data-progress="name,phone|email|found-car|type,trade,timeline|fee-acknowledged" data-success="Got it. We will be in touch to set up your free consultation." novalidate>
+<input type="hidden" name="form" value="start-deal">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New free consultation request">
+<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
 <span class="tag ok">Step 2 &middot; Tell us about your car</span>
 <h3>Book your free <em>consultation</em></h3>
 <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -99,10 +101,12 @@
 <li><strong>We follow up</strong><p>By your preferred contact method.<span data-turnaround> Usually within <span data-turnaround-text></span>.</span></p></li>
 </ol>
 </div>
-<form class="form" name="quote-check" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-lead-form data-progress="name,phone|vehicle,dealer|otd-price|sign-by,contact-pref|notes" data-success="Got it. A member of our team will review your quote and follow up." novalidate>
-<input type="hidden" name="form-name" value="quote-check">
-<input type="hidden" name="subject" value="New Check My Deal request">
-<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<form class="form" name="quote-check" method="POST" data-lead-form data-progress="name,phone|vehicle,dealer|otd-price|sign-by,contact-pref|notes" data-success="Got it. A member of our team will review your quote and follow up." novalidate>
+<input type="hidden" name="form" value="quote-check">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New Check My Deal request">
+<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
 <h3>Send for a <em>free review</em></h3>
 <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 <p class="progress-label" aria-live="polite">0 of 5 steps done</p>
