@@ -31,7 +31,7 @@ Logo files in `assets/img/` (vector rebuild of the magnifying-glass logo; the wo
 - `favicon.svg` plus `favicon.png` (64px) fallback, `apple-touch-icon.png` (180px)
 - `og-image.png`: 1200x630 social share image
 
-`sitemap.xml` and `robots.txt` use the mycleardeal.netlify.app address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
+`sitemap.xml` and `robots.txt` use the peecho07.github.io/MyClearDeal address. Swap in the real domain once it is connected, and uncomment the canonical tags in each page head.
 
 ## Before going live
 
@@ -45,15 +45,16 @@ No founder or personal photos are used anywhere on the site, by design.
 
 ## Forms and contact details
 
-The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) use **Netlify Forms**: they are detected at deploy time and submitted with fetch. Submissions show up in Netlify under the project's Forms tab; add email notifications there (Forms > Submission notifications). Forms only work on the Netlify-hosted site, not on GitHub Pages.
+The three forms (`quote-check-home` on the home page, `start-deal` and `quote-check` on the start page) are sent with **FormSubmit** (formsubmit.co), which emails each submission to you as a table. No account or backend needed, and it works on GitHub Pages.
 
 Set these at the top of `site.js`:
 
+- `LEAD_EMAIL`: where leads are emailed. The first submission after setting it triggers a one-time "Activate form" email from FormSubmit; click it, and every later submission is delivered. FormSubmit's activation email also gives you a random alias you can use in place of the address so it is not visible in the page source.
 - `CONTACT_EMAIL`: shown in the footer and on the start page, and in the error message. Hidden while empty.
 - `QUOTE_TURNAROUND`: e.g. "1 business day". Shown in the Check My Deal steps. Hidden while empty.
 
-If a submission fails, the form shows an error instead of a false confirmation.
+Each submission includes a `form` field saying which form it came from. A `_honey` field catches spam bots. If a submission fails, the form shows an error instead of a false confirmation.
 
 ## Deploy
 
-**Netlify:** project `mycleardeal` (https://mycleardeal.netlify.app). Publish directory is the repo root, with no build command. Form detection is on.
+**GitHub Pages:** live at https://peecho07.github.io/MyClearDeal/, published from the repo's default branch, root folder. No build step: every merge goes live in about a minute.
