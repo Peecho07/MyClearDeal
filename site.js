@@ -1,7 +1,8 @@
 /* myClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
 
 /* ---- Config: fill these in. Nothing else in the markup needs editing. ---- */
-var FORM_ENDPOINT = "/";       // Netlify Forms: POST to the site root (forms are detected at deploy)
+var LEAD_EMAIL = "organizer@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
+var FORM_ENDPOINT = LEAD_EMAIL ? "https://formsubmit.co/ajax/" + LEAD_EMAIL : "";
 var CONTACT_EMAIL = "";        // e.g. "hello@mycleardeal.com"
 var QUOTE_TURNAROUND = "";     // e.g. "1 business day" (shown wherever data-turnaround appears)
 
@@ -386,7 +387,7 @@ function onScreen(el, cb) {
   });
 })();
 
-/* Forms: progress bar + Netlify Forms submit with inline status */
+/* Forms: progress bar + FormSubmit (emails each lead) with inline status */
 (function () {
   var forms = document.querySelectorAll("form[data-lead-form]");
   if (!forms.length) return;
@@ -429,13 +430,14 @@ function onScreen(el, cb) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
-      if (form.querySelector('[name="bot-field"]').value) return;
+      if (form.querySelector('[name="_honey"]').value) return;
       var b = form.querySelector('button[type="submit"]'), txt = b.textContent;
       if (!FORM_ENDPOINT) { fail(); return; }
       b.disabled = true; b.textContent = "Sending...";
-      fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
-        .then(function (r) {
-          if (!r.ok) throw new Error(r.status);
+      fetch(FORM_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (!res.ok || String(res.d && res.d.success) !== "true") throw new Error("not sent");
           status.className = "status ok";
           status.textContent = form.getAttribute("data-success") || "Got it. We will be in touch.";
           form.reset();
