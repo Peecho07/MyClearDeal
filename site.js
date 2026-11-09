@@ -6,6 +6,9 @@ var FORM_ENDPOINT = LEAD_EMAIL ? "https://formsubmit.co/ajax/" + LEAD_EMAIL : ""
 var CONTACT_EMAIL = "hello@mycleardeal.com";  // Shown in the footer and in form error messages
 var QUOTE_TURNAROUND = "1 business day";  // Shown in the review form's "We follow up" step
 
+/* Show the home page as mycleardeal.com/ even when it was opened as /index or /index.html */
+if (/\/index(\.html)?$/.test(location.pathname) && history.replaceState) history.replaceState(null, "", "/" + location.search + location.hash);
+
 /* Old links to the start page's review form (/start#check) now go to the review form on the home page */
 if (/\/start(\.html)?$/.test(location.pathname) && location.hash === "#check") location.replace("/#review");
 
