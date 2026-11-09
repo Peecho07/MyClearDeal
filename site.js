@@ -4,7 +4,7 @@
 var LEAD_EMAIL = "hello@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
 var FORM_ENDPOINT = LEAD_EMAIL ? "https://formsubmit.co/ajax/" + LEAD_EMAIL : "";
 var CONTACT_EMAIL = "hello@mycleardeal.com";  // Shown in the footer and in form error messages
-var QUOTE_TURNAROUND = "";     // e.g. "1 business day" (shown wherever data-turnaround appears)
+var QUOTE_TURNAROUND = "1 business day";  // Shown in the review form's "We follow up" step
 
 /* Old links to the start page's review form (/start#check) now go to the review form on the home page */
 if (/\/start(\.html)?$/.test(location.pathname) && location.hash === "#check") location.replace("/#review");
