@@ -1,10 +1,10 @@
-# myClearDeal website
+# MyClearDeal website
 
-Static marketing site for myClearDeal. Plain HTML, CSS and JS. No build step.
+Static marketing site for MyClearDeal. Plain HTML, CSS and JS. No build step.
 
 ## Pages
 
-Built on the "Step" design system (layout, type, components and motion), with myClearDeal's colors and copy.
+Built on the "Step" design system (layout, type, components and motion), with MyClearDeal's colors and copy.
 
 | File | Purpose |
 |---|---|

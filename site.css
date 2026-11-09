@@ -959,3 +959,8 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 .tier span { display: block; font-size: 14px; color: var(--muted); }
 .tier-price { font: 800 34px/1 var(--display); letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
 @media (max-width: 860px) { .plans-two { grid-template-columns: 1fr; } }
+
+/* Brand lockup with slogan (Nov 2026) */
+.brand-name { display: flex; flex-direction: column; gap: 6px; line-height: 1; }
+.brand-name small { font: 700 10.5px/1 var(--body); letter-spacing: .32em; text-transform: uppercase; color: var(--blue-text); white-space: nowrap; }
+@media (max-width: 760px) { .brand-name { gap: 4px; } .brand-name small { font-size: 7.5px; letter-spacing: .24em; } }
