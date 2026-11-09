@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.className+=" js";try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(e){}</script>
 <title>Start My Deal | myClearDeal</title>
-<meta name="description" content="Start your car deal with myClearDeal for one $995 flat fee, or send your current dealer quote for a free review by our team. No obligation.">
+<meta name="description" content="Start your car deal with myClearDeal: Deal Coach for $199 or Done For You for $999, or send your current dealer quote for a free review by our team. No obligation.">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="https://mycleardeal.com/start">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Start My Deal | myClearDeal">
-<meta property="og:description" content="Start your car deal with myClearDeal for one $995 flat fee, or send your current dealer quote for a free review by our team. No obligation.">
+<meta property="og:description" content="Start your car deal with myClearDeal: Deal Coach for $199 or Done For You for $999, or send your current dealer quote for a free review by our team. No obligation.">
 <meta property="og:image" content="https://mycleardeal.com/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -41,16 +41,17 @@
 <section class="section" style="padding-top:clamp(24px,4vw,48px)"><div class="wrap">
 <div class="plans plans-start">
 <div class="stack">
-<div class="plan featured" id="fee"><span class="badge">Step 1 &middot; Know the fee</span>
-<div class="price"><sup>$</sup>995</div>
-<p class="price-note"><strong>One flat fee. One car.</strong> Buy or lease, new or used. The same price for everyone, confirmed on your free call before any work starts.</p>
-<ul class="checks"><li>Free consultation call to build your plan</li><li>Vehicle price and dealer fees negotiated</li><li>Trade-in included, no extra charge</li><li>Price checked against market data</li><li>A written out-the-door recap before you agree</li><li>Text and phone support until you drive away</li></ul>
-<div class="never" aria-label="What you will never pay"><span>No % of savings</span><span>No dealer kickbacks</span><span>No tiers or add-ons</span><span>No hidden fees</span></div>
+<div class="plan featured" id="fee"><span class="badge">Step 1 &middot; Pick your plan</span>
+<div class="tier"><div><b>Deal Coach</b><span>You negotiate, we coach you through every number</span></div><div class="tier-price">$199</div></div>
+<div class="tier"><div><b>Done For You</b><span>We negotiate price, fees and trade-in for you</span></div><div class="tier-price">$999</div></div>
+<p class="price-note"><strong>Flat fees, one car.</strong> Buy or lease, new or used. Your plan and fee are confirmed on your free call before any work starts. <a href="/pricing">Compare plans</a></p>
+<div class="never" aria-label="What you will never pay"><span>No % of savings</span><span>No dealer kickbacks</span><span>No hidden fees</span></div>
 </div>
 <p class="fine">No payment is taken on this page. We confirm the fee with you on your free consultation call, before any work begins.</p>
+<p class="small">Prefer to talk? Call <a href="tel:+15614102709">(561) 410-2709</a></p>
 <p class="small" data-email-line><a href="#" data-email></a></p>
 </div>
-<form class="form" name="start-deal" method="POST" data-lead-form data-progress="name,phone|email|found-car|type,trade,timeline|fee-acknowledged" data-success="Got it. We will be in touch to set up your free consultation." novalidate>
+<form class="form" name="start-deal" method="POST" data-lead-form data-progress="name,phone|email|found-car|type,trade,timeline|plan,fee-acknowledged" data-success="Got it. We will be in touch to set up your free consultation." novalidate>
 <input type="hidden" name="form" value="start-deal">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
@@ -82,7 +83,12 @@
 </div></fieldset>
 <label class="field">Trade-in?<select name="trade"><option value="">Choose one</option><option>Yes</option><option>No</option></select></label>
 <label class="field">When are you buying?<select name="timeline"><option value="">Choose one</option><option>This month</option><option>1 to 3 months</option><option>Just researching</option></select></label>
-<label class="ack"><input type="checkbox" name="fee-acknowledged" value="Yes, understands $995 flat fee" required><span>I understand myClearDeal charges a one-time <strong>$995 flat fee</strong> for one car purchase, confirmed with me before any work begins. Submitting this form does not charge me.</span></label>
+<fieldset><legend>Which plan?</legend><div class="choices">
+<label class="choice"><input type="radio" name="plan" value="Deal Coach $199"><span>Deal Coach $199</span></label>
+<label class="choice"><input type="radio" name="plan" value="Done For You $999"><span>Done For You $999</span></label>
+<label class="choice"><input type="radio" name="plan" value="Not sure, help me choose"><span>Help me choose</span></label>
+</div></fieldset>
+<label class="ack"><input type="checkbox" name="fee-acknowledged" value="Yes, understands flat fee for chosen plan" required><span>I understand myClearDeal charges a one-time flat fee for one car purchase (<strong>$199 Deal Coach</strong> or <strong>$999 Done For You</strong>), confirmed with me before any work begins. Submitting this form does not charge me.</span></label>
 <button class="btn btn-primary btn-lg" type="submit">Book my free consultation</button>
 <p class="status" role="status" aria-live="polite"></p>
 <p class="fine">No obligation. We never share your number with a dealer without your OK.</p>
@@ -96,7 +102,7 @@
 <div class="foot-grid">
 <div class="foot-brand"><a class="brand" href="/" aria-label="myClearDeal home"><svg aria-hidden="true" viewBox="70 61 220 220"><circle cx="158" cy="149" r="75" fill="none" stroke="currentColor" stroke-width="25"/><path d="M211 202L271 262" stroke="currentColor" stroke-width="32"/><circle cx="271" cy="262" r="16" fill="currentColor"/><path d="M124 153L150 179L196 126" fill="none" stroke="var(--blue)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg><span>my<b>Clear</b>Deal</span></a><p>Remote car buying advocates. We work for you and never get paid by the dealer.</p></div>
 <div><h4>How we work</h4><ul><li><a href="/how-it-works">Our process</a></li><li><a href="/guide">Buyer's guide</a></li><li><a href="/pricing">Pricing</a></li></ul></div>
-<div><h4>Get started</h4><ul><li><a href="/start">Start my deal</a></li><li><a href="/#review">Review my quote</a></li><li data-email-item hidden><a href="#" data-email></a></li></ul></div>
+<div><h4>Get started</h4><ul><li><a href="/start">Start my deal</a></li><li><a href="/#review">Review my quote</a></li><li><a href="tel:+15614102709">(561) 410-2709</a></li><li data-email-item hidden><a href="#" data-email></a></li></ul></div>
 <div><h4>Company</h4><ul><li><a href="/about">About us</a></li><li><a href="/about#faq">FAQ</a></li><li><a href="/privacy">Privacy</a></li></ul></div>
 </div>
 <div class="foot-base"><span>&copy; <span data-year>2026</span> myClearDeal.</span><!-- [LEGAL ENTITY NAME] --><span>Paid by you, never by the dealer.</span></div>
