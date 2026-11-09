@@ -12,7 +12,7 @@ Built on the "Step" design system (layout, type, components and motion), with my
 | `how-it-works.html` | "Our process": clickable car stepper, four grouped step cards (you vs. we), scope, promise |
 | `guide.html` | Buyer's guide: fee decoder, red-flag self-check, before-you-go checklist |
 | `about.html` | About us: our story (founders), mission, full FAQ including pricing and refunds |
-| `pricing.html` | $995 plan, four-step animated pricing walkthrough, what goes to the dealer, why it's worth it, refund policy |
+| `pricing.html` | Deal Coach ($199) and Done For You ($999) plans, four-step animated pricing walkthrough, what goes to the dealer, why it's worth it, refund policy |
 | `start.html` | Consultation form ("Start my deal") and the full quote review form at `start.html#check` |
 | `faq.html`, `what-we-cover.html` | Redirects to `about.html#faq` and `guide.html` so old links keep working |
 | `privacy.html` | Privacy policy placeholder |

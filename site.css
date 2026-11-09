@@ -890,3 +890,15 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 .hero .ln { display: block; }
 @media (prefers-reduced-motion: no-preference) { .js .hero .ln + .ln + .ln .ln-in { animation-delay: .38s; } }
 @media (max-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Two-plan pricing (Nov 2026) */
+.plans-two { grid-template-columns: 1fr 1fr; align-items: stretch; }
+.plans-two .plan { align-content: start; }
+.plans-two .plan .btn { justify-self: start; margin-top: auto; }
+.plan-name { margin: 6px 0 -6px; font: 800 24px/1.2 var(--display); letter-spacing: -.02em; }
+.badge-soft { background: var(--ink); color: #fff; }
+.tier { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tier b { display: block; font-size: 17px; }
+.tier span { display: block; font-size: 14px; color: var(--muted); }
+.tier-price { font: 800 34px/1 var(--display); letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .plans-two { grid-template-columns: 1fr; } }
