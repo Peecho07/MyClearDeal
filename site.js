@@ -1,4 +1,4 @@
-/* myClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
+/* MyClearDeal | site script. One file for every page; each feature exits early if its element is missing. */
 
 /* ---- Config: fill these in. Nothing else in the markup needs editing. ---- */
 var LEAD_EMAIL = "hello@mycleardeal.com";           // Where form leads are emailed (via FormSubmit). After activating, you can use the alias FormSubmit sends you instead of the address.
