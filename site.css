@@ -967,3 +967,8 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 
 .slogan { margin: 0 0 -4px; font: 800 14px/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--blue-text); }
 @media (max-width: 760px) { .slogan { font-size: 12px; letter-spacing: .24em; } }
+
+/* Demo quote has 6 lines: tighten so the toast clears the total */
+.q-card { top: 6.5cqw; }
+.q-row { padding: .95cqw 0; }
+@media (max-width: 600px) { .q-card { top: 8cqw; } .q-row { padding: .8cqw 0; } }
