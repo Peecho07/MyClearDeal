@@ -80,7 +80,7 @@ var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: r
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
   document.addEventListener("click", function (e) { if (nav.classList.contains("open") && !nav.contains(e.target) && !btn.contains(e.target)) set(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
-  window.addEventListener("resize", function () { if (window.innerWidth > 900) set(false); });
+  window.addEventListener("resize", function () { if (window.innerWidth > 1120) set(false); });
 })();
 
 /* Helper: run a callback only while an element is on screen */
