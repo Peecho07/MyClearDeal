@@ -11,6 +11,7 @@ Built on the "Step" design system (layout, type, components and motion), with My
 | `index.html` | Hero with promise line and intro video panel, make marquee, "Watch a deal come together" animated example deal, "Our team is working for you" tabs, free quote review form, mission with three pillars, example deals deck, CTA, refund disclaimer |
 | `how-it-works.html` | "Our process": clickable car stepper, four grouped step cards (you vs. we), scope, promise |
 | `guide.html` | Buyer's guide: fee decoder, red-flag self-check, before-you-go checklist |
+| `calculator.html` | Free deal calculator at `/calculator`: "What will it cost?" (out-the-door price and estimated monthly payment) and "What can I afford?" modes, Florida state tax plus county surtax (first $5,000 only), saved in the browser. Math lives in `assets/calculator.js` (loaded only on this page); confirm the county surtax rates there with the Florida Department of Revenue before launch |
 | `about.html` | About us: our story (founders), mission, full FAQ including pricing and refunds |
 | `pricing.html` | Deal Coach ($199) and Done For You ($995) plans, four-step animated pricing walkthrough, what goes to the dealer, why it's worth it, refund policy |
 | `start.html` | Consultation form ("Start my deal") and the full quote review form at `start.html#check` |

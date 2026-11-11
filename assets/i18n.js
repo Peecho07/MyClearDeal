@@ -23,7 +23,9 @@
     [/^1 red flag found$/, "1 señal de alerta"],
     [/^(\d+) red flags found$/, "$1 señales de alerta"],
     [/^Usually within (.+)$/, "Normalmente en $1"],
-    [/^Email us at (.+)$/, "Escríbenos a $1"]
+    [/^Email us at (.+)$/, "Escríbenos a $1"],
+    [/^(\d+) months at (.+)% APR$/, "$1 meses con una tasa anual (APR) de $2%"],
+    [/^You can look at cars up to about (.+) \(out-the-door about (.+)\)\.$/, "Puedes buscar autos de hasta unos $1 (precio final de unos $2)."]
   ];
   var ATTRS = ["placeholder", "aria-label", "title", "alt", "data-success"];
   var SKIP = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEXTAREA: 1 };
