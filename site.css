@@ -513,13 +513,15 @@ legend { font-size: 14.5px; font-weight: 600; color: var(--ink); padding: 0; mar
   .steps.cols { grid-template-columns: 1fr 1fr; }
   .deck-wrap { grid-template-columns: 1fr; }
 }
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .menu-btn { display: inline-flex; align-items: center; }
   .header .btn-primary { display: none; }
   .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 2px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); padding: 10px max(20px, env(safe-area-inset-right)) 16px max(20px, env(safe-area-inset-left)); }
   .nav.open { display: flex; }
   .nav a { min-height: 48px; display: flex; align-items: center; font-size: 17px; }
   .header .wrap { position: relative; }
+}
+@media (max-width: 900px) {
   .demo { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }
   .grid2 { grid-template-columns: 1fr; }
@@ -657,7 +659,7 @@ h1 em, h2 em, .page-head h1 em { color: var(--ink); background: linear-gradient(
 .nav .sub { list-style: none; margin: 0; padding: 8px; position: absolute; top: 100%; left: 0; min-width: 190px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--shadow-lg); display: grid; gap: 2px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .15s var(--ease), transform .15s var(--ease), visibility .15s; z-index: 60; }
 .nav .has-sub:hover .sub, .nav .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
 .nav .sub a { border-radius: 10px; }
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .nav .sub { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 0; padding: 0 0 0 16px; min-width: 0; background: transparent; }
   .nav .has-sub > a::after { display: none; }
 }
@@ -963,7 +965,7 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 /* Brand lockup with slogan (Nov 2026) */
 .brand-name { display: flex; flex-direction: column; gap: 6px; line-height: 1; }
 .brand-name small { font: 700 12px/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--blue-text); white-space: nowrap; }
-@media (max-width: 760px) { .brand-name { gap: 4px; } .brand-name small { font-size: 8.5px; letter-spacing: .22em; } }
+@media (max-width: 760px) { .brand-name { gap: 4px; } .brand-name small { font-size: 9.5px; letter-spacing: .16em; } }
 
 .slogan { margin: 0 0 -4px; font: 800 14px/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--blue-text); }
 @media (max-width: 760px) { .slogan { font-size: 12px; letter-spacing: .24em; } }
@@ -972,3 +974,23 @@ html[data-backdrop="mint"] .band.peach { background: transparent; padding: 0; bo
 .q-card { top: 6.5cqw; }
 .q-row { padding: .95cqw 0; }
 @media (max-width: 600px) { .q-card { top: 8cqw; } .q-row { padding: .8cqw 0; } }
+
+/* Language toggle (EN / ES) */
+html.i18n-wait body { visibility: hidden; }
+.lang-btn { flex: none; min-width: 40px; height: 32px; padding: 0 9px; border-radius: 999px; border: 1.5px solid var(--line-2); background: var(--card); color: var(--ink-2); font: 700 12.5px/1 var(--body); letter-spacing: .06em; cursor: pointer; transition: border-color .15s var(--ease), color .15s var(--ease), background .15s var(--ease); }
+.lang-btn:hover { border-color: var(--blue); color: var(--blue-text); background: var(--blue-soft); }
+.lang-btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+/* bigger invisible hit area for touch without taking more room */
+.lang-btn { position: relative; }
+.lang-btn::after { content: ""; position: absolute; inset: -6px -4px; }
+@media (max-width: 1120px) { .header .wrap { gap: 10px; } }
+.nav a { white-space: nowrap; }
+/* Small phones: keep logo, language button and Menu on one row */
+@media (max-width: 420px) {
+  .header .wrap { gap: 8px; }
+  .brand { gap: 8px; }
+  .brand svg { width: 38px; height: 38px; }
+  .menu-btn { padding: 0 13px; font-size: 14px; }
+  .lang-btn { min-width: 36px; padding: 0 7px; }
+}
+@media (max-width: 359px) { .brand-name small { font-size: 8.5px; letter-spacing: .1em; } .brand { font-size: 18px; } }

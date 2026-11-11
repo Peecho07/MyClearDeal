@@ -75,3 +75,10 @@ DNS at the domain registrar:
 | A | @ | 185.199.110.153 |
 | A | @ | 185.199.111.153 |
 | CNAME | www | peecho07.github.io |
+
+## Spanish (EN / ES toggle)
+
+- The small **ES / EN** button in the header switches the whole site between English and Spanish. The choice is remembered in the visitor's browser. Links can force a language with `?lang=es` or `?lang=en` (handy for Spanish ads or posts, e.g. `https://mycleardeal.com/?lang=es`).
+- English stays the page source. Spanish lives in `assets/i18n-es.js`: each key is the English text exactly as it appears on the page, each value is the Spanish. `assets/i18n.js` swaps them in.
+- **When you change English copy, add or update the matching line in `assets/i18n-es.js`,** or that piece will stay in English on the Spanish version.
+- The logo slogan under the wordmark stays in English (it is part of the logo); the slogan above the homepage headline is translated.
