@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-backdrop="mint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className+=" js";try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(e){}</script>
+<title>Deal Calculator | MyClearDeal</title>
+<meta name="description" content="Free car deal calculator with Florida taxes and fees built in. See the out-the-door price and an estimated monthly payment, or what you can afford. No sign-up.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://mycleardeal.com/calculator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deal Calculator | MyClearDeal">
+<meta property="og:url" content="https://mycleardeal.com/calculator">
+<meta property="og:description" content="Free car deal calculator with Florida taxes and fees built in. See the out-the-door price and an estimated monthly payment, or what you can afford. No sign-up.">
+<meta property="og:image" content="https://mycleardeal.com/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Saira:ital,wght@1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="site.css">
+<script src="assets/i18n.js"></script>
+</head>
+<body class="calc-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="header"><div class="wrap">
+<a class="brand" href="/" aria-label="MyClearDeal home"><svg aria-hidden="true" viewBox="70 61 220 220"><circle cx="158" cy="149" r="75" fill="none" stroke="currentColor" stroke-width="25"/><path d="M211 202L271 262" stroke="currentColor" stroke-width="32"/><circle cx="271" cy="262" r="16" fill="currentColor"/><path d="M124 153L150 179L196 126" fill="none" stroke="var(--blue)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-name"><span>My<b>Clear</b>Deal</span><small data-no-i18n>Car buying made clear</small></span></a>
+<ul class="nav" id="nav"><li><a href="/">Home</a></li><li><a href="/how-it-works">Our process</a></li><li><a href="/guide">Buyer's guide</a></li><li><a href="/pricing">Pricing</a></li><li class="has-sub"><a href="/about">About us</a><ul class="sub"><li><a href="/about#story">Our story</a></li><li><a href="/about#faq">FAQ</a></li></ul></li></ul>
+<button class="lang-btn" type="button" data-lang-toggle lang="es" aria-label="Ver esta página en español">ES</button>
+<a class="btn btn-primary btn-sm" href="/start">Start my deal</a>
+<button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
+</div></header>
+<main id="main">
+
+<section class="page-head"><div class="wrap">
+<span class="crumbs">Deal calculator</span>
+<h1>Know your numbers <em>before the dealer does.</em></h1>
+<p class="lede">See the out-the-door price and an estimated monthly payment for any car. Florida taxes and fees built in. Free, no sign-up.</p>
+</div></section>
+
+<section class="section calc-sec"><div class="wrap">
+<div class="calc" data-calc data-mode="cost">
+
+<fieldset class="calc-mode"><legend class="sr-only">Choose a calculator</legend><div class="choices">
+<label class="choice"><input type="radio" name="mode" value="cost" checked><span>What will it cost?</span></label>
+<label class="choice"><input type="radio" name="mode" value="afford"><span>What can I afford?</span></label>
+</div></fieldset>
+
+<div class="calc-grid">
+<div class="card calc-form">
+<div class="calc-fields">
+<label class="field full" data-only="cost">Vehicle price<span class="money"><input type="text" name="price" inputmode="decimal" autocomplete="off" placeholder="38,450" data-money></span></label>
+<label class="field full" data-only="afford">Monthly budget<span class="money"><input type="text" name="budget" inputmode="decimal" autocomplete="off" placeholder="600" data-money></span></label>
+<label class="field"><span>Dealer add-ons you are keeping <span class="opt">(optional)</span></span><span class="money"><input type="text" name="addons" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
+<label class="field">Doc fee<span class="money"><input type="text" name="doc" inputmode="decimal" autocomplete="off" value="899" data-money data-keep-zero></span><span class="hint">Florida dealers set this; ask for it in writing</span></label>
+<label class="field">Trade-in value<span class="money"><input type="text" name="trade" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
+<label class="field">Trade-in payoff still owed<span class="money"><input type="text" name="payoff" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
+<p class="calc-equity full" data-show="equity-line" hidden><span data-show="positive">Trade equity</span><span class="neg" data-show="negative" hidden>Negative equity</span> <b data-out="equity-live">$0</b></p>
+<label class="field">Down payment / cash down<span class="money"><input type="text" name="down" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
+<label class="field">Rebates or incentives<span class="money"><input type="text" name="rebates" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
+</div>
+
+<details class="calc-more">
+<summary>Tax and fees</summary>
+<div class="calc-fields">
+<label class="field full">County<select name="county-name">
+<option>Orange</option><option>Seminole</option><option>Osceola</option><option>Lake</option><option>Polk</option><option>Brevard</option><option>Volusia</option><option>Palm Beach</option><option>Broward</option><option>Miami-Dade</option><option>Hillsborough</option><option>Other / not sure</option>
+</select></label>
+<label class="field">State sales tax %<input type="text" name="state" inputmode="decimal" autocomplete="off" value="6"></label>
+<label class="field">County surtax %<input type="text" name="county" inputmode="decimal" autocomplete="off" value="0.5"><span class="hint">Applies to the first $5,000 only</span></label>
+<label class="field full">Tag, title and registration estimate<span class="money"><input type="text" name="tag" inputmode="decimal" autocomplete="off" value="225" data-money data-keep-zero></span></label>
+</div>
+</details>
+
+<details class="calc-more" data-finance-panel>
+<summary>Estimate a monthly payment</summary>
+<div class="calc-fields">
+<fieldset class="full" data-only="cost"><legend>Paying with</legend><div class="choices">
+<label class="choice"><input type="radio" name="pay" value="cash"><span>Cash</span></label>
+<label class="choice"><input type="radio" name="pay" value="finance" checked><span>Financing</span></label>
+</div></fieldset>
+<label class="field full" data-show="finance">APR %<input type="text" name="apr" inputmode="decimal" autocomplete="off" value="7.0"><span class="hint">Use the rate from your bank or credit union if you have one</span></label>
+<fieldset class="full" data-show="finance"><legend>Term in months</legend><div class="choices">
+<label class="choice"><input type="radio" name="term" value="36"><span>36</span></label>
+<label class="choice"><input type="radio" name="term" value="48"><span>48</span></label>
+<label class="choice"><input type="radio" name="term" value="60" checked><span>60</span></label>
+<label class="choice"><input type="radio" name="term" value="72"><span>72</span></label>
+<label class="choice"><input type="radio" name="term" value="84"><span>84</span></label>
+</div></fieldset>
+</div>
+</details>
+<button class="linkbtn calc-reset" type="button" data-reset>Reset</button>
+</div>
+
+<aside class="card calc-results" id="results" aria-live="polite">
+<p class="calc-empty" data-show="empty-cost">Enter a vehicle price to see your numbers.</p>
+<p class="calc-empty" data-show="empty-afford" hidden>Enter a monthly budget to see what fits.</p>
+<div data-show="results" hidden>
+<p class="calc-afford" data-show="afford-line" data-out="afford-line" hidden></p>
+<p class="calc-hint" data-show="afford-short" hidden>That budget does not cover the taxes and fees yet. Try a larger budget, more down or a longer term.</p>
+<div class="calc-big"><span>Out-the-door price</span><b data-out="otd">$0</b></div>
+<dl class="calc-rows">
+<div data-row><dt>Vehicle price</dt><dd data-out="price">$0</dd></div>
+<div data-row><dt>Add-ons</dt><dd data-out="addons">$0</dd></div>
+<div data-row><dt>Doc fee</dt><dd data-out="doc">$0</dd></div>
+<div data-row class="sub"><dt>Taxable price</dt><dd data-out="taxable">$0</dd></div>
+<div data-row><dt>State tax</dt><dd data-out="state-tax">$0</dd></div>
+<div data-row><dt>County surtax</dt><dd data-out="surtax">$0</dd></div>
+<div data-row><dt>Tag and title</dt><dd data-out="tag">$0</dd></div>
+<div data-row class="total"><dt>Out-the-door</dt><dd data-out="otd">$0</dd></div>
+<div data-row data-show="positive"><dt>minus Trade equity</dt><dd data-out="equity-minus">$0</dd></div>
+<div data-row data-show="negative" hidden><dt class="neg">plus Negative equity</dt><dd data-out="equity-plus">$0</dd></div>
+<div data-row><dt>minus Rebates</dt><dd data-out="rebates">$0</dd></div>
+<div data-row data-show="finance"><dt>minus Down payment</dt><dd data-out="down">$0</dd></div>
+<div data-row class="total" data-show="finance"><dt>Amount financed</dt><dd data-out="financed">$0</dd></div>
+<div data-row class="total" data-show="cash" hidden><dt>You pay</dt><dd data-out="due">$0</dd></div>
+</dl>
+<p class="calc-hint" data-show="covered" hidden>Your trade and rebates cover the full price.</p>
+
+<div class="calc-pay" data-show="finance">
+<div class="calc-big"><span>Estimated monthly payment</span><b data-out="monthly">$0</b><small data-out="terms-used">60 months at 7.0% APR</small></div>
+<dl class="calc-rows">
+<div data-row><dt>Total interest</dt><dd data-out="interest">$0</dd></div>
+<div data-row><dt>Total of payments</dt><dd data-out="payments">$0</dd></div>
+<div data-row><dt>Total cost with down payment</dt><dd data-out="total">$0</dd></div>
+</dl>
+<p class="calc-hint" data-show="plus-trade" hidden>plus your trade</p>
+<p class="calc-cmp-h">Term comparison</p>
+<div class="calc-cmp">
+<div><b>48 months</b><span data-out="cmp-48-m">$0</span><small>Interest <span data-out="cmp-48-i">$0</span></small></div>
+<div><b>60 months</b><span data-out="cmp-60-m">$0</span><small>Interest <span data-out="cmp-60-i">$0</span></small></div>
+<div><b>72 months</b><span data-out="cmp-72-m">$0</span><small>Interest <span data-out="cmp-72-i">$0</span></small></div>
+</div>
+</div>
+
+<ul class="calc-tips" data-show="tips" hidden>
+<li data-show="tip-doc" hidden>This doc fee is on the high side. Ask the dealer to lower it or to lower the price to offset it.</li>
+<li data-show="tip-addons" hidden>Ask which add-ons are already installed and which can come off.</li>
+<li data-show="tip-negative" hidden>You owe more on your trade than it is worth. That amount gets rolled into the new loan.</li>
+<li data-show="tip-term" hidden>Longer terms lower the payment but cost more in interest.</li>
+</ul>
+</div>
+
+<div class="calc-actions">
+<a class="btn btn-primary" href="/start?plan=coach">Have us check these numbers</a>
+<a class="btn btn-ghost" href="/#review">Send us your dealer quote free</a>
+<button class="linkbtn" type="button" data-copy>Copy my numbers</button>
+</div>
+<p class="fine">Estimates only, for planning. Not a loan offer or rate quote. Actual taxes, fees, rates and payments depend on your dealer, lender, credit and county. MyClearDeal does not arrange financing.</p>
+</aside>
+</div>
+
+</div>
+</div></section>
+
+<section class="section-tight"><div class="wrap">
+<div class="cta">
+<div><h2>Want an expert <em>in your corner?</em></h2><p>Deal Coach is $199: we check your dealer quote line by line and give you a target price. Or let us do it all for $995.</p></div>
+<div class="btn-row"><a class="btn btn-primary btn-lg" href="/start?plan=coach">Start with Deal Coach</a><a class="btn btn-ghost btn-lg" href="/pricing">Compare plans</a></div>
+</div>
+</div></section>
+</main>
+<div class="calc-bar" data-calc-bar aria-hidden="true">
+<span><small>Out-the-door</small><b data-out="summary-otd">$0</b></span>
+<span data-show="finance"><small>Monthly</small><b data-out="summary-monthly">$0</b></span>
+<a class="btn btn-primary btn-sm" href="#results" tabindex="-1">Details</a>
+</div>
+<footer class="footer"><div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand"><a class="brand" href="/" aria-label="MyClearDeal home"><svg aria-hidden="true" viewBox="70 61 220 220"><circle cx="158" cy="149" r="75" fill="none" stroke="currentColor" stroke-width="25"/><path d="M211 202L271 262" stroke="currentColor" stroke-width="32"/><circle cx="271" cy="262" r="16" fill="currentColor"/><path d="M124 153L150 179L196 126" fill="none" stroke="var(--blue)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-name"><span>My<b>Clear</b>Deal</span><small data-no-i18n>Car buying made clear</small></span></a><p>Remote car buying advocates. We work for you and never get paid by the dealer.</p></div>
+<div><h4>How we work</h4><ul><li><a href="/how-it-works">Our process</a></li><li><a href="/guide">Buyer's guide</a></li><li><a href="/calculator">Deal calculator</a></li><li><a href="/pricing">Pricing</a></li></ul></div>
+<div><h4>Get started</h4><ul><li><a href="/start">Start my deal</a></li><li><a href="/#review">Review my quote</a></li><li><a href="tel:+15614102709">(561) 410-2709</a></li><li data-email-item hidden><a href="#" data-email></a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="/about">About us</a></li><li><a href="/about#faq">FAQ</a></li><li><a href="/privacy">Privacy</a></li></ul></div>
+</div>
+<div class="foot-base"><span>&copy; <span data-year>2026</span> MyClearDeal.</span><!-- [LEGAL ENTITY NAME] --><span>Paid by you, never by the dealer.</span></div>
+</div></footer>
+<div class="mobile-cta">
+<a class="btn btn-ghost" href="/#review">Review my quote</a>
+<a class="btn btn-primary" href="/start">Start my deal</a>
+</div>
+<script src="site.js" defer></script>
+<script src="assets/calculator.js" defer></script>
+</body>
+</html>

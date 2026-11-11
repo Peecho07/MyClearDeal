@@ -428,6 +428,9 @@ function onScreen(el, cb) {
     // ?type=lease (or buy) preselects Buying or Leasing
     var want = (new URLSearchParams(location.search).get("type") || "").toLowerCase();
     if (want) form.querySelectorAll('input[name="type"]').forEach(function (r) { if (r.value.toLowerCase().indexOf(want.slice(0, 4)) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
+    // ?plan=coach or ?plan=done preselects Deal Coach or Done For You
+    var plan = { coach: "Deal Coach", done: "Done For You" }[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
+    if (plan) form.querySelectorAll('input[name="plan"]').forEach(function (r) { if (r.value.indexOf(plan) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
     var status = form.querySelector(".status");
     var fail = function () {
       status.className = "status err";
