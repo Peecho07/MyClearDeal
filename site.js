@@ -428,6 +428,23 @@ function onScreen(el, cb) {
     // ?type=lease (or buy) preselects Buying or Leasing
     var want = (new URLSearchParams(location.search).get("type") || "").toLowerCase();
     if (want) form.querySelectorAll('input[name="type"]').forEach(function (r) { if (r.value.toLowerCase().indexOf(want.slice(0, 4)) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
+    // Coming from the deal calculator (?from=calculator): attach the numbers it saved, if less than a day old.
+    var calcField = form.querySelector("[data-calc-field]"), calcNote = form.querySelector("[data-calc-attached]");
+    if (calcField && new URLSearchParams(location.search).get("from") === "calculator") {
+      try {
+        var sent = JSON.parse(localStorage.getItem("mcd-calc-send") || "null");
+        if (sent && sent.text && Date.now() - sent.t < 864e5) {
+          calcField.value = sent.text; calcField.disabled = false;
+          if (calcNote) calcNote.hidden = false;
+        }
+      } catch (e) {}
+      var rm = form.querySelector("[data-calc-remove]");
+      if (rm) rm.addEventListener("click", function () {
+        calcField.value = ""; calcField.disabled = true;
+        if (calcNote) calcNote.hidden = true;
+        try { localStorage.removeItem("mcd-calc-send"); } catch (e) {}
+      });
+    }
     // ?plan=coach or ?plan=done preselects Deal Coach or Done For You
     var plan = { coach: "Deal Coach", done: "Done For You" }[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
     if (plan) form.querySelectorAll('input[name="plan"]').forEach(function (r) { if (r.value.indexOf(plan) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
@@ -463,6 +480,7 @@ function onScreen(el, cb) {
           status.className = "status ok";
           status.textContent = form.getAttribute("data-success") || "Got it. We will be in touch.";
           form.reset();
+          if (calcField) { calcField.disabled = true; if (calcNote) calcNote.hidden = true; try { localStorage.removeItem("mcd-calc-send"); } catch (e) {} }
           form.dispatchEvent(new Event("change"));
           b.textContent = "Sent";
         })

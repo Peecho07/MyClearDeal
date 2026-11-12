@@ -607,5 +607,17 @@ window.MCD_ES = {
 "Run your numbers": "Calcula tus números",
 "See the out-the-door price and an estimated monthly payment before you talk to a dealer. Florida taxes and fees built in.": "Ve el precio final y un pago mensual estimado antes de hablar con un concesionario. Con los impuestos y cargos de Florida incluidos.",
 "Open the deal calculator": "Abrir la calculadora",
-"Try the free deal calculator": "Prueba la calculadora gratis"
+"Try the free deal calculator": "Prueba la calculadora gratis",
+"Dealer's out-the-door quote": "Cotización del concesionario (precio final)",
+"Have a dealer quote? Enter its total to check it against the math.": "¿Tienes una cotización del concesionario? Escribe el total para compararlo con el cálculo.",
+"Dealer quote check": "Revisión de la cotización",
+"Our math": "Nuestro cálculo",
+"Difference": "Diferencia",
+"This quote is": "Esta cotización está",
+"higher than the math. That gap is usually extra fees or add-ons.": "por encima del cálculo. Esa diferencia suele venir de cargos o extras adicionales.",
+"This quote matches the math within": "Esta cotización coincide con el cálculo, con una diferencia de",
+"lower than the math. Make sure taxes and fees are all included.": "por debajo del cálculo. Asegúrate de que incluya todos los impuestos y cargos.",
+"Send it to us free": "Envíanosla gratis",
+"Your calculator numbers are attached.": "Tus números de la calculadora van adjuntos.",
+"Remove": "Quitar"
 };
