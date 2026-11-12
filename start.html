@@ -55,6 +55,7 @@
 </div>
 <form class="form" name="start-deal" method="POST" data-lead-form data-progress="name,phone|email|found-car|type,trade,timeline|plan,fee-acknowledged" data-success="Got it. We will be in touch to set up your free consultation." novalidate>
 <input type="hidden" name="form" value="start-deal">
+<input type="hidden" name="calculator-numbers" value="" disabled data-calc-field>
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_subject" value="New free consultation request">
@@ -91,6 +92,7 @@
 <label class="choice"><input type="radio" name="plan" value="Not sure, help me choose"><span>Help me choose</span></label>
 </div></fieldset>
 <label class="ack"><input type="checkbox" name="fee-acknowledged" value="Yes, understands flat fee for chosen plan" required><span>I understand MyClearDeal charges a one-time flat fee for one car purchase (<strong>$199 Deal Coach</strong> or <strong>$995 Done For You</strong>), confirmed with me before any work begins. Submitting this form does not charge me.</span></label>
+<p class="calc-attached full" data-calc-attached hidden><span>Your calculator numbers are attached.</span> <button class="linkbtn" type="button" data-calc-remove>Remove</button></p>
 <button class="btn btn-primary btn-lg" type="submit">Book my free consultation</button>
 <p class="status" role="status" aria-live="polite"></p>
 <p class="fine">No obligation. We never share your number with a dealer without your OK.</p>

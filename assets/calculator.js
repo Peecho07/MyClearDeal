@@ -101,7 +101,7 @@
       tradeValue: num(field("trade").value), tradePayoff: num(field("payoff").value),
       down: num(field("down").value), rebates: num(field("rebates").value),
       statePct: pct(field("state").value, 15), countyPct: pct(field("county").value, 5),
-      tagTitle: num(field("tag").value),
+      tagTitle: num(field("tag").value), quote: num(field("quote").value),
       cash: radio("pay") === "cash", apr: pct(field("apr").value, 40), term: num(radio("term")) || 60
     };
   }
@@ -152,13 +152,60 @@
     show("equity-line", v.tradeValue > 0 || v.tradePayoff > 0);
     set("equity-live", money(Math.abs(v.tradeValue - v.tradePayoff)));
 
+    // Dealer quote check: compare the dealer's out-the-door number with ours ($150 either way counts as a match).
+    var check = !afford && ready && v.quote > 0, gap = v.quote - r.otd;
+    show("check", check);
+    show("check-high", check && gap > 150); show("check-match", check && Math.abs(gap) <= 150); show("check-low", check && gap < -150);
+    set("quote", money(v.quote)); set("gap-abs", money(Math.abs(gap)));
+    set("gap", Math.abs(gap) < 0.5 ? "$0" : (gap > 0 ? "+" : "-") + money(Math.abs(gap)));
+
     // Smart tips: only when true, at most 3.
     var tips = [["doc", v.docFee > 999], ["addons", v.addOns > 0], ["negative", r.equity < 0], ["term", !v.cash && v.term >= 72]];
     var count = 0;
     tips.forEach(function (t) { var on = ready && t[1] && count < 3; if (on) count++; show("tip-" + t[0], on); });
     show("tips", count > 0);
+    last = { v: v, r: r, ready: ready, afford: afford, check: check, gap: gap };
+    announce();
     save();
   }
+
+  /* Screen readers: one short announcement after typing pauses, instead of the whole card on every key. */
+  var last = null, sayTimer = 0, sayEl = document.querySelector("[data-announce]");
+  function announce() {
+    if (!sayEl) return;
+    clearTimeout(sayTimer);
+    sayTimer = setTimeout(function () {
+      if (!last || !last.ready) { sayEl.textContent = ""; return; }
+      var label = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ""; };
+      var parts = [];
+      if (last.afford) parts.push(label("[data-show='afford-line']"));
+      parts.push(label(".calc-results > [data-show='results'] > .calc-big span") + " " + money(last.r.otd) + ".");
+      if (!last.v.cash) parts.push(label(".calc-pay .calc-big span") + " " + money(last.r.monthly) + ".");
+      sayEl.textContent = parts.join(" ");
+    }, 900);
+  }
+
+  /* English summary for our team, attached to the start or review form when the visitor taps through. */
+  function teamSummary() {
+    if (!last || !last.ready) return "";
+    var v = last.v, r = last.r, L = [];
+    L.push(last.afford ? "Mode: What can I afford? (monthly budget " + money(v.budget) + ")" : "Mode: What will it cost?");
+    L.push("Vehicle price: " + money(v.price), "Add-ons: " + money(v.addOns), "Doc fee: " + money(v.docFee));
+    L.push("Trade-in value: " + money(v.tradeValue) + ", payoff: " + money(v.tradePayoff));
+    L.push("Down payment: " + money(v.down) + ", rebates: " + money(v.rebates));
+    L.push("County: " + field("county-name").value + " (" + v.countyPct + "% surtax), state " + v.statePct + "%, tag and title " + money(v.tagTitle));
+    L.push("Estimated out-the-door: " + money(r.otd));
+    if (v.cash) L.push("Paying cash: " + money(r.due));
+    else L.push("Amount financed: " + money(r.financed), "Estimated payment: " + money(r.monthly) + " a month, " + v.term + " months at " + v.apr + "% APR");
+    if (last.check) L.push("Dealer quote: " + money(v.quote) + " (" + (last.gap >= 0 ? "+" : "-") + money(Math.abs(last.gap)) + " vs. the math)");
+    return L.join("\n");
+  }
+  document.querySelectorAll("[data-calc-send]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var text = teamSummary();
+      try { if (text) localStorage.setItem("mcd-calc-send", JSON.stringify({ t: Date.now(), text: text })); } catch (e) {}
+    });
+  });
 
   /* ---------- Saving, formatting, copy, reset ---------- */
   var DEFAULTS = {};

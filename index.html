@@ -147,6 +147,7 @@
 </div>
 <form class="form" name="quote-check-home" method="POST" data-lead-form data-success="Got it. A member of our team will review your quote and follow up." novalidate>
 <input type="hidden" name="form" value="quote-check-home">
+<input type="hidden" name="calculator-numbers" value="" disabled data-calc-field>
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_subject" value="New Check My Deal request (home page)">
@@ -157,6 +158,7 @@
 <label class="field">Vehicle<input type="text" name="vehicle" placeholder="Year, make, model"></label>
 <label class="field">Out-the-door price<input type="text" name="otd-price" inputmode="decimal" placeholder="If you have it"></label>
 <label class="field full">Fees, add-ons or trade offer <span class="opt">(optional)</span><textarea name="notes" placeholder="Anything on the quote that feels off"></textarea></label>
+<p class="calc-attached full" data-calc-attached hidden><span>Your calculator numbers are attached.</span> <button class="linkbtn" type="button" data-calc-remove>Remove</button></p>
 <button class="btn btn-primary btn-lg" type="submit">Review my quote</button>
 <p class="status" role="status" aria-live="polite"></p>
 <p class="fine">Reviewed by a real person on our team. We never share your information with a dealer without your OK.</p>
