@@ -230,6 +230,13 @@
   }
   try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) load(saved); } catch (e) {}
 
+  // Shared links: /calculator?p=38450&t=16100... restores those numbers (and wins over saved ones).
+  var SHORT = { mode: "m", price: "p", budget: "b", addons: "a", doc: "d", trade: "t", payoff: "o", down: "dn", rebates: "r",
+    "county-name": "c", state: "s", county: "cp", tag: "tg", pay: "pay", apr: "apr", term: "tm", quote: "q" };
+  var qs = new URLSearchParams(location.search), fromLink = {};
+  Object.keys(SHORT).forEach(function (k) { if (qs.has(SHORT[k])) fromLink[k] = qs.get(SHORT[k]).slice(0, 40); });
+  if (Object.keys(fromLink).length) load(fromLink);
+
   // Money fields: commas on blur ("38450" becomes "38,450").
   $$("[data-money]").forEach(function (el) {
     el.addEventListener("blur", function () {
@@ -258,6 +265,27 @@
     try { localStorage.removeItem(KEY); } catch (e) {}
     load(DEFAULTS); render();
   });
+
+  // Share my numbers: a link with every input. Phones get the share sheet; elsewhere the link is copied.
+  var flash = function (btn, msg) { var t = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = t; }, 1600); };
+  var share = $("[data-share]");
+  if (share) share.addEventListener("click", function () {
+    var u = new URL(location.origin + "/calculator");
+    Object.keys(SHORT).forEach(function (k) { var v = k === "mode" || k === "pay" || k === "term" ? radio(k) : field(k).value; if (v) u.searchParams.set(SHORT[k], v); });
+    if (document.documentElement.lang === "es") u.searchParams.set("lang", "es");
+    var url = u.toString();
+    if (navigator.share && matchMedia("(pointer: coarse)").matches) navigator.share({ title: document.title, url: url }).catch(function () {});
+    else if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { flash(share, "Link copied"); }, function () {});
+  });
+
+  // Print or save as PDF: one clean page with the results, the date and the disclaimer.
+  var stamp = function () {
+    var n = document.querySelector("[data-print-note]");
+    if (n) n.textContent = "mycleardeal.com/calculator \u00b7 " + new Date().toLocaleDateString(document.documentElement.lang === "es" ? "es-US" : "en-US", { year: "numeric", month: "long", day: "numeric" });
+  };
+  window.addEventListener("beforeprint", stamp);
+  var printBtn = $("[data-print]");
+  if (printBtn) printBtn.addEventListener("click", function () { stamp(); window.print(); });
 
   // Copy a plain-text summary, built from the visible labels so it matches the page language.
   var copy = $("[data-copy]");
