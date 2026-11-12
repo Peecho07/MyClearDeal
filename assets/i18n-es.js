@@ -619,5 +619,21 @@ window.MCD_ES = {
 "lower than the math. Make sure taxes and fees are all included.": "por debajo del cálculo. Asegúrate de que incluya todos los impuestos y cargos.",
 "Send it to us free": "Envíanosla gratis",
 "Your calculator numbers are attached.": "Tus números de la calculadora van adjuntos.",
-"Remove": "Quitar"
+"Remove": "Quitar",
+"Share my numbers": "Compartir mis números",
+"Link copied": "Enlace copiado",
+"Print or save as PDF": "Imprimir o guardar en PDF",
+"Florida car numbers,": "Los números de un auto en Florida,",
+"explained.": "explicados.",
+"The rules behind the math, in plain English.": "Las reglas detrás del cálculo, en palabras sencillas.",
+"How is sales tax figured on a car in Florida?": "¿Cómo se calcula el impuesto sobre la venta de un auto en Florida?",
+"Florida charges 6% state sales tax on the taxable price of the car. Most counties add a discretionary surtax that applies only to the first $5,000 of the price. The calculator adds both for the county you pick.": "Florida cobra un impuesto estatal sobre ventas de 6% sobre el precio sujeto a impuesto del auto. La mayoría de los condados agrega un recargo que solo aplica a los primeros $5,000 del precio. La calculadora suma ambos según el condado que elijas.",
+"Does a trade-in lower the sales tax?": "¿Un auto de intercambio baja el impuesto?",
+"Yes. In Florida the value of your trade-in comes off the price before tax is figured, so a trade can save you real money in tax. The calculator handles that for you.": "Sí. En Florida el valor de tu auto de intercambio se resta del precio antes de calcular el impuesto, así que un intercambio te puede ahorrar dinero en impuestos. La calculadora lo hace por ti.",
+"What is the county surtax?": "¿Qué es el recargo del condado?",
+"Most Florida counties add their own surtax, usually 0.5% to 1.5%. It only applies to the first $5,000 of a single purchase, so on a car it adds at most $75. Rates can change each January, so check your county.": "La mayoría de los condados de Florida agrega su propio recargo, normalmente de 0.5% a 1.5%. Solo aplica a los primeros $5,000 de una compra, así que en un auto suma como máximo $75. Las tasas pueden cambiar cada enero, así que revisa tu condado.",
+"Is the dealer doc fee negotiable?": "¿Se puede negociar el cargo de documentación?",
+"Florida does not cap dealer doc fees, so they vary from dealer to dealer. Ask for it in writing before you visit, and if it is high, ask the dealer to lower it or to take the difference off the price.": "Florida no pone un límite a los cargos de documentación, así que varían de un concesionario a otro. Pídelo por escrito antes de ir y, si es alto, pide que lo bajen o que descuenten la diferencia del precio.",
+"Is the monthly payment a loan offer?": "¿El pago mensual es una oferta de préstamo?",
+"No. It is an estimate for planning, based on the rate and term you enter. Your real rate depends on your credit and your lender. MyClearDeal is not a lender and does not arrange financing.": "No. Es un estimado para planear, basado en la tasa y el plazo que escribas. Tu tasa real depende de tu crédito y de tu prestamista. MyClearDeal no es prestamista y no gestiona financiamiento."
 };
