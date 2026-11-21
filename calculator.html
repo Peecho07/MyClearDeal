@@ -54,15 +54,17 @@
 <div class="calc-fields">
 <label class="field full" data-only="cost">Vehicle price<span class="money"><input type="text" name="price" inputmode="decimal" autocomplete="off" placeholder="38,450" data-money></span></label>
 <label class="field full" data-only="afford">Monthly budget<span class="money"><input type="text" name="budget" inputmode="decimal" autocomplete="off" placeholder="600" data-money></span></label>
-<label class="field"><span>Dealer add-ons you are keeping <span class="opt">(optional)</span></span><span class="money"><input type="text" name="addons" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
-<label class="field">Doc fee<span class="money"><input type="text" name="doc" inputmode="decimal" autocomplete="off" value="899" data-money data-keep-zero></span><span class="hint">Florida dealers set this; ask for it in writing</span></label>
+<label class="field"><span>Dealer add-ons you are keeping <span class="opt">(optional)</span></span><span class="money"><input type="text" name="addons" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span><span class="hint">Only the ones you agreed to keep</span></label>
+<label class="field">Doc fee<span class="money"><input type="text" name="doc" inputmode="decimal" autocomplete="off" value="899" data-money data-keep-zero></span><span class="hint">Florida dealers set this; ask for it in writing</span><span class="hint warn" data-show="warn-doc" hidden>That doc fee is unusually high. Double-check it.</span></label>
 <label class="field">Trade-in value<span class="money"><input type="text" name="trade" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
 <label class="field">Trade-in payoff still owed<span class="money"><input type="text" name="payoff" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
 <p class="calc-equity full" data-show="equity-line" hidden><span data-show="positive">Trade equity</span><span class="neg" data-show="negative" hidden>Negative equity</span> <b data-out="equity-live">$0</b></p>
 <label class="field">Down payment / cash down<span class="money"><input type="text" name="down" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
-<label class="field">Rebates or incentives<span class="money"><input type="text" name="rebates" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span></label>
-<div class="calc-quote full" data-only="cost">
+<label class="field">Rebates or incentives<span class="money"><input type="text" name="rebates" inputmode="decimal" autocomplete="off" value="0" data-money data-keep-zero></span><span class="hint">Manufacturer rebates. Enter dealer discounts as a lower vehicle price.</span></label>
+<div class="calc-quote full">
 <label class="field"><span>Dealer's out-the-door quote <span class="opt">(optional)</span></span><span class="money"><input type="text" name="quote" inputmode="decimal" autocomplete="off" placeholder="41,990" data-money></span><span class="hint">Have a dealer quote? Enter its total to check it against the math.</span></label>
+<label class="field"><span>Second dealer's quote <span class="opt">(optional)</span></span><span class="money"><input type="text" name="quote2" inputmode="decimal" autocomplete="off" placeholder="42,750" data-money></span><span class="hint">Shopping two dealers? See which is really lower.</span></label>
+<label class="field"><span>Vehicle <span class="opt">(optional)</span></span><input type="text" name="vehicle" autocomplete="off" maxlength="60" placeholder="Year, make, model"></label>
 </div>
 </div>
 
@@ -85,7 +87,7 @@
 <label class="choice"><input type="radio" name="pay" value="cash"><span>Cash</span></label>
 <label class="choice"><input type="radio" name="pay" value="finance" checked><span>Financing</span></label>
 </div></fieldset>
-<label class="field full" data-show="finance">APR %<input type="text" name="apr" inputmode="decimal" autocomplete="off" value="7.0"><span class="hint">Use the rate from your bank or credit union if you have one</span></label>
+<label class="field full" data-show="finance">APR %<input type="text" name="apr" inputmode="decimal" autocomplete="off" value="7.0"><span class="hint">Use the rate from your bank or credit union if you have one</span><span class="hint warn" data-show="warn-apr" hidden>That APR looks high. Double-check it. The calculator uses 40% at most.</span></label>
 <fieldset class="full" data-show="finance"><legend>Term in months</legend><div class="choices">
 <label class="choice"><input type="radio" name="term" value="36"><span>36</span></label>
 <label class="choice"><input type="radio" name="term" value="48"><span>48</span></label>
@@ -110,12 +112,19 @@
 <p class="calc-check-h">Dealer quote check</p>
 <dl class="calc-rows">
 <div data-row><dt>Dealer quote</dt><dd data-out="quote">$0</dd></div>
-<div data-row><dt>Our math</dt><dd data-out="otd">$0</dd></div>
+<div data-row data-show="q2"><dt>Second quote</dt><dd data-out="quote2">$0</dd></div>
+<div data-row data-only="cost"><dt>Our math</dt><dd data-out="otd">$0</dd></div>
+<div data-row data-only="afford"><dt>Your budget covers</dt><dd data-out="otd">$0</dd></div>
 <div data-row class="total"><dt>Difference</dt><dd data-out="gap">$0</dd></div>
 </dl>
-<p class="calc-check-msg high" data-show="check-high" hidden>This quote is <b data-out="gap-abs">$0</b> higher than the math. That gap is usually extra fees or add-ons.</p>
-<p class="calc-check-msg ok" data-show="check-match" hidden>This quote matches the math within <b data-out="gap-abs">$0</b>.</p>
-<p class="calc-check-msg low" data-show="check-low" hidden>This quote is <b data-out="gap-abs">$0</b> lower than the math. Make sure taxes and fees are all included.</p>
+<p class="calc-check-msg high" data-show="check-high" data-only="cost" hidden>This quote is <b data-out="gap-abs">$0</b> higher than the math. That gap is usually extra fees or add-ons.</p>
+<p class="calc-check-msg ok" data-show="check-match" data-only="cost" hidden>This quote matches the math within <b data-out="gap-abs">$0</b>.</p>
+<p class="calc-check-msg low" data-show="check-low" data-only="cost" hidden>This quote is <b data-out="gap-abs">$0</b> lower than the math. Make sure taxes and fees are all included.</p>
+<p class="calc-check-msg high" data-show="check-high" data-only="afford" hidden>This quote is <b data-out="gap-abs">$0</b> more than your budget covers.</p>
+<p class="calc-check-msg ok" data-show="check-fits" data-only="afford" hidden>This quote fits your budget.</p>
+<p class="calc-check-msg ok" data-show="q2-lower" hidden>The second quote is <b data-out="q2-abs">$0</b> lower. Compare what each one includes before you choose.</p>
+<p class="calc-check-msg low" data-show="q2-higher" hidden>The second quote is <b data-out="q2-abs">$0</b> higher. Ask the first dealer to put their number in writing.</p>
+<p class="calc-check-msg ok" data-show="q2-same" hidden>The two quotes are within $150 of each other.</p>
 <a class="btn btn-primary btn-sm" href="/?from=calculator#review" data-show="check-high" data-calc-send hidden>Send it to us free</a>
 </div>
 <dl class="calc-rows">
@@ -165,6 +174,17 @@
 <a class="btn btn-ghost" href="/?from=calculator#review" data-calc-send>Send us your dealer quote free</a>
 <div class="calc-links"><button class="linkbtn" type="button" data-share>Share my numbers</button><button class="linkbtn" type="button" data-copy>Copy my numbers</button><button class="linkbtn" type="button" data-print>Print or save as PDF</button></div>
 </div>
+<form class="calc-email" name="calculator-email" data-show="mail" hidden method="POST" data-lead-form data-success="Sent. Check your inbox for your numbers." novalidate>
+<input type="hidden" name="form" value="calculator-email">
+<input type="hidden" name="_subject" value="Calculator numbers (email me a copy)">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="calculator-numbers" value="" data-calc-email-summary>
+<input type="hidden" name="_autoresponse" value="" data-calc-email-copy>
+<p class="hp" aria-hidden="true"><label>Leave blank <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></p>
+<label class="field">Email me my numbers<span class="calc-email-row"><input type="email" name="email" autocomplete="email" required placeholder="you@example.com"><button class="btn btn-ghost btn-sm" type="submit">Send</button></span><span class="hint">You get a copy and our team sees it too, so we can help if you want. No spam.</span></label>
+<p class="status" role="status"></p>
+</form>
 <p class="fine">Estimates only, for planning. Not a loan offer or rate quote. Actual taxes, fees, rates and payments depend on your dealer, lender, credit and county. MyClearDeal does not arrange financing.</p>
 <p class="calc-print-note" data-print-note>mycleardeal.com/calculator</p>
 </aside>
@@ -188,7 +208,7 @@
 </div></section>
 </main>
 <div class="calc-bar" data-calc-bar aria-hidden="true">
-<span><small>Out-the-door</small><b data-out="summary-otd">$0</b></span>
+<span><small data-show="bar-cost">Out-the-door</small><small data-show="bar-afford" hidden>Cars up to</small><b data-out="summary-otd">$0</b></span>
 <span data-show="finance"><small>Monthly</small><b data-out="summary-monthly">$0</b></span>
 <a class="btn btn-primary btn-sm" href="#results" tabindex="-1">Details</a>
 </div>

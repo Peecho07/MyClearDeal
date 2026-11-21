@@ -436,6 +436,11 @@ function onScreen(el, cb) {
         if (sent && sent.text && Date.now() - sent.t < 864e5) {
           calcField.value = sent.text; calcField.disabled = false;
           if (calcNote) calcNote.hidden = false;
+          // Prefill the vehicle and the dealer's out-the-door number when the visitor left those blank.
+          [["vehicle", sent.vehicle], ["otd-price", sent.quote]].forEach(function (p) {
+            var f = form.querySelector('[name="' + p[0] + '"]');
+            if (f && p[1] && !f.value) { f.value = p[1]; form.dispatchEvent(new Event("input")); }
+          });
         }
       } catch (e) {}
       var rm = form.querySelector("[data-calc-remove]");
