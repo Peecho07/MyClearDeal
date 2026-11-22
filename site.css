@@ -1130,3 +1130,20 @@ html.i18n-wait body { visibility: hidden; }
 .hp-ask { background: var(--ink); color: #fff; border-color: var(--ink); }
 .hp-ask h3, .hp-ask p { color: #fff; }
 .hp-ask .tag { background: var(--mint-pop); color: var(--ink); }
+
+/* Hero Program page */
+.hp-split { align-items: start; }
+.hp-split > .plan { max-width: 520px; width: 100%; justify-self: end; }
+@media (max-width: 900px) { .hp-split > .plan { justify-self: stretch; max-width: none; } }
+.hp-steps { list-style: none; counter-reset: hp; margin: 0; padding: 0; display: grid; gap: 14px; }
+.hp-steps li { counter-increment: hp; position: relative; padding: 14px 16px 14px 58px; background: var(--bg-2); border-radius: var(--r-md); display: grid; gap: 4px; }
+.hp-steps li::before { content: counter(hp); position: absolute; left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 15px/30px var(--display); text-align: center; }
+.hp-steps b { font-size: 17px; color: var(--ink); }
+.hp-steps span { color: var(--ink-2); font-size: 15.5px; line-height: 1.5; }
+.page-head .btn-row { margin-top: 22px; }
+
+/* Start form: two steps on phones */
+.form.is-step1 .is-later { display: none !important; }
+.step-next { display: none; }
+.form.is-step1 .step-next { display: grid; gap: 8px; grid-column: 1 / -1; }
+.step-next .btn { width: 100%; }
