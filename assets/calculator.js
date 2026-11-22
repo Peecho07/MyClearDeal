@@ -78,7 +78,8 @@
 
   var KEY = "mcd-calc";
   var $ = function (s) { return root.querySelector(s); };
-  var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+  // Calculator inputs only (not the "Email me my numbers" form inside the results card).
+  var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)).filter(function (el) { return !el.form; }); };
   var out = function (name) { return document.querySelectorAll('[data-out="' + name + '"]'); };
   var show = function (name, on) { document.querySelectorAll('[data-show="' + name + '"]').forEach(function (el) { el.hidden = !on; }); };
 
@@ -101,7 +102,8 @@
       tradeValue: num(field("trade").value), tradePayoff: num(field("payoff").value),
       down: num(field("down").value), rebates: num(field("rebates").value),
       statePct: pct(field("state").value, 15), countyPct: pct(field("county").value, 5),
-      tagTitle: num(field("tag").value), quote: num(field("quote").value),
+      tagTitle: num(field("tag").value), quote: num(field("quote").value), quote2: num(field("quote2").value),
+      vehicle: field("vehicle").value.trim().slice(0, 60), aprIn: num(field("apr").value),
       cash: radio("pay") === "cash", apr: pct(field("apr").value, 40), term: num(radio("term")) || 60
     };
   }
@@ -114,15 +116,9 @@
     if (afford) v.price = Math.floor(solved.price / 10) * 10;   // "up to about": round down to $10
     var r = calc(v), ready = afford ? v.budget > 0 : v.price > 0;
 
-    show("empty-cost", !afford && !ready);
-    show("empty-afford", afford && !ready);
-    show("results", ready);
-    show("afford-line", afford && ready && v.price > 0);
-    show("afford-short", afford && ready && v.price <= 0);
-    show("finance", !v.cash);
-    show("cash", v.cash);
-    show("negative", r.equity < 0);
-    show("positive", r.equity >= 0);
+    show("empty-cost", !afford && !ready); show("empty-afford", afford && !ready); show("results", ready);
+    show("afford-line", afford && ready && v.price > 0); show("afford-short", afford && ready && v.price <= 0);
+    show("finance", !v.cash); show("cash", v.cash); show("negative", r.equity < 0); show("positive", r.equity >= 0);
 
     set("price", money(v.price)); set("addons", money(v.addOns)); set("doc", money(v.docFee));
     set("taxable", money(r.taxable)); set("state-tax", money(r.stateTax)); set("surtax", money(r.surtax));
@@ -136,48 +132,51 @@
     set("total", money(r.totalCost));
     set("terms-used", v.term + " months at " + v.apr.toFixed(1) + "% APR");
     set("afford-line", "You can look at cars up to about " + money(v.price) + " (out-the-door about " + money(r.otd) + ").");
-    set("summary-otd", ready ? money(r.otd) : "$0");
+    // Phone summary bar: out-the-door, or in "What can I afford?" the price you can look at.
+    set("summary-otd", ready ? money(afford ? v.price : r.otd) : "$0"); show("bar-cost", !afford); show("bar-afford", afford);
     set("summary-monthly", ready && !v.cash ? money(r.monthly) : "$0");
-    show("covered", ready && r.due <= 0);
-    show("plus-trade", r.equity > 0 && !v.cash);
+    show("covered", ready && r.due <= 0); show("plus-trade", r.equity > 0 && !v.cash);
 
     // Term comparison: same amount financed at 48, 60 and 72 months.
     [48, 60, 72].forEach(function (n) {
       var m = payment(r.financed, v.apr, n);
-      set("cmp-" + n + "-m", money(m));
-      set("cmp-" + n + "-i", money(Math.max(0, m * n - r.financed)));
+      set("cmp-" + n + "-m", money(m)); set("cmp-" + n + "-i", money(Math.max(0, m * n - r.financed)));
     });
 
     // Live trade equity under the trade fields.
     show("equity-line", v.tradeValue > 0 || v.tradePayoff > 0);
     set("equity-live", money(Math.abs(v.tradeValue - v.tradePayoff)));
 
-    // Dealer quote check: compare the dealer's out-the-door number with ours ($150 either way counts as a match).
-    var check = !afford && ready && v.quote > 0, gap = v.quote - r.otd;
+    // Gentle warnings for numbers that are probably typos.
+    show("warn-apr", !v.cash && v.aprIn > 25); show("warn-doc", v.docFee > 2000);
+
+    // Dealer quote check: the dealer's out-the-door number vs. ours ($150 either way counts as a match).
+    // In "What can I afford?" it is the quote vs. the out-the-door price the budget covers.
+    var check = ready && v.quote > 0 && r.otd > 0, gap = v.quote - r.otd, g2 = v.quote2 - v.quote, two = check && v.quote2 > 0;
+    var signGap = function (n) { return Math.abs(n) < 0.5 ? "$0" : (n > 0 ? "+" : "-") + money(Math.abs(n)); };
     show("check", check);
     show("check-high", check && gap > 150); show("check-match", check && Math.abs(gap) <= 150); show("check-low", check && gap < -150);
-    set("quote", money(v.quote)); set("gap-abs", money(Math.abs(gap)));
-    set("gap", Math.abs(gap) < 0.5 ? "$0" : (gap > 0 ? "+" : "-") + money(Math.abs(gap)));
+    show("check-fits", check && gap <= 150);
+    show("q2", two); show("q2-lower", two && g2 < -150); show("q2-higher", two && g2 > 150); show("q2-same", two && Math.abs(g2) <= 150);
+    set("quote", money(v.quote)); set("quote2", money(v.quote2)); set("gap-abs", money(Math.abs(gap))); set("q2-abs", money(Math.abs(g2)));
+    set("gap", signGap(gap));
 
     // Smart tips: only when true, at most 3.
-    var tips = [["doc", v.docFee > 999], ["addons", v.addOns > 0], ["negative", r.equity < 0], ["term", !v.cash && v.term >= 72]];
     var count = 0;
-    tips.forEach(function (t) { var on = ready && t[1] && count < 3; if (on) count++; show("tip-" + t[0], on); });
-    show("tips", count > 0);
-    last = { v: v, r: r, ready: ready, afford: afford, check: check, gap: gap };
-    announce();
-    save();
+    [["doc", v.docFee > 999], ["addons", v.addOns > 0], ["negative", r.equity < 0], ["term", !v.cash && v.term >= 72]]
+      .forEach(function (t) { var on = ready && t[1] && count < 3; if (on) count++; show("tip-" + t[0], on); });
+    show("tips", count > 0); show("mail", ready);
+    last = { v: v, r: r, ready: ready, afford: afford, check: check, gap: gap, two: two, signGap: signGap };
+    announce(); save();
   }
 
   /* Screen readers: one short announcement after typing pauses, instead of the whole card on every key. */
   var last = null, sayTimer = 0, sayEl = document.querySelector("[data-announce]");
   function announce() {
     if (!sayEl) return;
-    clearTimeout(sayTimer);
-    sayTimer = setTimeout(function () {
+    clearTimeout(sayTimer); sayTimer = setTimeout(function () {
       if (!last || !last.ready) { sayEl.textContent = ""; return; }
-      var label = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ""; };
-      var parts = [];
+      var label = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ""; }, parts = [];
       if (last.afford) parts.push(label("[data-show='afford-line']"));
       parts.push(label(".calc-results > [data-show='results'] > .calc-big span") + " " + money(last.r.otd) + ".");
       if (!last.v.cash) parts.push(label(".calc-pay .calc-big span") + " " + money(last.r.monthly) + ".");
@@ -190,6 +189,7 @@
     if (!last || !last.ready) return "";
     var v = last.v, r = last.r, L = [];
     L.push(last.afford ? "Mode: What can I afford? (monthly budget " + money(v.budget) + ")" : "Mode: What will it cost?");
+    if (v.vehicle) L.push("Vehicle: " + v.vehicle);
     L.push("Vehicle price: " + money(v.price), "Add-ons: " + money(v.addOns), "Doc fee: " + money(v.docFee));
     L.push("Trade-in value: " + money(v.tradeValue) + ", payoff: " + money(v.tradePayoff));
     L.push("Down payment: " + money(v.down) + ", rebates: " + money(v.rebates));
@@ -197,60 +197,53 @@
     L.push("Estimated out-the-door: " + money(r.otd));
     if (v.cash) L.push("Paying cash: " + money(r.due));
     else L.push("Amount financed: " + money(r.financed), "Estimated payment: " + money(r.monthly) + " a month, " + v.term + " months at " + v.apr + "% APR");
-    if (last.check) L.push("Dealer quote: " + money(v.quote) + " (" + (last.gap >= 0 ? "+" : "-") + money(Math.abs(last.gap)) + " vs. the math)");
+    if (last.check) L.push("Dealer quote: " + money(v.quote) + " (" + last.signGap(last.gap) + " vs. the math)");
+    if (last.two) L.push("Second dealer quote: " + money(v.quote2) + " (" + last.signGap(v.quote2 - v.quote) + " vs. the first)");
     return L.join("\n");
   }
+  // Tapping through to the start or review form: save the summary, plus the vehicle and quote to prefill.
   document.querySelectorAll("[data-calc-send]").forEach(function (a) {
     a.addEventListener("click", function () {
-      var text = teamSummary();
-      try { if (text) localStorage.setItem("mcd-calc-send", JSON.stringify({ t: Date.now(), text: text })); } catch (e) {}
+      var text = teamSummary(), v = last && last.v;
+      try { if (text) localStorage.setItem("mcd-calc-send", JSON.stringify({ t: Date.now(), text: text, vehicle: v.vehicle, quote: v.quote ? money(v.quote) : "" })); } catch (e) {}
     });
   });
 
   /* ---------- Saving, formatting, copy, reset ---------- */
-  var DEFAULTS = {};
-  $$("input, select").forEach(function (el) {
-    if (el.type === "radio") { if (el.checked) DEFAULTS[el.name] = el.value; }
-    else DEFAULTS[el.name] = el.value;
-  });
-
-  function save() {
+  function collect() {
     var data = {};
-    $$("input, select").forEach(function (el) {
-      if (el.type === "radio") { if (el.checked) data[el.name] = el.value; } else data[el.name] = el.value;
-    });
-    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    $$("input, select").forEach(function (el) { if (el.type !== "radio" || el.checked) data[el.name] = el.value; });
+    return data;
   }
+  var DEFAULTS = collect();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch (e) {} }
   function load(data) {
-    Object.keys(data).forEach(function (k) {
-      root.querySelectorAll('[name="' + k + '"]').forEach(function (el) {
-        if (el.type === "radio") el.checked = el.value === data[k]; else el.value = data[k];
-      });
+    $$("input, select").forEach(function (el) {
+      if (!(el.name in data)) return;
+      if (el.type === "radio") el.checked = el.value === data[el.name]; else el.value = data[el.name];
     });
   }
   try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) load(saved); } catch (e) {}
 
   // Shared links: /calculator?p=38450&t=16100... restores those numbers (and wins over saved ones).
   var SHORT = { mode: "m", price: "p", budget: "b", addons: "a", doc: "d", trade: "t", payoff: "o", down: "dn", rebates: "r",
-    "county-name": "c", state: "s", county: "cp", tag: "tg", pay: "pay", apr: "apr", term: "tm", quote: "q" };
+    "county-name": "c", state: "s", county: "cp", tag: "tg", pay: "pay", apr: "apr", term: "tm", quote: "q", quote2: "q2", vehicle: "v" };
   var qs = new URLSearchParams(location.search), fromLink = {};
-  Object.keys(SHORT).forEach(function (k) { if (qs.has(SHORT[k])) fromLink[k] = qs.get(SHORT[k]).slice(0, 40); });
+  Object.keys(SHORT).forEach(function (k) { if (qs.has(SHORT[k])) fromLink[k] = qs.get(SHORT[k]).slice(0, 60); });
   if (Object.keys(fromLink).length) load(fromLink);
 
   // Money fields: commas on blur ("38450" becomes "38,450").
   $$("[data-money]").forEach(function (el) {
     el.addEventListener("blur", function () {
       var n = num(el.value);
-      el.value = n ? n.toLocaleString("en-US", { maximumFractionDigits: 2 }) : (el.hasAttribute("data-keep-zero") ? "0" : "");
-      render();
+      el.value = n ? n.toLocaleString("en-US", { maximumFractionDigits: 2 }) : (el.hasAttribute("data-keep-zero") ? "0" : ""); render();
     });
   });
 
   // County select fills the county surtax %.
   field("county-name").addEventListener("change", function () {
     var p = COUNTIES[field("county-name").value];
-    if (p != null) field("county").value = String(p);
-    render();
+    if (p != null) field("county").value = String(p); render();
   });
 
   // Afford mode always estimates a payment, so open that panel.
@@ -261,19 +254,19 @@
   root.addEventListener("input", render);
 
   var reset = $("[data-reset]");
-  if (reset) reset.addEventListener("click", function () {
-    try { localStorage.removeItem(KEY); } catch (e) {}
-    load(DEFAULTS); render();
-  });
+  if (reset) reset.addEventListener("click", function () { try { localStorage.removeItem(KEY); } catch (e) {} load(DEFAULTS); render(); });
 
   // Share my numbers: a link with every input. Phones get the share sheet; elsewhere the link is copied.
   var flash = function (btn, msg) { var t = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = t; }, 1600); };
-  var share = $("[data-share]");
-  if (share) share.addEventListener("click", function () {
+  function shareUrl() {
     var u = new URL(location.origin + "/calculator");
     Object.keys(SHORT).forEach(function (k) { var v = k === "mode" || k === "pay" || k === "term" ? radio(k) : field(k).value; if (v) u.searchParams.set(SHORT[k], v); });
     if (document.documentElement.lang === "es") u.searchParams.set("lang", "es");
-    var url = u.toString();
+    return u.toString();
+  }
+  var share = $("[data-share]");
+  if (share) share.addEventListener("click", function () {
+    var url = shareUrl();
     if (navigator.share && matchMedia("(pointer: coarse)").matches) navigator.share({ title: document.title, url: url }).catch(function () {});
     else if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { flash(share, "Link copied"); }, function () {});
   });
@@ -287,28 +280,39 @@
   var printBtn = $("[data-print]");
   if (printBtn) printBtn.addEventListener("click", function () { stamp(); window.print(); });
 
-  // Copy a plain-text summary, built from the visible labels so it matches the page language.
-  var copy = $("[data-copy]");
-  if (copy) copy.addEventListener("click", function () {
+  // Plain-text summary built from the visible labels, so it matches the page language (Copy and Email me).
+  function plainText() {
     var lines = [document.querySelector("h1").textContent.replace(/\s+/g, " ").trim()];
+    if (last && last.v.vehicle) lines.push(last.v.vehicle);
     var big = $("[data-show='afford-line']");
     if (big && !big.hidden) lines.push(big.textContent.trim());
     $$(".calc-results [data-row]").forEach(function (row) {
-      if (row.offsetParent === null) return;
-      lines.push(row.children[0].textContent.trim() + ": " + row.children[1].textContent.trim());
+      if (row.offsetParent !== null) lines.push(row.children[0].textContent.trim() + ": " + row.children[1].textContent.trim());
     });
+    var pay = $(".calc-pay .calc-big");
+    if (pay && last && last.ready && !last.v.cash) lines.push(pay.children[0].textContent.trim() + ": " + pay.children[1].textContent.trim() + " (" + pay.children[2].textContent.trim() + ")");
     var note = $(".calc-results .fine");
-    if (note) lines.push("", note.textContent.trim(), location.origin + "/calculator");
-    var text = lines.join("\n");
-    var done = function () { var t = copy.textContent; copy.textContent = "Copied"; setTimeout(function () { copy.textContent = t; }, 1600); };
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+    if (note) lines.push("", note.textContent.trim(), shareUrl());
+    return lines.join("\n");
+  }
+  var copy = $("[data-copy]");
+  if (copy) copy.addEventListener("click", function () {
+    if (navigator.clipboard) navigator.clipboard.writeText(plainText()).then(function () { flash(copy, "Copied"); }, function () {});
   });
+
+  // Email me my numbers: site.js sends the form; fill the hidden fields first (capture runs before its handler).
+  // The team gets the English summary; the buyer's copy (FormSubmit autoresponse) is in the page language.
+  var mail = $("form[name='calculator-email']");
+  root.addEventListener("submit", function (e) {
+    if (e.target !== mail) return;
+    mail.querySelector("[data-calc-email-summary]").value = teamSummary();
+    mail.querySelector("[data-calc-email-copy]").value = plainText();
+  }, true);
 
   // Phones: hide the summary bar while the results card itself is on screen.
   var bar = document.querySelector("[data-calc-bar]"), res = document.getElementById("results");
-  if (bar && res && "IntersectionObserver" in window) {
+  if (bar && res && "IntersectionObserver" in window)
     new IntersectionObserver(function (es) { bar.classList.toggle("is-away", es[0].isIntersecting); }, { threshold: 0.15 }).observe(res);
-  }
 
   render();
 })();
