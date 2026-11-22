@@ -445,8 +445,8 @@ function onScreen(el, cb) {
         try { localStorage.removeItem("mcd-calc-send"); } catch (e) {}
       });
     }
-    // ?plan=coach or ?plan=done preselects Deal Coach or Done For You
-    var plan = { coach: "Deal Coach", done: "Done For You" }[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
+    // ?plan=done or ?plan=hero preselects Done For You or the Hero Program
+    var plan = { done: "Done For You", coach: "Done For You", hero: "Hero Program" }[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
     if (plan) form.querySelectorAll('input[name="plan"]').forEach(function (r) { if (r.value.indexOf(plan) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
     var status = form.querySelector(".status");
     var fail = function () {
