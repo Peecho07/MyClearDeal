@@ -8,14 +8,13 @@ Built on the "Step" design system (layout, type, components and motion), with My
 
 | File | Purpose |
 |---|---|
-| `index.html` | Hero with promise line and intro video panel, make marquee, "Watch a deal come together" animated example deal, "Our team is working for you" tabs, free quote review form, mission with three pillars, example deals deck, CTA, refund disclaimer |
-| `how-it-works.html` | "Our process": clickable car stepper, four grouped step cards (you vs. we), scope, promise |
-| `guide.html` | Buyer's guide: fee decoder, red-flag self-check, before-you-go checklist |
+| `index.html` | Hero with slogan and intro video panel, make marquee, "Watch a deal come together" animated example deal, "Our team is working for you" tabs, free quote review form, mission with three pillars, example deals deck, CTA, refund disclaimer |
+| `how-it-works.html` | "Our process": clickable car stepper, step videos, CTA |
 | `calculator.html` | Free deal calculator at `/calculator`: "What will it cost?" (out-the-door price and estimated monthly payment) and "What can I afford?" modes, Florida state tax plus county surtax (first $5,000 only), saved in the browser. Math lives in `assets/calculator.js` (loaded only on this page); confirm the county surtax rates there with the Florida Department of Revenue before launch. "Share my numbers" makes a link that restores every input (`/calculator?p=38450&t=16100&...`), "Print or save as PDF" prints just the results card, and a short Florida FAQ with search markup (JSON-LD) sits under the calculator |
 | `about.html` | About us: our story (founders), mission, full FAQ including pricing and refunds |
-| `pricing.html` | Deal Coach ($199) and Done For You ($995) plans, four-step animated pricing walkthrough, what goes to the dealer, why it's worth it, refund policy |
+| `pricing.html` | Done For You ($995) and Hero Program (~~$995~~ $0 for firefighters, law enforcement, medical, teachers, military) cards with eligibility rules, "Who counts as a hero" section, pricing walkthrough, what goes to the dealer, refund policy |
 | `start.html` | Consultation form ("Start my deal") and the full quote review form at `start.html#check` |
-| `faq.html`, `what-we-cover.html` | Redirects to `about.html#faq` and `guide.html` so old links keep working |
+| `faq.html`, `what-we-cover.html` | Redirects to `about.html#faq` and the home page so old links keep working |
 | `privacy.html` | Privacy policy placeholder |
 | `404.html` | Not found page |
 
