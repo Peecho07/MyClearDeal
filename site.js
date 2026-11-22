@@ -453,6 +453,35 @@ function onScreen(el, cb) {
     // ?plan=done or ?plan=hero preselects Done For You or the Hero Program
     var plan = { done: "Done For You", coach: "Done For You", hero: "Hero Program" }[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
     if (plan) form.querySelectorAll('input[name="plan"]').forEach(function (r) { if (r.value.indexOf(plan) === 0) { r.checked = true; form.dispatchEvent(new Event("change")); } });
+    // Phones: two steps. Step 1 is name, phone and email; everything after the Continue button is step 2.
+    // If someone finishes step 1 and then leaves, their contact details are still sent once (subject says so).
+    var stepNext = form.querySelector("[data-step-next]"), sentFull = false, sentPartial = false, onStep2 = false;
+    if (stepNext && FORM_ENDPOINT && window.matchMedia("(max-width: 700px)").matches) {
+      var later = [], seen = false;
+      Array.prototype.forEach.call(form.children, function (el) {
+        if (el === stepNext) { seen = true; return; }
+        if (seen && !(el.tagName === "INPUT" && el.type === "hidden")) { el.classList.add("is-later"); later.push(el); }
+      });
+      var first = ["name", "phone", "email"].map(function (n) { return form.querySelector('[name="' + n + '"]'); });
+      form.classList.add("is-step1");
+      stepNext.querySelector("button").addEventListener("click", function () {
+        for (var i = 0; i < first.length; i++) if (first[i] && !first[i].reportValidity()) return;
+        form.classList.remove("is-step1"); onStep2 = true;
+        var next = later[0];
+        if (next) { next.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" }); var f = next.querySelector("input, select, textarea"); if (f) setTimeout(function () { f.focus({ preventScroll: true }); }, 350); }
+      });
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState !== "hidden" || !onStep2 || sentFull || sentPartial || !navigator.sendBeacon) return;
+        if (form.querySelector('[name="_honey"]').value) return;
+        var d = new FormData();
+        d.append("form", form.getAttribute("name") + "-partial");
+        d.append("_subject", "Started a deal on a phone but has not finished the form yet");
+        d.append("_template", "table"); d.append("_captcha", "false");
+        first.forEach(function (f) { if (f && f.value) d.append(f.name, f.value); });
+        d.append("note", "Only step 1 was filled in when they left the page. They may still come back and finish.");
+        sentPartial = navigator.sendBeacon(FORM_ENDPOINT, d);
+      });
+    }
     var status = form.querySelector(".status");
     var fail = function () {
       status.className = "status err";
@@ -484,6 +513,7 @@ function onScreen(el, cb) {
           }
           status.className = "status ok";
           status.textContent = form.getAttribute("data-success") || "Got it. We will be in touch.";
+          sentFull = true;
           form.reset();
           if (calcField) { calcField.disabled = true; if (calcNote) calcNote.hidden = true; try { localStorage.removeItem("mcd-calc-send"); } catch (e) {} }
           form.dispatchEvent(new Event("change"));

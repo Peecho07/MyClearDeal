@@ -13,6 +13,8 @@ Built on the "Step" design system (layout, type, components and motion), with My
 | `calculator.html` | Free deal calculator at `/calculator`: "What will it cost?" (out-the-door price and estimated monthly payment) and "What can I afford?" modes, Florida state tax plus county surtax (first $5,000 only), saved in the browser. Math lives in `assets/calculator.js` (loaded only on this page); confirm the county surtax rates there with the Florida Department of Revenue before launch. "Share my numbers" makes a link that restores every input (`/calculator?p=38450&t=16100&...`), "Print or save as PDF" prints just the results card, and a short Florida FAQ with search markup (JSON-LD) sits under the calculator |
 | `about.html` | About us: our story (founders), mission, full FAQ including pricing and refunds |
 | `pricing.html` | Done For You ($995) and Hero Program (~~$995~~ $0 for firefighters, law enforcement, medical, teachers, military) cards with eligibility rules, "Who counts as a hero" section, pricing walkthrough, what goes to the dealer, refund policy |
+| `heroes.html` | Hero Program page at `/heroes` (shareable, own preview image `assets/img/og-heroes.png`). The Hero card and "Who counts as a hero" section are copied from `pricing.html`, so update both if the rules change |
+| `guide.html` | Redirect only: old `/guide` links go to `/how-it-works` |
 | `start.html` | Consultation form ("Start my deal") and the full quote review form at `start.html#check` |
 | `faq.html`, `what-we-cover.html` | Redirects to `about.html#faq` and the home page so old links keep working |
 | `privacy.html` | Privacy policy placeholder |
@@ -82,3 +84,8 @@ DNS at the domain registrar:
 - English stays the page source. Spanish lives in `assets/i18n-es.js`: each key is the English text exactly as it appears on the page, each value is the Spanish. `assets/i18n.js` swaps them in.
 - **When you change English copy, add or update the matching line in `assets/i18n-es.js`,** or that piece will stay in English on the Spanish version.
 - The logo slogan under the wordmark stays in English (it is part of the logo); the slogan above the homepage headline is translated.
+
+
+## Search markup (JSON-LD)
+
+Google reads the business details in `<script type="application/ld+json">` blocks: business name, phone, email and offers on `index.html`; plan prices on `pricing.html`; the FAQ on `about.html`; the Hero Program on `heroes.html`; the calculator on `calculator.html`. If you change a price, phone number or FAQ answer, update the matching block too.
