@@ -6,7 +6,7 @@ const cta = (o) => post({ bg: 'deep', ...o, body: `
   <div class="kicker">${o.kicker}</div>
   <h2 class="h md">${o.h}</h2>
   ${o.sub ? `<p class="sub">${o.sub}</p>` : ''}
-  <span class="btn">${o.btn} ${ARROW}</span>
+  ${o.btn ? `<span class="btn">${o.btn} ${ARROW}</span>` : ''}
   <div class="stack" style="gap:14px"><span class="url">${o.url}</span>${CONTACT}</div>` });
 
 const C = {};
@@ -36,14 +36,14 @@ C['01-how-it-works'] = (() => { const n = 7; return [
   post({ i: 6, n, body: `<div class="step"><span class="n">5</span><span class="l">You sign</span></div>
     <h2 class="h md">One trip to the dealer. <em>Just to sign.</em></h2>
     <p class="sub">Phone support until you drive away, plus text and email.</p>${ico('pen')}` }),
-  cta({ i: 7, n, kicker: 'New or used. Buy or lease.', h: 'Start with a <em>free call.</em>', sub: 'One flat fee of $995 for one car. $0 for heroes through our Hero Program.', btn: 'Start my deal', url: 'mycleardeal.com/start' }),
+  cta({ i: 7, n, kicker: 'Save this for your next car', h: 'Start with a <em>free call.</em>', sub: 'We negotiate the price, fees and trade-in, and you approve every number in writing before you sign. $995 flat, $0 for heroes.', btn: 'Start my deal', url: 'mycleardeal.com/start' }),
 ]; })();
 
 // 2. What $995 gets you
 C['02-what-995-gets-you'] = (() => { const n = 8; return [
   post({ i: 1, n, body: `<div class="kicker">Done For You</div>
     <h1 class="h xl">One car.<br><em class="hl">One flat $995.</em></h1>
-    <p class="sub">Here is everything that fee covers. Swipe for the full list.</p>` }),
+    <p class="sub">6 things that one fee covers, one per slide.</p>` }),
   post({ i: 2, n, body: `${ico('phone')}<h2 class="h md">A free consultation call <em>to build your plan.</em></h2><p class="sub">The car, the budget, the trade and the timeline, set before any work starts.</p>` }),
   post({ i: 3, n, bg: 'alt', body: `${ico('handshake')}<h2 class="h md">We negotiate <em>the whole deal.</em></h2>
     <ul class="checks"><li>Vehicle price</li><li>Dealer fees</li><li>Your trade-in</li></ul>` }),
@@ -52,7 +52,7 @@ C['02-what-995-gets-you'] = (() => { const n = 8; return [
   post({ i: 6, n, body: `${ico('doc')}<h2 class="h md">A written out-the-door recap <em>before you agree.</em></h2><p class="sub">Every number on one page. Nothing moves without your OK.</p>` }),
   post({ i: 7, n, bg: 'alt', body: `${ico('chat')}<h2 class="h md">Support until <em>you drive away.</em></h2>
     <ul class="checks"><li>Phone, plus text and email</li><li>New or used</li><li>Buy or lease</li></ul>` }),
-  cta({ i: 8, n, kicker: 'Same price for everyone', h: 'No % of savings. <em>No hidden fees.</em>', sub: 'And no dealer kickbacks. You pay us, the dealer never does. Heroes pay $0.', btn: 'Book my free call', url: 'mycleardeal.com/start' }),
+  cta({ i: 8, n, kicker: 'Save this before you shop', h: 'No % of savings. <em>No hidden fees.</em>', sub: 'And no dealer kickbacks. You pay us, the dealer never does. Heroes pay $0.', btn: 'Book my free call', url: 'mycleardeal.com/start' }),
 ]; })();
 
 // 3. Dealer vs. MyClearDeal
@@ -121,23 +121,23 @@ C['05-do-i-qualify'] = (() => { const n = 7; return [
   post({ i: 5, n, bg: 'alt', body: `<div class="kicker">The rules</div><h2 class="h md">Simple, and <em>the same for everyone.</em></h2>
     <ul class="checks"><li>One car<span>Bought or leased for your own household</span></li><li>One Hero deal per person</li><li>Book through the Hero Program option<span>Before any work starts</span></li></ul>` }),
   post({ i: 6, n, body: `${ico('lock')}<div class="kicker">Your privacy</div><h2 class="h md">Your proof <em>stays with us.</em></h2><p class="sub">We only use it to confirm you qualify. It is never shared with a dealer.</p>` }),
-  cta({ i: 7, n, kicker: 'Qualify? Claim it.', h: 'Claim your <em>Hero deal.</em>', sub: 'Our full $995 negotiation service at $0. Not sure if you qualify? Ask us on the free call.', btn: 'Claim my Hero deal', url: 'mycleardeal.com/start?plan=hero' }),
+  cta({ i: 7, n, kicker: 'Save this for later', h: 'Claim your <em>Hero deal.</em>', sub: 'Five fields, one proof, one car for your household. Not sure if you qualify? Ask us on the free call.', btn: 'Claim my Hero deal', url: 'mycleardeal.com/start?plan=hero' }),
 ]; })();
 
-// 6. Tag a hero
-C['06-tag-a-hero'] = (() => { const n = 6; return [
-  post({ i: 1, n, bg: 'deep', body: `<div class="kicker">Tag a hero</div>
+// 6. Send this to a hero
+C['06-send-to-a-hero'] = (() => { const n = 6; return [
+  post({ i: 1, n, bg: 'deep', body: `<div class="kicker">Send this to a hero</div>
     <h1 class="h">Know a nurse, teacher, firefighter, officer or vet <em>shopping for a car?</em></h1>
     <p class="sub">Send them this. Their car negotiator is on us.</p>` }),
   post({ i: 2, n, body: `<div class="kicker">Hero Program</div><div class="price"><span class="was">$995</span><span class="now"><sup>$</sup>0</span></div>
     <h2 class="h md">We negotiate their next car. <em>They pay us nothing.</em></h2>` }),
   post({ i: 3, n, bg: 'alt', body: `<div class="kicker">What they get</div><h2 class="h md">The same service <em>everyone else pays for.</em></h2>
     <ul class="checks"><li>Price, fees and trade-in negotiated</li><li>Checked against market data</li><li>A written out-the-door recap</li><li>Phone, text and email support</li></ul>` }),
-  post({ i: 4, n, body: `<div class="kicker">Who to tag</div><h2 class="h md">Active or retired. <em>Veterans too.</em></h2>
+  post({ i: 4, n, body: `<div class="kicker">Who to send it to</div><h2 class="h md">Active or retired. <em>Veterans too.</em></h2>
     <div class="chips"><span>Firefighters</span><span>Law enforcement</span><span>Nurses, EMTs and doctors</span><span>Teachers</span><span>Military</span><span>Veterans</span></div>` }),
   post({ i: 5, n, bg: 'alt', body: `${ico('heart')}<div class="kicker">How this keeps going</div><h2 class="h md">Every hero we help <em>sends the next one.</em></h2>
     <p class="sub">If we did right by them, all we ask is that they tell a friend who is shopping for a car and leave an honest review.</p>` }),
-  cta({ i: 6, n, kicker: 'Share this post', h: 'Tag a hero <em>in the comments.</em>', sub: 'Or send them the link. One Hero deal per person, proof shown on a free call.', btn: 'Claim my Hero deal', url: 'mycleardeal.com/start?plan=hero' }),
+  cta({ i: 6, n, kicker: 'One Hero deal per person', h: 'Send this to a hero <em>you know.</em>', sub: 'They claim it at the link below and show one proof of service on a free call.', btn: '', url: 'mycleardeal.com/start?plan=hero' }),
 ]; })();
 
 module.exports = C;

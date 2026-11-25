@@ -16,17 +16,17 @@ const R = {};
 const heroReel = (lang) => {
   const es = lang === 'es';
   const T = es ? {
-    k: 'Nuevo en MyClearDeal', h: 'Te presentamos el <em>Programa Héroes.</em>', sub: 'Nuestro servicio completo de negociación. Gratis para quienes sirven.',
+    k: 'Bomberos, agentes del orden, área médica, maestros, militares', h: 'Tu negociador de autos, <em>gratis.</em>', sub: 'Nuestro servicio completo de negociación. Gratis para quienes sirven.',
     wk: 'Quién califica', chips: ['Bomberos', 'Agentes del orden', 'Área médica', 'Maestros', 'Militares'], wn: 'Activos o jubilados. Los veteranos califican.',
     gk: 'Lo que recibes', g: ['La misma negociación: precio, cargos e intercambio', 'El mismo resumen por escrito del precio final', 'El mismo apoyo hasta que te lleves tu auto'],
     ch: 'Obtén tu <em>oferta Héroes.</em>', cs: 'Muestra una prueba de servicio en tu llamada gratis.', btn: 'Obtener mi oferta Héroes',
-    caps: [[0, 3.2, 'Te presentamos el Programa Héroes de MyClearDeal'], [3.2, 6.2, 'Nuestro servicio de negociación cuesta $995'], [6.2, 9.2, 'Para los héroes, cuesta $0'], [9.2, 14.6, 'Bomberos, agentes del orden, área médica, maestros y militares'], [14.6, 18.6, 'La misma negociación, el mismo resumen, el mismo apoyo'], [18.6, 23, 'Obtén el tuyo en mycleardeal.com']],
+    caps: [[0, 3.2, 'Héroes: tu negociador de autos es gratis'], [3.2, 6.2, 'Nuestro servicio de negociación cuesta $995'], [6.2, 9.2, 'Para los héroes, cuesta $0'], [9.2, 14.6, 'Bomberos, agentes del orden, área médica, maestros y militares'], [14.6, 18.6, 'La misma negociación, el mismo resumen, el mismo apoyo'], [18.6, 23, 'Obtén el tuyo en mycleardeal.com']],
   } : {
-    k: 'New from MyClearDeal', h: 'Introducing the <em>Hero Program.</em>', sub: 'Our full negotiation service. Free for those who serve.',
+    k: 'Firefighters, officers, medical, teachers, military', h: 'Your car negotiator is <em>on us.</em>', sub: 'Our full negotiation service. Free for those who serve.',
     wk: 'Who qualifies', chips: ['Firefighters', 'Law enforcement', 'Medical field', 'Teachers', 'Military'], wn: 'Active or retired. Veterans qualify.',
     gk: 'What you get', g: ['Same negotiation: price, fees and trade-in', 'Same written out-the-door recap', 'Same support until you drive away'],
     ch: 'Claim your <em>Hero deal.</em>', cs: 'Show one proof of service on your free call.', btn: 'Claim my Hero deal',
-    caps: [[0, 3.2, 'Introducing the MyClearDeal Hero Program'], [3.2, 6.2, 'Our car negotiation service is $995'], [6.2, 9.2, 'For heroes, it is $0'], [9.2, 14.6, 'Firefighters, law enforcement, medical, teachers and military'], [14.6, 18.6, 'Same negotiation. Same written recap. Same support.'], [18.6, 23, 'Claim yours at mycleardeal.com']],
+    caps: [[0, 3.2, 'Heroes: your car negotiator is on us'], [3.2, 6.2, 'Our car negotiation service is $995'], [6.2, 9.2, 'For heroes, it is $0'], [9.2, 14.6, 'Firefighters, law enforcement, medical, teachers and military'], [14.6, 18.6, 'Same negotiation. Same written recap. Same support.'], [18.6, 23, 'Claim yours at mycleardeal.com']],
   };
   return { bg: 'deep', dur: 23, cover: 7.4, caps: T.caps, html: [
     sc(0, 3.2, `${brandRow(true, lang)}<div class="kicker" data-in="fadeup .3 .5">${T.k}</div><h1 class="h" data-in="fadeup .5 .7">${T.h}</h1>`),
@@ -61,7 +61,7 @@ const docRows = (rows) => rows.map(([l, v, extra = '', d = 0, cls = '']) => `<di
 R['03-three-things-we-negotiate'] = { bg: 'mint', dur: 23, cover: 10.6, caps: [
   [0, 3, 'We negotiate three things for you'], [3, 8, 'One: the vehicle price, checked against market data'], [8, 13, 'Two: dealer fees. Add-ons you never asked for come off.'],
   [13, 18, 'Three: your trade-in, valued on its own'], [18, 23, 'One flat fee. We negotiate. You just sign.']], html: [
-  sc(0, 3, `${brandRow(false)}<h1 class="h xl" data-in="fadeup .3 .6">We negotiate <em class="hl">3 things.</em></h1>`),
+  sc(0, 3, `${brandRow(false)}<div class="kicker" data-in="fadeup 0 .5">The sticker price is only one number</div><h1 class="h xl" data-in="fadeup .3 .6">We negotiate <em class="hl">3 things.</em></h1>`),
   sc(3, 8, `<div class="step" data-in="fadeup 0 .5"><span class="n">1</span><span class="l">The vehicle price</span></div><h2 class="h md" data-in="fadeup .3 .5">Checked against <em>market data.</em></h2>
     <div class="doc" data-in="fadeup .7 .6"><div class="doc-h"><b>Market check</b><span>Example deal</span></div>${docRows([['Local listings compared', '24', '', 1.2], ['Agreed price', '$38,450', '<span class="ok">IN RANGE</span>', 1.8]])}</div>`),
   sc(8, 13, `<div class="step" data-in="fadeup 0 .5"><span class="n">2</span><span class="l">Dealer fees</span></div><h2 class="h md" data-in="fadeup .3 .5">Extras you never asked for <em>come off.</em></h2>
@@ -126,7 +126,7 @@ window.seek = (t) => {
     s.style.opacity = on ? Math.min(fi, fo) : 0;
     const lt = t - a;
     s.querySelectorAll('[data-in]').forEach((el) => {
-      const [type, d, du] = el.dataset.in.split(' '); const x = cl((lt - +d) / +du), p = out3(x);
+      const [type, d, du] = el.dataset.in.split(' '); const x = a === 0 ? 1 : cl((lt - +d) / +du), p = out3(x);
       if (type === 'fadeup') { el.style.opacity = p; el.style.transform = 'translateY(' + (1 - p) * 46 + 'px)'; }
       else if (type === 'left') { el.style.opacity = p; el.style.transform = 'translateX(' + (1 - p) * -70 + 'px)'; }
       else if (type === 'pop') { el.style.opacity = cl(x * 2); el.style.transform = 'scale(' + (x > 0 ? 0.55 + 0.45 * back(x) : 0.55) + ')'; el.style.transformOrigin = 'left center'; }

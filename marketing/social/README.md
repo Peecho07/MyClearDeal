@@ -4,6 +4,10 @@
 - `reels/<name>.mp4` + `reels/<name>-cover.png`: 1080x1920, 30fps, H.264, silent AAC track (add music in the app)
 - `captions.md`: hook, caption, CTA, hashtags, on-screen words and the 2-week posting order
 - `contact-sheet.html`: everything in one grid (open it from this folder)
+- `instagram-playbook.md`: profile kit (name, bio, links, highlights, pins), what the Instagram skills changed, and how to make new posts
+- `profile/profile-picture.png`: profile photo (logo mark, circle-safe)
+
+The writing rules come from the MyClearDeal-adapted Instagram skills in `/.claude/skills/` (from sergebulaev/instagram-skills, MIT).
 
 ## Re-render after a copy change
 
@@ -14,6 +18,7 @@ node render-carousels.js        # all carousels (or pass part of a name, e.g. "h
 node render-reels.js            # all reels and covers (or a filter)
 node check-reels.js             # specs + top/bottom 250px safe-zone check
 node contact-sheet.js           # rebuild the review grid
+node render-profile.js          # profile picture
 ```
 
 Copy lives in `src/carousels.js` and `src/reels.js`. Colors and fonts in `src/base.css` come from the site's `site.css` (Mint Fresh). Fonts are local copies of DM Sans and Saira (SIL Open Font License).
