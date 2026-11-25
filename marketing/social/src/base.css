@@ -141,3 +141,15 @@ em { font-family: var(--accent-font); font-style: italic; font-weight: 700; lett
 .reel .h { font-size: 112px; } .reel .h.md { font-size: 92px; } .reel .h.sm { font-size: 76px; }
 .reel .sub { font-size: 44px; }
 .big-n { font: 800 260px/.85 var(--display); letter-spacing: -.06em; color: var(--ink); } .bg-deep .big-n { color: #fff; }
+
+/* Payoff slide (carousel planner: one-slide recap + one ask) */
+.checks.compact { gap: 16px; }
+.checks.compact li { font-size: 33px; grid-template-columns: 46px 1fr; gap: 18px; }
+.checks.compact li::before { width: 46px; height: 46px; background-size: 26px; margin-top: -2px; }
+.checks.num { counter-reset: n; }
+.checks.num li { counter-increment: n; }
+.checks.num li::before { content: counter(n); background: var(--mint-pop); color: var(--ink); font: 800 24px/46px var(--display); text-align: center; }
+.ask { display: inline-flex; align-self: flex-start; align-items: center; gap: 16px; font: 800 40px/1.2 var(--display); color: var(--ink); background: var(--mint-pop); border-radius: 999px; padding: 22px 40px; }
+.ask svg { width: 40px; height: 40px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.url-sm { font: 700 30px var(--display); color: var(--ink); } .bg-deep .url-sm { color: #fff; }
+.url-sm span { color: var(--muted); font-weight: 500; } .bg-deep .url-sm span { color: var(--deep-text); }

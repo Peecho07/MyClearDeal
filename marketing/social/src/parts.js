@@ -27,6 +27,7 @@ const I = {
   search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
   home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
   check: '<path d="M5 12l5 5 9-10"/>',
+  bookmark: '<path d="M6 3h12v18l-6-4-6 4z"/>',
 };
 const ico = (k, cls = '') => `<div class="ico ${cls}"><svg viewBox="0 0 24 24">${I[k]}</svg></div>`;
 
@@ -36,6 +37,7 @@ function post({ bg = 'mint', i, n, lang = 'en', body, foot }) {
   const dots = `<div class="dots">${Array.from({ length: n }, (_, k) => `<i class="${k === i - 1 ? 'on' : ''}"></i>`).join('')}</div>`;
   const swipe = `<span class="swipe">${lang === 'es' ? 'Desliza' : 'Swipe'} ${ARROW}</span>`;
   const f = foot != null ? foot : i === 1 ? `<span>mycleardeal.com</span>${swipe}` : i === n ? `<span>mycleardeal.com</span>${dots}` : `<span>mycleardeal.com</span>${dots}`;
+  body = body.replace(/DD-214/g, '<span style="white-space:nowrap">DD-214</span>');
   return `<div class="frame post bg-${bg}"><div class="top">${BRAND(dark, lang)}<span class="count">${i}/${n}</span></div><div class="body">${body}</div><div class="foot">${f}</div></div>`;
 }
 const page = (inner, extraCss = '') => `<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>${extraCss}</style></head><body>${inner}</body></html>`;

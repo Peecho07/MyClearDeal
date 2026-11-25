@@ -23,7 +23,7 @@ best windows (weekdays 11 AM to 1 PM or 7 to 9 PM, Sunday evening). Swap in your
 |---|---|---|---|---|---|
 | Fri Nov 27 | 12:00 PM | Reel: Send us your quote | Offer | IG9 pattern interrupt | sends |
 | Mon Nov 30 | 12:00 PM | Reel: Hero Program announcement | Heroes | IG9 pattern interrupt | sends |
-| Tue Dec 1 | 7:00 PM | Carousel: Hero Program launch | Heroes | IG5 listicle | saves |
+| Tue Dec 1 | 7:00 PM | Carousel: Hero Program launch | Heroes | IG5 listicle | claims |
 | Wed Dec 2 | 12:00 PM | Reel: Programa Héroes (ES) | Heroes | IG9 | sends |
 | Thu Dec 3 | 12:00 PM | Carousel: Dealer vs. MyClearDeal | Education | IG7 myth-buster | sends |
 | Sat Dec 5 | 11:00 AM | Reel: The written recap | Education | IG10 how-it-works | saves |
@@ -31,13 +31,13 @@ best windows (weekdays 11 AM to 1 PM or 7 to 9 PM, Sunday evening). Swap in your
 | Tue Dec 8 | 7:00 PM | Carousel: We negotiate. You just sign. | Education | IG8 framework | saves |
 | Thu Dec 10 | 12:00 PM | Reel: 5 jobs that get a free car negotiator | Heroes | IG5 in motion | sends |
 | Fri Dec 11 | 12:00 PM | Carousel: Send this to a hero | Heroes | IG2 send-bait | sends |
-| Sun Dec 13 | 7:00 PM | Carousel: Programa Héroes (ES) | Heroes | IG5 | saves |
-| Mon Dec 14 | 12:00 PM | Carousel: Do I qualify? | Heroes | IG5 | saves |
+| Sun Dec 13 | 7:00 PM | Carousel: Do I qualify? | Heroes | IG5 | saves |
+| Mon Dec 14 | 12:00 PM | Carousel: Programa Héroes (ES) | Heroes | IG5 | claims |
 | Wed Dec 16 | 7:00 PM | **Open slot: a real deal story** | Proof | IG6 before/after | follows |
 | Fri Dec 18 | 12:00 PM | Carousel: What $995 gets you | Offer | IG5 | saves |
 
 Weekly check:
-- **At least 3 save posts and 2 send posts every week.** Met in each week.
+- **At least 3 save posts and 2 send posts a week.** Week of Dec 7: 3 saves, 2 sends. Launch week (Nov 30) is send-heavy on purpose, with 3 sends, 1 claim and 1 save, to spread the Hero Program. The week of Dec 14 is short (3 posts: 1 save, 1 claim, plus the story slot).
 - **Offer posts: at most 1 or 2 a week.** Met.
 - **Proof and stories has no real material yet.** The site has no published reviews or client stories, so the Dec 16 slot needs one real, approved deal from you. Until then the Example-deal reels (quote, recap, 3 things) stand in.
 
@@ -164,7 +164,7 @@ How to claim it: book through the Hero Program option, show one proof of service
 
 One car for your own household. One Hero deal per person.
 
-Save this, or claim it now at mycleardeal.com/start?plan=hero
+Claim yours at mycleardeal.com/start?plan=hero
 
 **First comment:** #heroprogram #thankyouheroes #firstresponders #militaryfamilylife #heroes
 
@@ -215,7 +215,7 @@ If we do right by them, all we ask is that they tell a friend who is shopping an
 
 **First comment:** #heroprogram #lawenforcementfamily #nursesoforlando #firstresponders #heroes
 
-### Programa Héroes (`carousels/04-hero-program-launch-es/`, 7 slides). Sun Dec 13
+### Programa Héroes (`carousels/04-hero-program-launch-es/`, 7 slides). Mon Dec 14
 
 **Texto**
 $995 → $0. El Programa Héroes es nuestro servicio completo de negociación de autos, gratis para quienes sirven.
@@ -226,11 +226,11 @@ Cómo obtenerlo: reserva con la opción Programa Héroes, muestra una prueba de 
 
 Un auto para tu propio hogar. Una oferta Héroes por persona.
 
-Guárdalo, u obtén tu oferta en mycleardeal.com/start?plan=hero
+Obtén tu oferta en mycleardeal.com/start?plan=hero
 
 **Primer comentario:** #ProgramaHeroes #comprarauto #orlandolatino #consejosdeautos #autos
 
-### Do I qualify? (`carousels/05-do-i-qualify/`, 7 slides). Mon Dec 14
+### Do I qualify? (`carousels/05-do-i-qualify/`, 7 slides). Sun Dec 13
 
 **Caption**
 Do you qualify for a $0 car negotiator? The Hero Program rules in plain English, one per slide.
