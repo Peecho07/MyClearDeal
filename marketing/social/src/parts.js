@@ -37,7 +37,7 @@ function post({ bg = 'mint', i, n, lang = 'en', body, foot }) {
   const dots = `<div class="dots">${Array.from({ length: n }, (_, k) => `<i class="${k === i - 1 ? 'on' : ''}"></i>`).join('')}</div>`;
   const swipe = `<span class="swipe">${lang === 'es' ? 'Desliza' : 'Swipe'} ${ARROW}</span>`;
   const f = foot != null ? foot : i === 1 ? `<span>mycleardeal.com</span>${swipe}` : i === n ? `<span>mycleardeal.com</span>${dots}` : `<span>mycleardeal.com</span>${dots}`;
-  body = body.replace(/DD-214/g, '<span style="white-space:nowrap">DD-214</span>');
+  body = body.replace(/DD-214/g, 'DD-\u2060214'); // word joiner: never split DD-214 across lines
   return `<div class="frame post bg-${bg}"><div class="top">${BRAND(dark, lang)}<span class="count">${i}/${n}</span></div><div class="body">${body}</div><div class="foot">${f}</div></div>`;
 }
 const page = (inner, extraCss = '') => `<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>${extraCss}</style></head><body>${inner}</body></html>`;
