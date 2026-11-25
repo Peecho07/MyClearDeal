@@ -1,9 +1,15 @@
 // Reel scripts. Each scene: [start, end] in seconds; children animate with data-in="type delay duration".
 // Safe zones: content sits between y=300 and y=1360, captions between y=1400 and y=1600. Top and bottom 300px are background only.
-const { MARK, ARROW, ico } = require('./parts');
+const { MARK, ARROW, I, ico } = require('./parts');
 
 const brandRow = (dark, lang = 'en') => `<div class="brand" data-in="fadeup 0 .5">${MARK(dark)}<div class="bn"><b>My<i>Clear</i>Deal</b><small>${lang === 'es' ? 'Comprar auto, claro y sencillo' : 'Car Buying Made Clear'}</small></div></div>`;
 const sc = (a, b, html) => `<section class="scene" data-t="${a} ${b}">${html}</section>`;
+// End card, same rule as the carousels (ig-carousel-planner / IG10): one-screen recap + exactly one ask.
+const payoffScene = (a, b, o) => sc(a, b, `${brandRow(o.dark, o.lang)}
+  <h2 class="h md" data-in="fadeup .2 .6">${o.h}</h2>
+  <ul class="checks compact${o.numbered ? ' num' : ''}">${o.recap.map((x, k) => `<li data-in="left ${0.6 + k * 0.35} .45">${x}</li>`).join('')}</ul>
+  <span class="ask" data-in="pop ${0.8 + o.recap.length * 0.35} .5"><svg viewBox="0 0 24 24">${I[o.icon]}</svg> ${o.ask}</span>
+  <span class="url-sm" data-in="fadeup ${1.1 + o.recap.length * 0.35} .5">${o.url}</span>`);
 const ctaScene = (a, b, o) => sc(a, b, `${brandRow(o.dark, o.lang)}
   <h2 class="h md" data-in="fadeup .2 .6">${o.h}</h2>
   ${o.sub ? `<p class="sub" data-in="fadeup .5 .6">${o.sub}</p>` : ''}
@@ -19,14 +25,14 @@ const heroReel = (lang) => {
     k: 'Bomberos, agentes del orden, área médica, maestros, militares', h: 'Tu negociador de autos, <em>gratis.</em>', sub: 'Nuestro servicio completo de negociación. Gratis para quienes sirven.',
     wk: 'Quién califica', chips: ['Bomberos', 'Agentes del orden', 'Área médica', 'Maestros', 'Militares'], wn: 'Activos o jubilados. Los veteranos califican.',
     gk: 'Lo que recibes', g: ['La misma negociación: precio, cargos e intercambio', 'El mismo resumen por escrito del precio final', 'El mismo apoyo hasta que te lleves tu auto'],
-    ch: 'Obtén tu <em>oferta Héroes.</em>', cs: 'Muestra una prueba de servicio en tu llamada gratis.', btn: 'Obtener mi oferta Héroes',
-    caps: [[0, 3.2, 'Héroes: tu negociador de autos es gratis'], [3.2, 6.2, 'Nuestro servicio de negociación cuesta $995'], [6.2, 9.2, 'Para los héroes, cuesta $0'], [9.2, 14.6, 'Bomberos, agentes del orden, área médica, maestros y militares'], [14.6, 18.6, 'La misma negociación, el mismo resumen, el mismo apoyo'], [18.6, 23, 'Obtén el tuyo en mycleardeal.com']],
+    ch: 'Servicio de $995. <em>Para ti, $0.</em>', recap: ['Bomberos, agentes del orden, área médica, maestros, militares', 'Activos o jubilados. Los veteranos califican.', 'Una prueba de servicio en tu llamada gratis'], ask: 'Envíaselo a un héroe',
+    caps: [[0, 3.2, 'Héroes: tu negociador de autos es gratis'], [3.2, 6.2, 'Nuestro servicio de negociación cuesta $995'], [6.2, 9.2, 'Para los héroes, cuesta $0'], [9.2, 14.6, 'Bomberos, agentes del orden, área médica, maestros y militares'], [14.6, 18.6, 'La misma negociación, el mismo resumen, el mismo apoyo'], [18.6, 23, 'Envíaselo a un héroe que esté buscando auto']],
   } : {
     k: 'Firefighters, officers, medical, teachers, military', h: 'Your car negotiator is <em>on us.</em>', sub: 'Our full negotiation service. Free for those who serve.',
     wk: 'Who qualifies', chips: ['Firefighters', 'Law enforcement', 'Medical field', 'Teachers', 'Military'], wn: 'Active or retired. Veterans qualify.',
     gk: 'What you get', g: ['Same negotiation: price, fees and trade-in', 'Same written out-the-door recap', 'Same support until you drive away'],
-    ch: 'Claim your <em>Hero deal.</em>', cs: 'Show one proof of service on your free call.', btn: 'Claim my Hero deal',
-    caps: [[0, 3.2, 'Heroes: your car negotiator is on us'], [3.2, 6.2, 'Our car negotiation service is $995'], [6.2, 9.2, 'For heroes, it is $0'], [9.2, 14.6, 'Firefighters, law enforcement, medical, teachers and military'], [14.6, 18.6, 'Same negotiation. Same written recap. Same support.'], [18.6, 23, 'Claim yours at mycleardeal.com']],
+    ch: '$995 service. <em>$0 for heroes.</em>', recap: ['Firefighters, law enforcement, medical, teachers, military', 'Active or retired. Veterans qualify.', 'One proof of service on your free call'], ask: 'Send this to a hero you know',
+    caps: [[0, 3.2, 'Heroes: your car negotiator is on us'], [3.2, 6.2, 'Our car negotiation service is $995'], [6.2, 9.2, 'For heroes, it is $0'], [9.2, 14.6, 'Firefighters, law enforcement, medical, teachers and military'], [14.6, 18.6, 'Same negotiation. Same written recap. Same support.'], [18.6, 23, 'Send this to a hero who is car shopping']],
   };
   return { bg: 'deep', dur: 23, cover: 7.4, caps: T.caps, html: [
     sc(0, 3.2, `${brandRow(true, lang)}<div class="kicker" data-in="fadeup .3 .5">${T.k}</div><h1 class="h" data-in="fadeup .5 .7">${T.h}</h1>`),
@@ -36,7 +42,7 @@ const heroReel = (lang) => {
       <div class="stack" style="gap:18px">${T.chips.map((c, k) => `<div class="row2" data-in="left ${0.4 + k * 0.55} .5">${ico(['flame', 'shield', 'medical', 'book', 'star'][k])}<b style="font:800 64px var(--display);color:#fff;letter-spacing:-.03em">${c}</b></div>`).join('')}</div>
       <p class="sub" data-in="fadeup 3.4 .5"><b>${T.wn}</b></p>`),
     sc(14.6, 18.6, `<div class="kicker" data-in="fadeup 0 .5">${T.gk}</div><ul class="checks" style="gap:34px">${T.g.map((x, k) => `<li data-in="left ${0.3 + k * 0.6} .5" style="font-size:52px">${x}</li>`).join('')}</ul>`),
-    ctaScene(18.6, 24, { dark: true, lang, h: T.ch, sub: T.cs, btn: T.btn, url: 'mycleardeal.com/start?plan=hero' }),
+    payoffScene(18.6, 24, { dark: true, lang, h: T.ch, recap: T.recap, icon: 'send', ask: T.ask, url: 'mycleardeal.com/start?plan=hero' }),
   ].join('') };
 };
 R['01-hero-program-announcement'] = heroReel('en');
@@ -46,21 +52,21 @@ R['01-hero-program-announcement-es'] = heroReel('es');
 const JOBS = [['flame', 'Firefighters', 'Career and volunteer, active or retired.'], ['shield', 'Law enforcement', 'Police, deputies, state troopers and corrections officers.'],
   ['medical', 'Medical field', 'Nurses, doctors, EMTs, paramedics and licensed healthcare workers.'], ['book', 'Teachers', 'Pre-K through college, public and private schools.'],
   ['star', 'Military', 'Active duty, Reserve, National Guard and veterans.']];
-R['02-five-jobs'] = { bg: 'mint', dur: 24, cover: 1.6, caps: [
+R['02-five-jobs'] = { bg: 'mint', dur: 25, cover: 1.6, caps: [
   [0, 3.5, '5 jobs that get a free car negotiator'], ...JOBS.map(([, h], k) => [3.5 + k * 3, 6.5 + k * 3, `Number ${k + 1}: ${h.toLowerCase()}`]),
-  [18.5, 21, 'Our full $995 service is $0 for you'], [21, 24, 'Claim it at mycleardeal.com']], html: [
+  [18.5, 21, 'Our full $995 service is $0 for you'], [21, 25, 'Send this to someone on the list']], html: [
   sc(0, 3.5, `${brandRow(false)}<div class="kicker" data-in="fadeup .2 .5">Hero Program</div><h1 class="h" data-in="fadeup .4 .7"><span class="big-n" style="font-size:1em;color:var(--accent)">5</span> jobs that get a <em class="hl">free car negotiator.</em></h1>`),
   ...JOBS.map(([ic, h, d], k) => sc(3.5 + k * 3, 6.5 + k * 3, `<div class="row2" style="gap:36px"><span class="big-n" data-in="pop 0 .5">${k + 1}</span>${ico(ic, '')}</div>
     <h2 class="h" data-in="fadeup .25 .5">${h}</h2><p class="sub" data-in="fadeup .55 .5">${d}</p>`)),
   sc(18.5, 21, `<div class="kicker" data-in="fadeup 0 .4">Active or retired. Veterans qualify.</div><div class="price" style="align-items:center"><span class="was" data-in="fadeup .1 .4" data-strike=".6 .5">$995</span><span class="now" data-in="pop 1.0 .5"><sup>$</sup>0</span></div><h2 class="h md" data-in="fadeup 1.3 .5">Our full service. <em>Free for you.</em></h2>`),
-  ctaScene(21, 25, { dark: false, h: 'Claim your <em>Hero deal.</em>', btn: 'Claim my Hero deal', url: 'mycleardeal.com/start?plan=hero' }),
+  payoffScene(21, 26, { dark: false, h: '5 jobs. <em>$0 car negotiator.</em>', numbered: true, recap: ['Firefighters', 'Law enforcement', 'Medical field', 'Teachers', 'Military, veterans too'], icon: 'send', ask: 'Send this to someone on the list', url: 'mycleardeal.com/start?plan=hero' }),
 ].join('') };
 
 // 3. The three things we negotiate
 const docRows = (rows) => rows.map(([l, v, extra = '', d = 0, cls = '']) => `<div class="row ${cls}" data-in="left ${d} .45"><span>${l}</span><span style="display:flex;align-items:center"><b>${v}</b>${extra}</span></div>`).join('');
 R['03-three-things-we-negotiate'] = { bg: 'mint', dur: 23, cover: 10.6, caps: [
   [0, 3, 'We negotiate three things for you'], [3, 8, 'One: the vehicle price, checked against market data'], [8, 13, 'Two: dealer fees. Add-ons you never asked for come off.'],
-  [13, 18, 'Three: your trade-in, valued on its own'], [18, 23, 'One flat fee. We negotiate. You just sign.']], html: [
+  [13, 18, 'Three: your trade-in, valued on its own'], [18, 23, 'Save this for your next car']], html: [
   sc(0, 3, `${brandRow(false)}<div class="kicker" data-in="fadeup 0 .5">The sticker price is only one number</div><h1 class="h xl" data-in="fadeup .3 .6">We negotiate <em class="hl">3 things.</em></h1>`),
   sc(3, 8, `<div class="step" data-in="fadeup 0 .5"><span class="n">1</span><span class="l">The vehicle price</span></div><h2 class="h md" data-in="fadeup .3 .5">Checked against <em>market data.</em></h2>
     <div class="doc" data-in="fadeup .7 .6"><div class="doc-h"><b>Market check</b><span>Example deal</span></div>${docRows([['Local listings compared', '24', '', 1.2], ['Agreed price', '$38,450', '<span class="ok">IN RANGE</span>', 1.8]])}</div>`),
@@ -68,31 +74,31 @@ R['03-three-things-we-negotiate'] = { bg: 'mint', dur: 23, cover: 10.6, caps: [
     <div class="doc" data-in="fadeup .7 .6"><div class="doc-h"><b>Fees and add-ons</b><span>Example deal</span></div>${docRows([['Appearance package', '$1,995', '<span class="flag">REMOVED</span>', 1.1, 'cut'], ['Nitrogen fill', '$299', '<span class="flag">REMOVED</span>', 1.5, 'cut'], ['Doc fee', '$899', '<span class="ok">ITEMIZED</span>', 1.9]])}</div>`),
   sc(13, 18, `<div class="step" data-in="fadeup 0 .5"><span class="n">3</span><span class="l">Your trade-in</span></div><h2 class="h md" data-in="fadeup .3 .5">Valued <em>on its own.</em></h2>
     <div class="doc" data-in="fadeup .7 .6"><div class="doc-h"><b>Trade-in</b><span>Example deal</span></div>${docRows([['First offer', '$14,200', '', 1.1], ['Market value check', '$16,300', '', 1.6], ['Agreed trade-in', '$16,100', '<span class="ok">KEPT SEPARATE</span>', 2.1, 'total']])}</div>`),
-  ctaScene(18, 24, { dark: false, h: 'We negotiate. <em>You just sign.</em>', sub: 'One flat fee of $995. $0 for heroes.', btn: 'Start my deal', url: 'mycleardeal.com/start' }),
+  payoffScene(18, 24, { dark: false, h: 'We negotiate. <em>You just sign.</em>', numbered: true, recap: ['The vehicle price, checked against market data', 'Dealer fees: add-ons you never asked for come off', 'Your trade-in, valued on its own'], icon: 'bookmark', ask: 'Save this for your next car', url: 'mycleardeal.com/start <span>· $995 flat, $0 for heroes</span>' }),
 ].join('') };
 
 // 4. Send us your quote (free quote review)
 R['04-send-us-your-quote'] = { bg: 'mint', dur: 21, cover: 7.5, caps: [
   [0, 3.5, 'Got a quote from a dealer?'], [3.5, 6.8, 'Send it to us. We review it for free.'], [6.8, 10.5, 'A real person checks every line by hand'],
-  [10.5, 15.5, 'We tell you what holds up and what to question'], [15.5, 21, 'Send yours at mycleardeal.com']], html: [
+  [10.5, 15.5, 'We tell you what holds up and what to question'], [15.5, 21, 'Send this to someone who is car shopping']], html: [
   sc(0, 3.5, `${brandRow(false)}<div class="kicker" data-in="fadeup .2 .5">Free quote review</div><h1 class="h xl" data-in="fadeup .4 .6">Got a dealer quote? <em class="hl">Send it to us.</em></h1>`),
   sc(3.5, 10.5, `<div class="doc" data-in="fadeup .1 .6"><div class="doc-h"><b>Dealer quote</b><span>Example</span></div>${docRows([
     ['Vehicle price', '$38,450', '', .6], ['Doc fee', '$899', '', 1.0], ['Appearance package', '$1,995', '<span class="flag">ASK</span>', 1.4], ['Nitrogen fill', '$299', '<span class="flag">ASK</span>', 1.8], ['Taxes, tag and title', 'Itemized', '', 2.2]])}</div>
     <p class="sub" data-in="fadeup 3.6 .6"><b>Reviewed by hand.</b> You hear what holds up and what to question.</p>`),
   sc(10.5, 15.5, `<div class="kicker" data-in="fadeup 0 .5">How it works</div><div class="stack" style="gap:34px">${[['Send your quote', 'Type in the key numbers'], ['We review it by hand', 'Price, fees, add-ons and trade-in'], ['We follow up', 'By phone, text or email']].map(([a, b], k) => `<div class="step" data-in="left ${0.4 + k * 0.7} .5"><span class="n">${k + 1}</span><div><div style="font:800 56px/1.1 var(--display);color:var(--ink);letter-spacing:-.02em">${a}</div><div class="small">${b}</div></div></div>`).join('')}</div>`),
-  ctaScene(15.5, 22, { dark: false, h: 'Free. <em>No obligation.</em>', sub: 'Type in the key numbers from your dealer quote. We review it by hand.', btn: 'Review my quote', url: 'mycleardeal.com' }),
+  payoffScene(15.5, 22, { dark: false, h: 'Free quote review. <em>No obligation.</em>', numbered: true, recap: ['Type in the key numbers from your quote', 'A real person reviews it by hand', 'We follow up by phone, text or email'], icon: 'send', ask: 'Send this to a car shopper', url: 'mycleardeal.com <span>· Review my quote</span>' }),
 ].join('') };
 
 // 5. The written out-the-door recap
 R['05-written-recap'] = { bg: 'mint', dur: 22, cover: 12.5, caps: [
   [0, 3.5, 'Before you sign anything'], [3.5, 8.5, 'You get a written out-the-door recap'], [8.5, 14, 'Every number on one page. You approve it.'],
-  [14, 18, 'Not happy with it? We keep working.'], [18, 22, 'Start with a free call at mycleardeal.com']], html: [
+  [14, 18, 'Not happy with it? We keep working.'], [18, 22, 'Save this for when you start shopping']], html: [
   sc(0, 3.5, `${brandRow(false)}<h1 class="h xl" data-in="fadeup .3 .6">See every number <em class="hl">before you sign.</em></h1>`),
   sc(3.5, 14, `<div class="doc" data-in="fadeup .1 .6"><div class="doc-h"><b>Your deal recap</b><span>Example deal</span></div>${docRows([
     ['Vehicle price', '$38,450', '', .8], ['Doc fee', '$899', '', 1.6], ['Add-ons', '$0', '', 2.4], ['Taxes, tag and title', '$1,645', '', 3.2], ['Out-the-door', '$40,994', '', 4.2, 'total'], ['Trade-in', '$16,100', '', 5.2]])}
     <span class="stamp" data-in="pop 6.6 .5">Approve recap</span></div>`),
   sc(14, 18, `${ico('check')}<h2 class="h" data-in="fadeup .2 .6">Nothing moves <em>without your OK.</em></h2><p class="sub" data-in="fadeup .7 .6">Not happy with the recap? We keep working.</p>`),
-  ctaScene(18, 23, { dark: false, h: 'We negotiate. <em>You just sign.</em>', sub: 'Book a free consultation call. $995 flat, $0 for heroes.', btn: 'Start my deal', url: 'mycleardeal.com/start' }),
+  payoffScene(18, 23, { dark: false, h: 'See every number <em>before you sign.</em>', recap: ['Every line on one written page', 'You approve it, or we keep working', 'One trip to the dealer, to sign'], icon: 'bookmark', ask: 'Save this for when you shop', url: 'mycleardeal.com/start <span>· $995 flat, $0 for heroes</span>' }),
 ].join('') };
 
 

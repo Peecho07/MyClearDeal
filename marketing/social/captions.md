@@ -12,6 +12,8 @@ How each entry is built:
 
 Files: `carousels/<name>/slide-NN.png` (1080x1350), `reels/<name>.mp4` + `-cover.png` (1080x1920). Review it all in `contact-sheet.html`.
 
+Every carousel and reel ends the same way: a one-screen recap plus one ask, and the caption's ask matches it (save, send or claim).
+
 ---
 
 ## Posting plan: Nov 27 to Dec 20
@@ -85,7 +87,7 @@ Send this to a hero in your life who is car shopping.
 
 **First comment:** #heroprogram #thankyouheroes #firstresponders #veteransofinstagram #heroes
 
-**On-screen words:** Heroes: your car negotiator is on us / Our car negotiation service is $995 / For heroes, it is $0 / Firefighters, law enforcement, medical, teachers and military / Same negotiation. Same written recap. Same support. / Claim yours at mycleardeal.com
+**On-screen words:** Heroes: your car negotiator is on us / Our car negotiation service is $995 / For heroes, it is $0 / Firefighters, law enforcement, medical, teachers and military / Same negotiation. Same written recap. Same support. / Send this to a hero who is car shopping
 
 ### Programa Héroes (`reels/01-hero-program-announcement-es.mp4`, 23s). Wed Dec 2
 
@@ -100,7 +102,7 @@ Envíale esto a un héroe que esté buscando auto.
 
 **Primer comentario:** #ProgramaHeroes #comprarauto #autosenflorida #orlandolatino #autos
 
-**Texto en pantalla:** Héroes: tu negociador de autos es gratis / Nuestro servicio de negociación cuesta $995 / Para los héroes, cuesta $0 / Bomberos, agentes del orden, área médica, maestros y militares / La misma negociación, el mismo resumen, el mismo apoyo / Obtén el tuyo en mycleardeal.com
+**Texto en pantalla:** Héroes: tu negociador de autos es gratis / Nuestro servicio de negociación cuesta $995 / Para los héroes, cuesta $0 / Bomberos, agentes del orden, área médica, maestros y militares / La misma negociación, el mismo resumen, el mismo apoyo / Envíaselo a un héroe que esté buscando auto
 
 ### The written recap (`reels/05-written-recap.mp4`, 22s). Sat Dec 5
 
@@ -132,7 +134,7 @@ The numbers in the video are an example deal. Save this for your next car.
 
 **First comment:** #dealerfees #tradeinvalue #carbuyingtips #carnegotiation #carbuying
 
-### 5 jobs that get a free car negotiator (`reels/02-five-jobs.mp4`, 24s). Thu Dec 10
+### 5 jobs that get a free car negotiator (`reels/02-five-jobs.mp4`, 25s). Thu Dec 10
 
 **Caption**
 5 jobs that get a free car negotiator. Is yours on the list?
