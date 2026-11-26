@@ -1,0 +1,176 @@
+{
+  "_note": "Each line starts at a scene cut in the reel and must finish before the next one (window). Times in seconds. Versions: A = Clear Guide (calm, reads close to the on-screen text). B = Straight Talk (punchier, conversational).",
+  "reels": [
+    {
+      "id": "04-send-us-your-quote",
+      "video": "reels/04-send-us-your-quote.mp4",
+      "lang": "en",
+      "segments": [
+        {"start": 0.2, "end": 4.0, "scene": "Hook: Got a dealer quote? Send it to us."},
+        {"start": 4.0, "end": 7.0, "scene": "Quote builds: We review it for free"},
+        {"start": 7.0, "end": 11.0, "scene": "Reviewed by hand"},
+        {"start": 11.0, "end": 16.0, "scene": "How it works, 3 steps"},
+        {"start": 16.0, "end": 21.0, "scene": "End card: Send this to a car shopper"}
+      ],
+      "A": [
+        "Got a quote from a dealer? Send it to us.",
+        "We review it for free.",
+        "A real person checks every line by hand.",
+        "Then we tell you what holds up, and what to question.",
+        "Free review, no obligation. Send this to someone car shopping."
+      ],
+      "B": [
+        "Before you sign that dealer quote, send it to us.",
+        "We'll review it. Free.",
+        "A real person checks every fee and add-on.",
+        "Then we call, text, or email you with what holds up.",
+        "No obligation. Know someone car shopping? Send them this."
+      ]
+    },
+    {
+      "id": "01-hero-program-announcement",
+      "video": "reels/01-hero-program-announcement.mp4",
+      "lang": "en",
+      "segments": [
+        {"start": 0.2, "end": 3.0, "scene": "Hook: Your car negotiator is on us"},
+        {"start": 3.0, "end": 6.0, "scene": "$995"},
+        {"start": 6.0, "end": 9.0, "scene": "$995 crossed out, $0"},
+        {"start": 9.0, "end": 15.0, "scene": "Who qualifies list"},
+        {"start": 15.0, "end": 19.0, "scene": "What you get"},
+        {"start": 19.0, "end": 23.0, "scene": "End card: Send this to a hero"}
+      ],
+      "A": [
+        "Heroes, your car negotiator is on us.",
+        "Our service is nine ninety-five.",
+        "For heroes, it's zero.",
+        "Firefighters, law enforcement, medical, teachers, and military. Active or retired. Veterans too.",
+        "Same negotiation. Same written recap. Same support.",
+        "Send this to a hero who's car shopping."
+      ],
+      "B": [
+        "If you serve, it's on us.",
+        "Everyone else pays nine ninety-five.",
+        "Heroes pay nothing.",
+        "Firefighters, officers, medics, teachers, military, and veterans. Active or retired.",
+        "Same full service. Same written recap.",
+        "Know a hero shopping for a car? Send them this."
+      ]
+    },
+    {
+      "id": "01-hero-program-announcement-es",
+      "video": "reels/01-hero-program-announcement-es.mp4",
+      "lang": "es",
+      "segments": [
+        {"start": 0.2, "end": 3.0, "scene": "Hook: Tu negociador de autos, gratis"},
+        {"start": 3.0, "end": 6.0, "scene": "$995"},
+        {"start": 6.0, "end": 9.0, "scene": "$995 tachado, $0"},
+        {"start": 9.0, "end": 15.0, "scene": "Quién califica"},
+        {"start": 15.0, "end": 19.0, "scene": "Lo que recibes"},
+        {"start": 19.0, "end": 23.0, "scene": "Cierre: Envíaselo a un héroe"}
+      ],
+      "A": [
+        "Héroes, tu negociador de autos es gratis.",
+        "Cuesta novecientos noventa y cinco.",
+        "Para los héroes, cuesta cero.",
+        "Bomberos, agentes del orden, área médica, maestros y militares. Activos o jubilados. Los veteranos califican.",
+        "La misma negociación, el mismo resumen, el mismo apoyo.",
+        "Envíaselo a un héroe que esté buscando auto."
+      ],
+      "B": [
+        "Si sirves, va por nuestra cuenta.",
+        "Los demás pagan novecientos noventa y cinco.",
+        "Los héroes no pagan nada.",
+        "Bomberos, policías, área médica, maestros, militares y veteranos. Activos o jubilados.",
+        "El mismo servicio completo, con todo por escrito.",
+        "¿Conoces a un héroe buscando auto? Envíale esto."
+      ]
+    },
+    {
+      "id": "05-written-recap",
+      "video": "reels/05-written-recap.mp4",
+      "lang": "en",
+      "segments": [
+        {"start": 0.2, "end": 4.0, "scene": "Hook: See every number before you sign"},
+        {"start": 4.0, "end": 9.0, "scene": "Recap builds line by line"},
+        {"start": 9.0, "end": 14.0, "scene": "Every number on one page, approve"},
+        {"start": 14.0, "end": 18.0, "scene": "Nothing moves without your OK"},
+        {"start": 18.0, "end": 22.0, "scene": "End card: Save this"}
+      ],
+      "A": [
+        "See every number before you sign.",
+        "You get a written, out-the-door recap.",
+        "Every number on one page. You approve it.",
+        "Not happy with it? We keep working.",
+        "One trip to the dealer, just to sign. Save this."
+      ],
+      "B": [
+        "Here's the page you see before you sign.",
+        "Price, fees, add-ons, taxes, and your trade-in.",
+        "All on one page. Nothing moves without your OK.",
+        "Don't like it? We keep working.",
+        "Save this for when you start shopping."
+      ]
+    },
+    {
+      "id": "03-three-things-we-negotiate",
+      "video": "reels/03-three-things-we-negotiate.mp4",
+      "lang": "en",
+      "segments": [
+        {"start": 0.2, "end": 3.0, "scene": "Hook: We negotiate 3 things"},
+        {"start": 3.0, "end": 8.0, "scene": "1. The vehicle price"},
+        {"start": 8.0, "end": 13.0, "scene": "2. Dealer fees"},
+        {"start": 13.0, "end": 18.0, "scene": "3. Your trade-in"},
+        {"start": 18.0, "end": 23.0, "scene": "End card: We negotiate. You just sign."}
+      ],
+      "A": [
+        "We negotiate three things for you.",
+        "One. The vehicle price, checked against market data.",
+        "Two. Dealer fees. Add-ons you never asked for come off.",
+        "Three. Your trade-in, valued on its own.",
+        "We negotiate. You just sign. Save this for your next car."
+      ],
+      "B": [
+        "The sticker price is only one number.",
+        "First, the price. We check it against real market data.",
+        "Second, fees. Add-ons you never asked for? Gone.",
+        "Third, your trade-in. Valued separately, so a low offer can't hide.",
+        "Price, fees, trade-in. Save this for your next car."
+      ]
+    },
+    {
+      "id": "02-five-jobs",
+      "video": "reels/02-five-jobs.mp4",
+      "lang": "en",
+      "segments": [
+        {"start": 0.2, "end": 4.0, "scene": "Hook: 5 jobs that get a free car negotiator"},
+        {"start": 4.0, "end": 7.0, "scene": "1 Firefighters"},
+        {"start": 7.0, "end": 10.0, "scene": "2 Law enforcement"},
+        {"start": 10.0, "end": 13.0, "scene": "3 Medical field"},
+        {"start": 13.0, "end": 16.0, "scene": "4 Teachers"},
+        {"start": 16.0, "end": 19.0, "scene": "5 Military"},
+        {"start": 19.0, "end": 21.0, "scene": "$995 crossed out, $0"},
+        {"start": 21.0, "end": 25.0, "scene": "End card: Send this to someone on the list"}
+      ],
+      "A": [
+        "Five jobs that get a free car negotiator.",
+        "One. Firefighters, career and volunteer.",
+        "Two. Law enforcement, police to corrections.",
+        "Three. The medical field, nurses to paramedics.",
+        "Four. Teachers, pre-K through college.",
+        "Five. Military, every branch, and veterans.",
+        "Our full service. Free.",
+        "Send this to someone on the list."
+      ],
+      "B": [
+        "Your job could get you a free car negotiator.",
+        "Firefighters. Career or volunteer.",
+        "Police, deputies, troopers, corrections.",
+        "Nurses, doctors, [spell]EMT[/spell]s, paramedics.",
+        "Teachers. Pre-K through college.",
+        "Military. Every branch. Veterans too.",
+        "All of it, zero dollars.",
+        "Know someone on the list? Send them this."
+      ]
+    }
+  ]
+}
